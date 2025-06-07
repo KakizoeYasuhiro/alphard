@@ -1,0 +1,164 @@
+/* WORKSページのスタイル */
+:root {
+    --works-bg-color: #12224D; /* R:18 G:34 B:66 */
+    --works-title-bg: rgba(255, 255, 255, 0.1);
+    --works-section-margin: 60px;
+}
+
+.works-page {
+    background-color: var(--works-bg-color);
+    color: white;
+}
+
+.works-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 100px 20px 50px;
+}
+
+/* セクションスタイル */
+.work-section {
+    margin-bottom: var(--works-section-margin);
+}
+
+.work-title {
+    display: inline-block;
+    padding: 8px 20px;
+    background-color: var(--works-title-bg);
+    font-size: 20px;
+    margin-bottom: 25px;
+    font-weight: 500;
+}
+
+.work-content {
+    line-height: 1.8;
+}
+
+.work-content p {
+    margin-bottom: 15px;
+}
+
+/* イベント実績セクション */
+.work-subtitle {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.event-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.event-details {
+    flex: 0 0 55%;
+}
+
+.event-details p {
+    margin-bottom: 10px;
+}
+
+.event-image {
+    flex: 0 0 40%;
+}
+
+.event-image img {
+    width: 100%;
+    border-radius: 5px;
+}
+
+/* ファンクラブセクション */
+.fanclub-logo {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.fanclub-item {
+    display: inline-block;
+    padding: 20px 0;
+}
+
+.fanclub-artist {
+    font-size: 22px;
+    margin-bottom: 5px;
+}
+
+.fanclub-name {
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.fanclub-brand {
+    font-size: 18px;
+    font-family: 'EB Garamond', serif;
+}
+
+/* グッズギャラリー */
+.goods-gallery {
+    margin-top: 30px;
+    overflow: hidden;
+}
+
+.gallery-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+.gallery-row img {
+    max-width: 100%;
+    border-radius: 5px;
+}
+
+/* 出版図 */
+.publishing-diagram {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.publishing-diagram img {
+    max-width: 100%;
+    border-radius: 5px;
+}
+
+/* レスポンシブデザイン */
+@media (max-width: 768px) {
+    .event-content {
+        flex-direction: column;
+    }
+
+    .event-details {
+        flex: 0 0 100%;
+        margin-bottom: 20px;
+    }
+
+    .event-image {
+        flex: 0 0 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .works-container {
+        padding-top: 70px;
+    }
+
+    .work-title {
+        font-size: 18px;
+        padding: 6px 15px;
+    }
+
+    .work-subtitle {
+        font-size: 16px;
+    }
+
+    .fanclub-artist {
+        font-size: 20px;
+    }
+
+    .fanclub-brand {
+        font-size: 16px;
+    }
+}
