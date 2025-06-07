@@ -1,0 +1,324 @@
+/* NEWSページのスタイル */
+:root {
+    --news-bg-color: #12224D; /* R:18 G:34 B:66 */
+    --news-divider: rgba(255, 255, 255, 0.1);
+}
+
+.news-page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 100px 20px 50px;
+    color: white;
+}
+
+body {
+    background-color: var(--news-bg-color);
+}
+
+/* フィルター部分 */
+.news-filter {
+    margin-bottom: 40px;
+    border-bottom: 1px solid var(--news-divider);
+    padding-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    align-items: flex-start;
+}
+
+.filter-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.filter-label {
+    font-family: var(--font-garamond), serif;
+    font-size: 18px;
+    margin-right: 20px;
+    min-width: 80px;
+}
+
+.filter-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.filter-options a {
+    color: rgba(255, 255, 255, 0.7);
+    transition: color 0.3s ease;
+    font-family: var(--font-garamond), serif;
+}
+
+.filter-options a:hover,
+.filter-options a.active {
+    color: white;
+}
+
+/* HeadlessUI ドロップダウンスタイル */
+.filter-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.filter-dropdown-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 15px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-family: var(--font-garamond), serif;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.filter-dropdown-button:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.dropdown-arrow {
+    transition: transform 0.3s ease;
+}
+
+.filter-dropdown[data-headlessui-state="open"] .dropdown-arrow {
+    transform: rotate(180deg);
+}
+
+.filter-dropdown-items {
+    position: absolute;
+    margin-top: 5px;
+    right: 0;
+    z-index: 50;
+    min-width: 140px;
+    background-color: #1c2e5c;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.filter-dropdown-items button {
+    display: block;
+    width: 100%;
+    padding: 10px 15px;
+    text-align: left;
+    border: none;
+    background: none;
+    color: rgba(255, 255, 255, 0.7);
+    font-family: var(--font-garamond), serif;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.filter-dropdown-items button:hover,
+.filter-dropdown-items button.active {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+/* 月選択UI */
+.month-filter {
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.month-selector {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.month-button {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+    font-family: var(--font-garamond), serif;
+    font-size: 15px;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: all 0.2s ease;
+    text-align: center;
+}
+
+.month-button:hover {
+    color: white;
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.month-button.active {
+    color: white;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.year-group {
+    margin-top: 5px;
+}
+
+.year-label {
+    font-family: var(--font-garamond), serif;
+    font-size: 16px;
+    color: white;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.months-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 5px;
+    width: 180px;
+}
+
+/* ニュースリスト */
+.news-list {
+    margin-bottom: 50px;
+}
+
+.news-item {
+    display: flex;
+    gap: 30px;
+    padding: 30px 0;
+    border-bottom: 1px solid var(--news-divider);
+}
+
+/* ニュースメイン部分（日付タグ + コンテンツ） */
+.news-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 日付とタグを横並び */
+.news-date-tags {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+.news-date {
+    font-size: 16px;
+    color: white;
+    font-weight: 500;
+}
+
+.news-artist,
+.news-type {
+    display: inline-block;
+    padding: 3px 10px;
+    font-size: 14px;
+    border-radius: 3px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    text-align: center;
+}
+
+.news-type {
+    background-color: #2e4675;
+}
+
+.news-content {
+    flex: 1;
+}
+
+.news-content p {
+    margin: 0 0 10px 0;
+    line-height: 1.6;
+}
+
+.news-image {
+    flex: 0 0 200px;
+}
+
+.news-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* ページネーション */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.pagination a,
+.pagination-dots {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 30px;
+    height: 30px;
+    padding: 0 5px;
+    color: rgba(255, 255, 255, 0.7);
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+.pagination a:hover,
+.pagination a.active {
+    color: white;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.pagination-next {
+    margin-left: 5px;
+}
+
+/* レスポンシブデザイン */
+@media (max-width: 768px) {
+    .news-item {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .news-date-tags {
+        gap: 10px;
+    }
+
+    .news-image {
+        flex: 0 0 auto;
+        max-width: 300px;
+        align-self: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .filter-group:not(.month-filter) {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .filter-label {
+        margin-bottom: 10px;
+    }
+
+    .filter-options {
+        gap: 10px;
+    }
+
+    .months-grid {
+        grid-template-columns: repeat(3, 1fr);
+        width: 140px;
+    }
+
+    .news-date-tags {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .pagination {
+        flex-wrap: wrap;
+    }
+}

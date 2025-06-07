@@ -92,7 +92,7 @@
 
 .fanclub-brand {
     font-size: 18px;
-    font-family: 'EB Garamond', serif;
+    font-family: var(--font-garamond), serif;
 }
 
 /* グッズギャラリー */
