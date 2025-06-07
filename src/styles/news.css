@@ -15,165 +15,130 @@ body {
     background-color: var(--news-bg-color);
 }
 
-/* フィルター部分 */
-.news-filter {
+/* フィルターコンテナ */
+.filter-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+    padding: 20px 0;
     margin-bottom: 40px;
     border-bottom: 1px solid var(--news-divider);
-    padding-bottom: 20px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 25px;
-    align-items: flex-start;
-}
-
-.filter-group {
-    display: flex;
-    align-items: center;
-    margin-bottom: 5px;
-}
-
-.filter-label {
     font-family: var(--font-garamond), serif;
-    font-size: 18px;
-    margin-right: 20px;
-    min-width: 80px;
-}
-
-.filter-options {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-}
-
-.filter-options a {
-    color: rgba(255, 255, 255, 0.7);
-    transition: color 0.3s ease;
-    font-family: var(--font-garamond), serif;
-}
-
-.filter-options a:hover,
-.filter-options a.active {
-    color: white;
-}
-
-/* HeadlessUI ドロップダウンスタイル */
-.filter-dropdown {
-    position: relative;
-    display: inline-block;
-}
-
-.filter-dropdown-button {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 8px 15px;
-    background-color: rgba(255, 255, 255, 0.1);
-    border: none;
-    border-radius: 4px;
-    color: white;
-    font-family: var(--font-garamond), serif;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.filter-dropdown-button:hover {
-    background-color: rgba(255, 255, 255, 0.15);
-}
-
-.dropdown-arrow {
-    transition: transform 0.3s ease;
-}
-
-.filter-dropdown[data-headlessui-state="open"] .dropdown-arrow {
-    transform: rotate(180deg);
-}
-
-.filter-dropdown-items {
-    position: absolute;
-    margin-top: 5px;
-    right: 0;
-    z-index: 50;
-    min-width: 140px;
-    background-color: #1c2e5c;
-    border-radius: 4px;
-    overflow: hidden;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-}
-
-.filter-dropdown-items button {
-    display: block;
     width: 100%;
-    padding: 10px 15px;
-    text-align: left;
-    border: none;
-    background: none;
-    color: rgba(255, 255, 255, 0.7);
-    font-family: var(--font-garamond), serif;
-    font-size: 16px;
-    cursor: pointer;
-    transition: all 0.2s ease;
 }
 
-.filter-dropdown-items button:hover,
-.filter-dropdown-items button.active {
-    background-color: rgba(255, 255, 255, 0.1);
-    color: white;
-}
-
-/* 月選択UI */
-.month-filter {
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-.month-selector {
+/* 各フィルターセクション */
+.filter-section {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    margin-top: 10px;
+    gap: 8px;
+    width: 100%;
+    padding-left: 0;
 }
 
-.month-button {
-    background: none;
-    border: none;
-    color: rgba(255, 255, 255, 0.7);
-    font-family: var(--font-garamond), serif;
-    font-size: 15px;
-    padding: 5px 10px;
-    cursor: pointer;
-    border-radius: 3px;
-    transition: all 0.2s ease;
-    text-align: center;
+/* ラジオグループ（年・月選択用） */
+.radio-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
 }
 
-.month-button:hover {
-    color: white;
+/* ラジオボタンのオプション */
+.radio-option {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 46px;
+    height: 32px;
+    padding: 0 12px;
+    font-size: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
     background-color: rgba(255, 255, 255, 0.05);
+    color: white;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    letter-spacing: 0.05em;
 }
 
-.month-button.active {
-    color: white;
+.radio-option:hover {
     background-color: rgba(255, 255, 255, 0.1);
 }
 
-.year-group {
-    margin-top: 5px;
+/* チェック済みのラジオオプション */
+.radio-option-checked {
+    background-color: rgba(255, 255, 255, 0.2) !important;
+    color: #ffffff !important;
+    border-color: rgba(255, 255, 255, 0.5) !important;
 }
 
-.year-label {
-    font-family: var(--font-garamond), serif;
-    font-size: 16px;
+/* 無効化されたラジオオプション */
+.radio-option-disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Listbox（ドロップダウン）コンテナ */
+.listbox-container {
+    position: relative;
+    width: 200px;
+    max-width: 100%;
+}
+
+/* Listboxボタン */
+.listbox-button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 8px 12px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    font-size: 14px;
     color: white;
-    margin-bottom: 5px;
-    text-align: center;
+    cursor: pointer;
+    text-align: left;
+    transition: border-color 0.2s ease;
+    letter-spacing: 0.05em;
 }
 
-.months-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 5px;
-    width: 180px;
+.listbox-button:hover {
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Listboxアイコン */
+.listbox-icon {
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.7);
+    margin-left: 8px;
+}
+
+/* Listboxオプションコンテナ */
+.listbox-options {
+    position: absolute;
+    z-index: 10;
+    margin-top: 4px;
+    width: 100%;
+    max-height: 200px;
+    overflow-y: auto;
+    background-color: #1c2e5c;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Listboxの各オプション */
+.listbox-option {
+    padding: 8px 12px;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.listbox-option:hover,
+.listbox-option-active {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
 }
 
 /* ニュースリスト */
@@ -293,25 +258,43 @@ body {
     }
 }
 
-@media (max-width: 480px) {
-    .filter-group:not(.month-filter) {
+@media (max-width: 768px) {
+    .filter-container {
         flex-direction: column;
         align-items: flex-start;
+        gap: 24px;
+        width: 100%;
     }
-
-    .filter-label {
-        margin-bottom: 10px;
+    
+    .filter-section {
+        width: 100%;
     }
-
-    .filter-options {
-        gap: 10px;
+    
+    .radio-group {
+        width: 100%;
+        flex-wrap: wrap;
+        overflow-x: visible;
+        white-space: normal;
+        padding-bottom: 4px;
+        gap: 8px;
     }
-
-    .months-grid {
-        grid-template-columns: repeat(3, 1fr);
-        width: 140px;
+    
+    .radio-option {
+        flex: 0 0 auto;
+        margin-bottom: 8px;
     }
+    
+    .listbox-container {
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    .listbox-button {
+        width: 100%;
+    }
+}
 
+@media (max-width: 480px) {
     .news-date-tags {
         flex-direction: column;
         align-items: flex-start;

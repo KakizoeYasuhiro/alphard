@@ -1,10 +1,10 @@
 'use client';
 
-import { useState, useEffect, Fragment } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
-import { Menu, Transition } from '@headlessui/react';
+import FilterControls from '@/components/FilterControls';
 import '../../styles/news.css';
 
 if (typeof window !== 'undefined') {
@@ -12,9 +12,11 @@ if (typeof window !== 'undefined') {
 }
 
 export default function NewsClient() {
-  const [activeArtistFilter, setActiveArtistFilter] = useState('ALL');
-  const [activeTypeFilter, setActiveTypeFilter] = useState('ALL');
-  const [activeMonthFilter, setActiveMonthFilter] = useState('ALL');
+  const [filters, setFilters] = useState({
+    year: '2025',
+    month: null,
+    type: 'ALL'
+  });
   const [activePage, setActivePage] = useState(1);
 
   // Sample news data - in a real app, this would come from an API
@@ -67,12 +69,16 @@ export default function NewsClient() {
     }
   ];
 
+  // フィルター変更ハンドラー
+  const handleFilterChange = (newFilters) => {
+    setFilters(newFilters);
+  };
+
   // Filtered news items based on active filters
   const filteredNews = newsItems.filter(item => {
-    const artistMatch = activeArtistFilter === 'ALL' || item.artist === activeArtistFilter;
-    const typeMatch = activeTypeFilter === 'ALL' || item.type === activeTypeFilter;
-    const monthMatch = activeMonthFilter === 'ALL' || item.date.includes(activeMonthFilter);
-    return artistMatch && typeMatch && monthMatch;
+    const typeMatch = filters.type === 'ALL' || item.type === filters.type;
+    const monthMatch = !filters.month || item.date.includes(`2025.${filters.month}`);
+    return typeMatch && monthMatch;
   });
 
   useEffect(() => {
@@ -104,228 +110,14 @@ export default function NewsClient() {
 
   return (
     <section className="news-page">
-      <div className="news-filter">
-        <div className="filter-group">
-          <div className="filter-label">ARTIST:</div>
-          <Menu as="div" className="filter-dropdown">
-            <Menu.Button className="filter-dropdown-button">
-              {activeArtistFilter} 
-              <svg 
-                className="dropdown-arrow" 
-                width="12" 
-                height="12" 
-                viewBox="0 0 24 24" 
-                fill="none" 
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path d="M6 9L12 15L18 9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </Menu.Button>
-            <Transition
-              as={Fragment}
-              enter="transition ease-out duration-100"
-              enterFrom="transform opacity-0 scale-95"
-              enterTo="transform opacity-100 scale-100"
-              leave="transition ease-in duration-75"
-              leaveFrom="transform opacity-100 scale-100"
-              leaveTo="transform opacity-0 scale-95"
-            >
-              <Menu.Items className="filter-dropdown-items">
-                <Menu.Item>
-                  {({ active }) => (
-                    <button
-                      className={`${active || activeArtistFilter === 'ALL' ? 'active' : ''}`}
-                      onClick={() => setActiveArtistFilter('ALL')}
-                    >
-                      ALL
-                    </button>
-                  )}
-                </Menu.Item>
-                <Menu.Item>
-                  {({ active }) => (
-                    <button
-                      className={`${active || activeArtistFilter === '園木 邦宝' ? 'active' : ''}`}
-                      onClick={() => setActiveArtistFilter('園木 邦宝')}
-                    >
-                      園木邦宝
-                    </button>
-                  )}
-                </Menu.Item>
-                <Menu.Item>
-                  {({ active }) => (
-                    <button
-                      className={`${active || activeArtistFilter === '井上恭杜' ? 'active' : ''}`}
-                      onClick={() => setActiveArtistFilter('井上恭杜')}
-                    >
-                      井上恭杜
-                    </button>
-                  )}
-                </Menu.Item>
-              </Menu.Items>
-            </Transition>
-          </Menu>
-        </div>
-        
-        <div className="filter-group">
-          <div className="filter-label">TYPE:</div>
-          <Menu as="div" className="filter-dropdown">
-            <Menu.Button className="filter-dropdown-button">
-              {activeTypeFilter}
-              <svg 
-                className="dropdown-arrow" 
-                width="12" 
-                height="12" 
-                viewBox="0 0 24 24" 
-                fill="none" 
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path d="M6 9L12 15L18 9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </Menu.Button>
-            <Transition
-              as={Fragment}
-              enter="transition ease-out duration-100"
-              enterFrom="transform opacity-0 scale-95"
-              enterTo="transform opacity-100 scale-100"
-              leave="transition ease-in duration-75"
-              leaveFrom="transform opacity-100 scale-100"
-              leaveTo="transform opacity-0 scale-95"
-            >
-              <Menu.Items className="filter-dropdown-items">
-                <Menu.Item>
-                  {({ active }) => (
-                    <button
-                      className={`${active || activeTypeFilter === 'ALL' ? 'active' : ''}`}
-                      onClick={() => setActiveTypeFilter('ALL')}
-                    >
-                      ALL
-                    </button>
-                  )}
-                </Menu.Item>
-                <Menu.Item>
-                  {({ active }) => (
-                    <button
-                      className={`${active || activeTypeFilter === 'TOPICS' ? 'active' : ''}`}
-                      onClick={() => setActiveTypeFilter('TOPICS')}
-                    >
-                      TOPICS
-                    </button>
-                  )}
-                </Menu.Item>
-                <Menu.Item>
-                  {({ active }) => (
-                    <button
-                      className={`${active || activeTypeFilter === 'LIVE' ? 'active' : ''}`}
-                      onClick={() => setActiveTypeFilter('LIVE')}
-                    >
-                      LIVE
-                    </button>
-                  )}
-                </Menu.Item>
-                <Menu.Item>
-                  {({ active }) => (
-                    <button
-                      className={`${active || activeTypeFilter === 'MEDIA' ? 'active' : ''}`}
-                      onClick={() => setActiveTypeFilter('MEDIA')}
-                    >
-                      MEDIA
-                    </button>
-                  )}
-                </Menu.Item>
-              </Menu.Items>
-            </Transition>
-          </Menu>
-        </div>
-
-        <div className="filter-group month-filter">
-          <div className="filter-label">MONTH:</div>
-          <div className="month-selector">
-            <button 
-              className={activeMonthFilter === 'ALL' ? 'month-button active' : 'month-button'}
-              onClick={() => setActiveMonthFilter('ALL')}
-            >
-              ALL
-            </button>
-            <div className="year-group">
-              <div className="year-label">2025</div>
-              <div className="months-grid">
-                <button 
-                  className={activeMonthFilter === '2025.1' ? 'month-button active' : 'month-button'}
-                  onClick={() => setActiveMonthFilter('2025.1')}
-                >
-                  1
-                </button>
-                <button 
-                  className={activeMonthFilter === '2025.2' ? 'month-button active' : 'month-button'}
-                  onClick={() => setActiveMonthFilter('2025.2')}
-                >
-                  2
-                </button>
-                <button 
-                  className={activeMonthFilter === '2025.3' ? 'month-button active' : 'month-button'}
-                  onClick={() => setActiveMonthFilter('2025.3')}
-                >
-                  3
-                </button>
-                <button 
-                  className={activeMonthFilter === '2025.4' ? 'month-button active' : 'month-button'}
-                  onClick={() => setActiveMonthFilter('2025.4')}
-                >
-                  4
-                </button>
-                <button 
-                  className={activeMonthFilter === '2025.5' ? 'month-button active' : 'month-button'}
-                  onClick={() => setActiveMonthFilter('2025.5')}
-                >
-                  5
-                </button>
-                <button 
-                  className={activeMonthFilter === '2025.6' ? 'month-button active' : 'month-button'}
-                  onClick={() => setActiveMonthFilter('2025.6')}
-                >
-                  6
-                </button>
-                <button 
-                  className={activeMonthFilter === '2025.7' ? 'month-button active' : 'month-button'}
-                  onClick={() => setActiveMonthFilter('2025.7')}
-                >
-                  7
-                </button>
-                <button 
-                  className={activeMonthFilter === '2025.8' ? 'month-button active' : 'month-button'}
-                  onClick={() => setActiveMonthFilter('2025.8')}
-                >
-                  8
-                </button>
-                <button 
-                  className={activeMonthFilter === '2025.9' ? 'month-button active' : 'month-button'}
-                  onClick={() => setActiveMonthFilter('2025.9')}
-                >
-                  9
-                </button>
-                <button 
-                  className={activeMonthFilter === '2025.10' ? 'month-button active' : 'month-button'}
-                  onClick={() => setActiveMonthFilter('2025.10')}
-                >
-                  10
-                </button>
-                <button 
-                  className={activeMonthFilter === '2025.11' ? 'month-button active' : 'month-button'}
-                  onClick={() => setActiveMonthFilter('2025.11')}
-                >
-                  11
-                </button>
-                <button 
-                  className={activeMonthFilter === '2025.12' ? 'month-button active' : 'month-button'}
-                  onClick={() => setActiveMonthFilter('2025.12')}
-                >
-                  12
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <FilterControls 
+        filters={filters} 
+        onFilterChange={handleFilterChange}
+        availableYears={['2025']}
+        availableMonths={['4', '5']}
+        typeOptions={['ALL', 'TOPICS', 'LIVE', 'MEDIA']}
+        isNewsPage={true}
+      />
 
       <div className="news-list">
         {filteredNews.map(item => (
