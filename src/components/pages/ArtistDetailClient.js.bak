@@ -1,0 +1,587 @@
+'use client';
+
+import { useState, useEffect, useRef, useCallback } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+import '../../styles/artists.css';
+
+// GSAPプラグインを登録
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
+
+// 動画カルーセルのデータ
+const carouselVideos = [
+  {
+    id: 1,
+    title: 'CRAWLER - 園木 邦宝',
+    embedId: 'eUOAi8JAp0o',
+  },
+  {
+    id: 2,
+    title: 'Blank Space - 園木 邦宝',
+    embedId: '_UL2zm5Qfo8',
+  },
+  {
+    id: 3,
+    title: 'Bend - 園木 邦宝',
+    embedId: 'TogNwwOaGmY',
+  },
+  {
+    id: 4,
+    title: 'NEWDAWN - 園木 邦宝',
+    embedId: 'O0wIkiSPj28',
+  },
+  {
+    id: 5,
+    title: 'ルミネセンス - 園木 邦宝',
+    embedId: 'YDwUrmW8RvU',
+  },
+  {
+    id: 6,
+    title: '生活 - 園木 邦宝',
+    embedId: 'p6VCohkQQGI',
+  },
+  {
+    id: 7,
+    title: 'Shelter - 園木 邦宝',
+    embedId: 'KgJJ6CPip7g',
+  },
+  {
+    id: 8,
+    title: 'とおく - 園木 邦宝',
+    embedId: 'MM-j5bBrEk4',
+  },
+];
+
+// ウィンドウサイズを取得するカスタムフック
+function useWindowSize() {
+  const [windowSize, setWindowSize] = useState({
+    width: typeof window !== 'undefined' ? window.innerWidth : 0,
+    height: typeof window !== 'undefined' ? window.innerHeight : 0,
+  });
+
+  useEffect(() => {
+    function handleResize() {
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    }
+    
+    window.addEventListener('resize', handleResize);
+    handleResize();
+    
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  return windowSize;
+}
+
+export default function ArtistDetailClient() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [itemWidth, setItemWidth] = useState(0);
+  const [itemsPerView, setItemsPerView] = useState(3);
+  const [maxIndex, setMaxIndex] = useState(0);
+  const [gapWidth, setGapWidth] = useState(30);
+  const [isTouching, setIsTouching] = useState(false);
+  const [touchStartX, setTouchStartX] = useState(0);
+  const [touchMoveX, setTouchMoveX] = useState(0);
+  
+  const carouselTrackRef = useRef(null);
+  const carouselContainerRef = useRef(null);
+  const autoplayIntervalRef = useRef(null);
+  const windowSize = useWindowSize();
+
+  // リサイズ時の調整処理
+  const handleResize = useCallback(() => {
+    if (!carouselContainerRef.current) return;
+    
+    const containerWidth = carouselContainerRef.current.clientWidth;
+    let newItemsPerView = 3; // デフォルト値
+    let newGapWidth = 30; // デフォルトのギャップ幅
+    
+    // 画面サイズに応じたアイテム数とギャップ幅の調整
+    if (windowSize.width <= 768) {
+      // モバイル（768px以下）
+      newItemsPerView = 1;
+      newGapWidth = 0;
+    } else if (windowSize.width <= 1024) {
+      // タブレット（1024px以下）
+      newItemsPerView = 2;
+      newGapWidth = 20;
+    } else if (windowSize.width <= 1400) {
+      // 小型デスクトップ
+      newItemsPerView = 3;
+      newGapWidth = 25;
+    } else {
+      // 大型デスクトップ
+      newItemsPerView = 3;
+      newGapWidth = 30;
+    }
+    
+    setItemsPerView(newItemsPerView);
+    setGapWidth(newGapWidth);
+    
+    // 要素の幅を計算
+    let calculatedWidth;
+    
+    if (newItemsPerView === 1) {
+      // 1つのアイテム表示時は中央に表示するため、コンテナ幅の90%程度を使用
+      calculatedWidth = containerWidth * 0.9;
+    } else {
+      // 複数アイテム表示時は均等に分割
+      calculatedWidth = (containerWidth - (newGapWidth * (newItemsPerView - 1))) / newItemsPerView;
+    }
+    
+    setItemWidth(calculatedWidth);
+    
+    // 最大インデックスを計算
+    const newMaxIndex = Math.max(0, carouselVideos.length - newItemsPerView);
+    setMaxIndex(newMaxIndex);
+    
+    // 現在のインデックスが範囲外になった場合は修正
+    if (currentIndex > newMaxIndex) {
+      setCurrentIndex(newMaxIndex);
+    }
+    
+  }, [windowSize, carouselVideos.length, currentIndex]);
+
+  // ウィンドウサイズに応じた表示設定の更新
+  useEffect(() => {
+    // 初回レンダリング後の遅延処理
+    const timer = setTimeout(() => {
+      handleResize();
+    }, 100);
+    
+    // クリーンアップ関数
+    return () => clearTimeout(timer);
+  }, [windowSize, handleResize]);
+
+  // カルーセルの位置更新
+  useEffect(() => {
+    if (!carouselTrackRef.current) return;
+    
+    let translateX = 0;
+    
+    if (isTouching && touchStartX !== 0) {
+      // タッチ操作中は相対的な移動量を反映
+      const dragOffset = touchMoveX - touchStartX;
+      
+      // 基本位置の計算
+      const basePosition = itemsPerView === 1 
+        ? currentIndex * itemWidth 
+        : currentIndex * (itemWidth + gapWidth);
+      
+      // ドラッグ量を加味した位置を計算
+      translateX = basePosition - dragOffset;
+      
+      // 端っこでの引っ張り抵抗を追加
+      if (translateX < 0) {
+        translateX = translateX / 3;  // 左端で引っ張ると抵抗がある
+      } else if (translateX > maxIndex * itemWidth) {
+        const overscroll = translateX - maxIndex * itemWidth;
+        translateX = maxIndex * itemWidth + overscroll / 3;  // 右端で引っ張ると抵抗がある
+      }
+    } else {
+      // 通常時の位置計算
+      if (itemsPerView === 1) {
+        // 1アイテム表示時（モバイルなど）は中央揃え調整
+        const containerWidth = carouselContainerRef.current?.clientWidth || 0;
+        // コンテナの中心とアイテムの中心を合わせる
+        const centerOffset = (containerWidth - itemWidth) / 2;
+        translateX = (currentIndex * itemWidth) - centerOffset;
+      } else {
+        // 複数アイテム表示時は通常計算
+        translateX = currentIndex * (itemWidth + gapWidth);
+      }
+    }
+    
+    // トランスフォームを適用
+    carouselTrackRef.current.style.transform = `translateX(-${translateX}px)`;
+    
+  }, [currentIndex, itemWidth, itemsPerView, gapWidth, isTouching, touchStartX, touchMoveX, maxIndex, windowSize.width]);
+
+  // 自動再生の設定
+  useEffect(() => {
+    if (isTouching) return; // タッチ操作中は自動再生しない
+    
+    const startAutoplay = () => {
+      if (autoplayIntervalRef.current) {
+        clearInterval(autoplayIntervalRef.current);
+      }
+      
+      autoplayIntervalRef.current = setInterval(() => {
+        setCurrentIndex(prev => {
+          if (prev < maxIndex) return prev + 1;
+          return 0;
+        });
+      }, 5000); // 5秒ごと
+    };
+    
+    const stopAutoplay = () => {
+      if (autoplayIntervalRef.current) {
+        clearInterval(autoplayIntervalRef.current);
+        autoplayIntervalRef.current = null;
+      }
+    };
+    
+    // 自動再生開始
+    startAutoplay();
+    
+    // マウスとタッチの両方に対応
+    const container = carouselContainerRef.current;
+    if (container) {
+      // マウスイベント
+      container.addEventListener('mouseenter', stopAutoplay);
+      container.addEventListener('mouseleave', startAutoplay);
+      
+      // フォーカスイベント（キーボード操作やスクリーンリーダー対応）
+      container.addEventListener('focusin', stopAutoplay);
+      container.addEventListener('focusout', startAutoplay);
+    }
+    
+    // クリーンアップ関数
+    return () => {
+      stopAutoplay();
+      if (container) {
+        container.removeEventListener('mouseenter', stopAutoplay);
+        container.removeEventListener('mouseleave', startAutoplay);
+        container.removeEventListener('focusin', stopAutoplay);
+        container.removeEventListener('focusout', startAutoplay);
+      }
+    };
+  }, [maxIndex, isTouching]);
+  
+  // タッチイベントハンドラー
+  const handleTouchStart = useCallback((e) => {
+    // iframe上でのタッチスワイプは許可しない（YouTubeコントロールなどを有効にするため）
+    if (e.target.tagName === 'IFRAME') {
+      return;
+    }
+    
+    setIsTouching(true);
+    setTouchStartX(e.touches[0].clientX);
+    setTouchMoveX(e.touches[0].clientX);
+  }, []);
+  
+  const handleTouchMove = useCallback((e) => {
+    // Don't handle touch move if we didn't start touching on a swipeable area
+    if (!isTouching) return;
+    
+    setTouchMoveX(e.touches[0].clientX);
+    // デフォルトのスクロール動作を防止
+    e.preventDefault();
+  }, [isTouching]);
+  
+  const handleTouchEnd = useCallback(() => {
+    if (!isTouching) return;
+    
+    const swipeDistance = touchStartX - touchMoveX;
+    const threshold = itemWidth / 3; // 閾値：アイテム幅の1/3以上スワイプしたら切り替え
+    
+    if (Math.abs(swipeDistance) > threshold) {
+      if (swipeDistance > 0) {
+        // 左スワイプ（次へ）
+        setCurrentIndex(prev => Math.min(prev + 1, maxIndex));
+      } else {
+        // 右スワイプ（前へ）
+        setCurrentIndex(prev => Math.max(prev - 1, 0));
+      }
+    }
+    
+    setIsTouching(false);
+    setTouchStartX(0);
+    setTouchMoveX(0);
+  }, [isTouching, touchStartX, touchMoveX, itemWidth, maxIndex]);
+  
+  // タッチイベントリスナー登録
+  useEffect(() => {
+    const track = carouselTrackRef.current;
+    if (!track) return;
+    
+    track.addEventListener('touchstart', handleTouchStart, { passive: false });
+    track.addEventListener('touchmove', handleTouchMove, { passive: false });
+    track.addEventListener('touchend', handleTouchEnd);
+    
+    return () => {
+      track.removeEventListener('touchstart', handleTouchStart);
+      track.removeEventListener('touchmove', handleTouchMove);
+      track.removeEventListener('touchend', handleTouchEnd);
+    };
+  }, [handleTouchStart, handleTouchMove, handleTouchEnd]);
+
+  // スクロールアニメーションの初期化
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      // 要素のフェードインアニメーション
+      gsap.fromTo(
+        '.artist-profile-header',
+        { 
+          opacity: 0,
+          y: 30
+        },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.7,
+          ease: 'power2.out'
+        }
+      );
+      
+      gsap.fromTo(
+        '.artist-profile-image',
+        { 
+          opacity: 0,
+          scale: 0.95
+        },
+        {
+          opacity: 1,
+          scale: 1,
+          duration: 0.8,
+          delay: 0.2,
+          ease: 'power2.out'
+        }
+      );
+      
+      gsap.fromTo(
+        '.artist-social-links',
+        { 
+          opacity: 0,
+          y: 20
+        },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          delay: 0.3,
+          ease: 'power2.out'
+        }
+      );
+      
+      gsap.fromTo(
+        '.profile-section',
+        { 
+          opacity: 0,
+          y: 40
+        },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.7,
+          delay: 0.4,
+          ease: 'power2.out'
+        }
+      );
+      
+      gsap.fromTo(
+        '.music-videos',
+        { 
+          opacity: 0,
+          y: 40
+        },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.7,
+          delay: 0.5,
+          ease: 'power2.out'
+        }
+      );
+    }
+  }, []);
+
+  return (
+    <section className="artist-profile">
+      <div className="artist-profile-header">
+        <h1 className="artist-profile-name-ja ja-text">園木 邦宝</h1>
+        <p className="artist-profile-name-en en-text">SONOKI KUNITAKA</p>
+      </div>
+
+      <div className="artist-profile-image">
+        <Image 
+          src="/images/top_sonoki.jpg" 
+          alt="園木 邦宝"
+          width={400}
+          height={533}
+        />
+      </div>
+
+      <div className="artist-social-links">
+        <a href="https://x.com/k_sonoki" target="_blank" rel="noopener noreferrer">
+          <Image 
+            src="/images/X_WTE.svg" 
+            alt="X" 
+            width={30}
+            height={30}
+          />
+        </a>
+        <a href="https://www.instagram.com/k_sonoki/" target="_blank" rel="noopener noreferrer">
+          <Image 
+            src="/images/INSTA_WTE.svg" 
+            alt="Instagram" 
+            width={30}
+            height={30}
+          />
+        </a>
+        <a href="https://www.tiktok.com/@k_sonoki" target="_blank" rel="noopener noreferrer">
+          <Image 
+            src="/images/TIKTOK_WTE.svg" 
+            alt="TikTok" 
+            width={30}
+            height={30}
+          />
+        </a>
+        <a href="https://www.youtube.com/@heavenlysketches2687" target="_blank" rel="noopener noreferrer">
+          <Image 
+            src="/images/YOUTUBE_WTE.svg" 
+            alt="YouTube" 
+            width={30}
+            height={30}
+          />
+        </a>
+      </div>
+
+      <div className="profile-section">
+        <h3 className="en-text">PROFILE</h3>
+        <div className="profile-text ja-text">
+          <p>熊本県菊池市出身。</p>
+          <p>ロックバンド・torch(2016-2020)、ユニット・CASPER CAVE(2020-2023)のボーカリストを経て、現在は自身のソロ名義である園木 邦宝(2023-)として活動。</p>
+          <p>2023年より、都内近郊から地元・熊本に拠点を移し、ソロアーティストとして九州・東京都内で活動後、2025年より現在のキャリアを本格始動した。</p>
+          <p>同年4月にはソロ初の、バンド形態でのワンマンライブ「WAVES vol.1」＠渋谷gee-ge.を開催し、無事成功を納めた。また、同12月にはフルバンドでのワンマンライブ「WAVES vol.2」＠下北沢ReGの開催と、初となる1st mini Albumのリリースも決定している。</p>
+          <p>賞歴・出演歴など<br />
+          ・オーディション「BORN TO 九州」グランプリ選出[torch]<br />
+          ・F-X2019(Zepp福岡)、HAPPYJACK'19(熊本市民会館)など大型フェス出演[torch]<br />
+          ・熊本震災に寄せた映像制作クラウドファンディング「プロジェクト灯」200万円（100%）達成<br />
+          ・DisGOONie主催「舞台"From Three Sons of Mama Fratelli"〜枯れるやまぁ のたりのたりとまほろばよ あぁ 悲しかろ あぁ 咲かしたろ〜」主題歌&挿入歌 歌唱（Zeppブルーシアター六本木：現在閉館）</p>
+        </div>
+      </div>
+
+      <div className="music-videos">
+        <h3 className="en-text">MUSIC VIDEOS</h3>
+        
+        {/* YouTubeの埋め込み要素を生成 */}
+        {(() => {
+          const videoElements = carouselVideos.map(video => (
+            <div key={video.id} className="video-container" style={{ 
+              margin: '0 auto', 
+              width: '100%',
+              maxWidth: windowSize.width <= 768 ? '300px' : '450px', // デバイスサイズに応じた最大幅
+              boxSizing: 'border-box',
+              paddingBottom: '56.25%', // 16:9のアスペクト比を維持
+              height: 0,
+              position: 'relative',
+              borderRadius: '6px', // 角を少し丸くする
+              overflow: 'hidden' // 角丸に合わせて内容をクリップ
+            }}>
+              <iframe 
+                src={`https://www.youtube.com/embed/${video.embedId}?si=ve-KST7DGSgeT0HG&rel=1`}
+                title={video.title}
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
+                style={{ 
+                  boxSizing: 'border-box',
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  width: '100%',
+                  height: '100%'
+                }}
+              />
+            </div>
+          ));
+          
+          return (
+            <div className="carousel-container" ref={carouselContainerRef} style={{
+              position: 'relative',
+              overflow: 'hidden',
+              margin: '0 auto',
+              maxWidth: '1000px', // より大きな幅に調整
+              padding: '0 40px', // 両側のパディングを増やして、ナビゲーションボタンのためのスペースを確保
+              boxSizing: 'border-box'
+            }}>
+              <div 
+                className="carousel-track" 
+                ref={carouselTrackRef}
+                style={{
+                  gap: `${gapWidth}px`,
+                  transition: isTouching ? 'none' : 'transform 0.5s ease'
+                }}
+              >
+                {videoElements.map((videoElement, index) => (
+                  <div 
+                    key={index} 
+                    className="carousel-item"
+                    style={{ 
+                      flex: `0 0 ${itemWidth}px`, 
+                      maxWidth: `${itemWidth}px`,
+                      minWidth: '0',
+                      display: 'flex',
+                      justifyContent: 'center', // 横方向センタリング
+                      alignItems: 'center' // 縦方向センタリング
+                    }}
+                  >
+                    {videoElement}
+                  </div>
+                ))}
+              </div>
+              
+              <button 
+                className="carousel-button prev" 
+                onClick={() => {
+                  setCurrentIndex(prev => {
+                    if (prev > 0) return prev - 1;
+                    return maxIndex;
+                  });
+                }}
+                aria-label="前のスライド"
+              >
+                &lt;
+              </button>
+              <button 
+                className="carousel-button next" 
+                onClick={() => {
+                  setCurrentIndex(prev => {
+                    if (prev < maxIndex) return prev + 1;
+                    return 0;
+                  });
+                }}
+                aria-label="次のスライド"
+              >
+                &gt;
+              </button>
+              
+              <div className="carousel-indicators">
+                {Array.from({ length: itemsPerView === 1 ? carouselVideos.length : Math.ceil(carouselVideos.length / itemsPerView) }).map((_, index) => (
+                  <div 
+                    key={index}
+                    className={`carousel-indicator ${index === (itemsPerView === 1 ? currentIndex : Math.floor(currentIndex / itemsPerView)) ? 'active' : ''}`}
+                    onClick={() => {
+                      // Using 'targetIndex' instead of 'newIndex' to avoid potential variable conflict
+                      const targetIndex = itemsPerView === 1 
+                        ? index 
+                        : Math.min(index * itemsPerView, maxIndex);
+                      setCurrentIndex(targetIndex);
+                    }}
+                    aria-label={`スライド ${index + 1}`}
+                    role="button"
+                    tabIndex="0"
+                  />
+                ))}
+              </div>
+            </div>
+          );
+        })()}
+      </div>
+
+      <div className="official-links">
+        <a href="#" className="official-link">OFFICIAL SITE</a>
+        <a href="#" className="official-link">FUNCLUB</a>
+      </div>
+    </section>
+  );
+}

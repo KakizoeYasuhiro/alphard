@@ -1,6 +1,6 @@
 /* ARTISTSページのスタイル */
 :root {
-    --artists-bg-color: #12224D; /* R:18 G:34 B:66 */
+    --artists-bg-color: #12224D;
 }
 
 body.artists-page {
@@ -8,87 +8,16 @@ body.artists-page {
     color: white;
 }
 
-.artists-section {
+/* 共通スタイル */
+.artists-section, .artist-profile {
     max-width: 1200px;
     margin: 0 auto;
     padding: 80px 20px 50px;
     text-align: center;
-}
-
-.artists-section h1 {
-    font-size: 40px;
-    margin-bottom: 60px;
     color: white;
 }
 
-.artists-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 60px;
-}
-
-.artist-item {
-    flex-basis: calc(50% - 30px);
-    max-width: 400px;
-    transition: transform 0.3s ease;
-}
-
-.artist-item:hover {
-    transform: translateY(-5px);
-}
-
-.artist-link {
-    display: block;
-    color: white;
-}
-
-.artist-image {
-    margin-bottom: 20px;
-    overflow: hidden;
-}
-
-.artist-image img {
-    width: 100%;
-    display: block;
-    transition: transform 0.3s ease;
-}
-
-.artist-item:hover .artist-image img {
-    transform: scale(1.05);
-}
-
-.placeholder-image {
-    width: 100%;
-    padding-bottom: 100%; /* 正方形のプレースホルダー */
-    background-color: #333;
-}
-
-.artist-name {
-    text-align: center;
-}
-
-.artist-name-ja {
-    font-size: 28px;
-    margin-bottom: 5px;
-    font-weight: 500;
-}
-
-.artist-name-en {
-    font-size: 18px;
-    margin-top: 0;
-    color: #ccc;
-}
-
-/* ARTISTS2ページのスタイル */
-.artist-profile {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 80px 20px 50px;
-    text-align: center;
-    color: white;
-}
-
+/* アーティスト詳細ページ */
 .artist-profile-header {
     margin-bottom: 40px;
 }
@@ -121,88 +50,124 @@ body.artists-page {
 }
 
 .artist-social-links a {
-    display: inline-flex;
+    display: flex;
     align-items: center;
     justify-content: center;
     width: 40px;
     height: 40px;
     border-radius: 50%;
     background-color: rgba(255, 255, 255, 0.1);
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s;
 }
 
 .artist-social-links a:hover {
     background-color: rgba(255, 255, 255, 0.2);
 }
 
-.artist-social-links img {
-    width: 20px;
-    height: 20px;
-}
-
 .profile-section {
     margin-bottom: 50px;
 }
 
-.profile-section h3 {
+.profile-section h3, .music-videos h3 {
     font-size: 24px;
     margin-bottom: 20px;
-    color: white;
+    letter-spacing: 0.1em;
+    text-align: center;
 }
 
 .profile-text {
     text-align: left;
     line-height: 1.8;
-    margin-bottom: 20px;
 }
 
+/* カルーセル */
 .music-videos {
     margin-bottom: 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 0;
+    width: 100%;
 }
 
-/* カルーセル表示のスタイル */
 .carousel-container {
     position: relative;
-    overflow: hidden;
+    max-width: 1200px;
     margin: 0 auto;
-    max-width: 1100px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .carousel-track {
     display: flex;
-    gap: 30px; /* アイテム間の間隔 */
     transition: transform 0.5s ease;
-    padding: 0 30px; /* 左右に余白を追加 */
     width: 100%;
+    padding: 0;
+    box-sizing: border-box;
+    align-items: center;
 }
 
 .carousel-item {
-    flex: 0 0 calc(33.333% - 30px); /* 3列表示 */
-    min-width: 560px;
-    position: relative;
+    flex: 0 0 100%;
+    width: 100%;
+    padding: 0;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+}
+
+@media (min-width: 768px) {
+    .carousel-item {
+        flex: 0 0 50%;
+        width: 50%;
+    }
+}
+
+@media (min-width: 992px) {
+    .carousel-item {
+        flex: 0 0 33.333%;
+        width: 33.333%;
+    }
+}
+
+@media (min-width: 1500px) {
+    .carousel-container,
+    .music-videos,
+    .artist-profile {
+        max-width: 1400px;
+    }
 }
 
 .video-container {
     position: relative;
-    width: 100%;
+    padding-bottom: 56.25%; /* 16:9 のアスペクト比 */
     height: 0;
-    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
     overflow: hidden;
+    border-radius: 6px;
+    width: 90%;
+    margin: 0 auto;
 }
 
-.video-container iframe, 
-.video-container object, 
-.video-container embed,
-.video-container video {
+@media (min-width: 768px) {
+    .video-container {
+        padding-bottom: 56.25%; /* 維持 */
+    }
+}
+
+@media (min-width: 992px) {
+    .video-container {
+        padding-bottom: 56.25%; /* 維持 */
+    }
+}
+
+.video-container iframe {
     position: absolute;
     top: 0;
     left: 0;
-    width: 560px;
-    height: 315px;
+    width: 100%;
+    height: 100%;
     border: 0;
-    max-width: 100%;
-    margin: 0 auto;
-    right: 0;
 }
 
 .carousel-button {
@@ -211,79 +176,60 @@ body.artists-page {
     transform: translateY(-50%);
     background: rgba(255, 255, 255, 0.8);
     border: none;
-    font-size: 24px;
-    color: #12224D;
-    cursor: pointer;
-    z-index: 30;
     width: 40px;
     height: 40px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    font-size: 24px;
+    color: #12224D;
+    cursor: pointer;
+    z-index: 10;
+    transition: opacity 0.3s ease;
 }
 
 .carousel-button.prev {
-    left: -20px;
+    left: 10px;
 }
 
 .carousel-button.next {
-    right: -20px;
+    right: 10px;
 }
 
-/* 従来のビデオコンテナのスタイル (念のため残しておく) */
-.video-container {
+.carousel-indicators {
     display: flex;
-    gap: 20px;
-    overflow-x: auto;
-    padding-bottom: 20px;
-    position: relative;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 10px;
 }
 
-.video-item {
-    flex: 0 0 auto;
-    width: 300px;
+.carousel-indicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
-.video-placeholder {
-    width: 100%;
-    padding-bottom: 56.25%; /* 16:9 アスペクト比 */
-    background-color: #333;
-    position: relative;
-    margin-bottom: 10px;
-}
-
-.video-placeholder::after {
-    content: "1280 x 720";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: #666;
-    font-size: 14px;
-}
-
-.video-title {
-    font-size: 18px;
-    margin-top: 10px;
-    color: white;
+.carousel-indicator.active {
+    background-color: rgba(255, 255, 255, 0.8);
 }
 
 .official-links {
     display: flex;
     justify-content: center;
     gap: 20px;
+    margin-top: 40px;
 }
 
 .official-link {
-    display: inline-block;
     padding: 10px 30px;
     background-color: rgba(255, 255, 255, 0.1);
     color: white;
     border-radius: 5px;
-    transition: background-color 0.3s ease;
-    font-size: 16px;
+    transition: background-color 0.3s;
 }
 
 .official-link:hover {
@@ -292,57 +238,12 @@ body.artists-page {
 
 /* レスポンシブデザイン */
 @media (max-width: 768px) {
-    .artists-container {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .artist-item {
-        flex-basis: 100%;
-        max-width: 100%;
-    }
-
-    .youtube-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .video-container {
-        gap: 15px;
-    }
-
-    .carousel-container {
-        max-width: 100%;
-        overflow: hidden;
-    }
-
-    .video-container iframe, 
-    .video-container object, 
-    .video-container embed,
-    .video-container video {
-        width: 100%;
-        max-width: 560px;
-        height: auto;
-        min-height: 200px;
-    }
-
-    .carousel-item {
-        min-width: 100%;
-    }
-}
-
-@media (max-width: 480px) {
-    .artist-profile-name-ja {
-        font-size: 30px;
-    }
-
-    .artist-profile-name-en {
+    .carousel-button {
+        width: 30px;
+        height: 30px;
         font-size: 18px;
     }
-
-    .video-item {
-        width: 220px;
-    }
-
+    
     .official-links {
         flex-direction: column;
         gap: 10px;
