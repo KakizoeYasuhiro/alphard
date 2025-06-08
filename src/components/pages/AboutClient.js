@@ -57,11 +57,11 @@ export default function AboutClient() {
             <div className="info-row">
               <div className="info-label ja-text">所在地</div>
               <div className="info-content ja-text">
-                <p>〒107-0052</p>
-                <p>東京都港区赤坂 2-23-1 アークヒルズフロントタワー RoP 605 号室</p>
+                <p>〒213-0002</p>
+                <p>神奈川県川崎市高津区二子2-5-14-102</p>
                 <div className="map-container">
                   <iframe 
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3241.3776177781664!2d139.7381422!3d35.670802!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188b84fb7df767%3A0xc0ff5beaa59f32ef!2z44Ki44O844Kv44OS44Or44K644OV44Ot44Oz44OI44K_44Ov44O8!5e0!3m2!1sja!2sjp!4v1707038333626!5m2!1sja!2sjp" 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3243.747836628691!2d139.61110707483635!3d35.60946818013196!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6018f4f3506d0df1%3A0xee1467d03ab95564!2z44CSMjEzLTAwMDIg56We5aWI5bed55yM5bed5bSO5biC6auY5rSl5Yy65LqM5a2QMi01LTE0!5e0!3m2!1sja!2sjp!4v1717946911345!5m2!1sja!2sjp" 
                     width="600" 
                     height="450" 
                     style={{border:0}} 
@@ -80,7 +80,7 @@ export default function AboutClient() {
             
             <div className="info-row">
               <div className="info-label ja-text">設立</div>
-              <div className="info-content ja-text">2025（令和7）年5月31日</div>
+              <div className="info-content ja-text">2022（令和4）年4月1日</div>
             </div>
             
             <div className="info-row">
@@ -97,15 +97,6 @@ export default function AboutClient() {
               </div>
             </div>
             
-            <div className="info-row">
-              <div className="info-label ja-text">関連会社</div>
-              <div className="info-content ja-text">
-                <ul className="related-companies">
-                  <li>株式会社アルファルドパブリッシング</li>
-                  <li>株式会社アルファルドデザインオフィス</li>
-                </ul>
-              </div>
-            </div>
           </div>
         </div>
       </div>
