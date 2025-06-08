@@ -94,9 +94,9 @@ export default function ArtistDetailClient() {
 
   return (
     <section className="artist-profile">
-      <div className="artist-profile-header">
+      <div className="artist-profile-header" style={{ gap: '12px' }}>
         <h1 className="artist-profile-name-ja ja-text">園木 邦宝</h1>
-        <p className="artist-profile-name-en en-text">SONOKI KUNITAKA</p>
+        <p className="artist-profile-name-en en-text" style={{ marginTop: '12px' }}>SONOKI KUNITAKA</p>
       </div>
 
       <div className="artist-profile-image">
@@ -189,7 +189,7 @@ export default function ArtistDetailClient() {
       </div>
 
       <div className="official-links">
-        <a href="#" className="official-link">OFFICIAL SITE</a>
+        <a href="https://ksonoki.com" target="_blank" rel="noopener noreferrer" className="official-link">OFFICIAL SITE</a>
         <a href="#" className="official-link">FUNCLUB</a>
       </div>
     </section>

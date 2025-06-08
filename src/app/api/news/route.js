@@ -48,11 +48,7 @@ export async function GET(request) {
     // 複数条件がある場合は[and]で連結
     if (filterConditions.length > 0) {
       queries.filters = filterConditions.join('[and]');
-      console.log('API フィルター条件:', queries.filters);
     }
-    
-    // デバッグ: 完全なクエリーを表示
-    console.log('完全なMicroCMS API クエリー:', queries);
     
     // 直接クライアントを使用
     let data;
@@ -62,11 +58,6 @@ export async function GET(request) {
         queries,
       });
       
-      // 結果のデバッグ出力
-      console.log(`API結果: ${data.totalCount}件のデータを取得`);
-      if (data.contents && data.contents.length > 0) {
-        console.log('最初の結果のカテゴリ:', data.contents[0].category);
-      }
     } catch (apiError) {
       console.error('MicroCMS API Error:', apiError);
       data = { contents: [], totalCount: 0 };

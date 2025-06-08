@@ -34,7 +34,6 @@ export default function useNewsData({ limit = 5, year = null, month = null, cate
         
         // APIリクエストを実行
         const url = `/api/news?${queryParams.toString()}`
-        console.log('🔍 Fetching from:', url);
         
         const res = await fetch(url)
         
@@ -44,8 +43,7 @@ export default function useNewsData({ limit = 5, year = null, month = null, cate
           throw new Error(`APIリクエストエラー: ${res.status} - ${errorData.details || errorData.error || 'Unknown error'}`);
         }
         
-        const data = await res.json()
-        console.log('✅ API Response:', data ? `${data.totalCount} items` : 'No data');
+        const data = await res.json();
 
         if (data && data.contents) {
           const newsData = data.contents.map(item => ({
@@ -69,13 +67,11 @@ export default function useNewsData({ limit = 5, year = null, month = null, cate
           
           setNewsItems(page > 1 ? [...newsItems, ...newsData] : newsData)
         } else {
-          console.warn('⚠️ No content found or data is in unexpected format:', data)
           if (page === 1) {
             setNewsItems([])
           }
         }
       } catch (error) {
-        console.error('❌ Failed to fetch news:', error)
         setError(error.message || 'ニュースの取得に失敗しました')
         if (page === 1) {
           setNewsItems([])

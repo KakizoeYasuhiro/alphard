@@ -8,20 +8,9 @@ import Footer from '@/components/Footer';
 export default function ClientLayout({ children }) {
   // ページ遷移のためのフェードエフェクト
   useEffect(() => {
-    const handleStart = () => {
-      document.body.classList.add('fade-out');
-    };
-    
-    const handleComplete = () => {
-      document.body.classList.remove('fade-out');
-      // ページ遷移時に先頭にスクロール
-      window.scrollTo(0, 0);
-    };
-
     // イベントリスナーの登録はクライアントサイドのみ
     if (typeof window !== 'undefined') {
-      // Router events はサードパーティライブラリで実装が必要になりました
-      // useEffect内で完結する単純なフェードイン効果に変更
+      // useEffect内で完結する単純なフェードイン効果
       document.body.classList.add('fade-out');
       setTimeout(() => {
         document.body.classList.remove('fade-out');
@@ -44,6 +33,11 @@ export default function ClientLayout({ children }) {
         async: true,
         defer: true,
         appendTo: 'head',
+      }}
+      container={{
+        parameters: {
+          badge: 'inline', // reCAPTCHAバッジを非表示（インラインモードに変更）
+        }
       }}
     >
       <Header />

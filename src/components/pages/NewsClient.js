@@ -19,7 +19,7 @@ if (typeof window !== 'undefined') {
       gsap.registerPlugin(ScrollTrigger);
     }
   } catch (error) {
-    console.error('Failed to register ScrollTrigger plugin:', error);
+    // ScrollTriggerプラグインの登録に失敗した場合は静かに失敗
   }
 }
 

@@ -75,9 +75,6 @@ export default function useFetchData({
   // 次のページを取得する関数 - fetchDataInternalを使用
   const fetchNextPage = useCallback(() => {
     if (!isLoading && hasMore) {
-      // 現在のフィルター状態を確認するためのデバッグログ
-      console.log('Fetching next page with filters:', filters);
-      
       const nextOffset = currentOffset + limit;
       setCurrentOffset(nextOffset);
       fetchDataInternal(nextOffset, true);

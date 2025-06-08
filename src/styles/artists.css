@@ -1,6 +1,8 @@
 /* ARTISTSページのスタイル */
 :root {
     --artists-bg-color: #12224D;
+    --artist-list-name-gap: 15px; /* 一覧ページでの間隔 */
+    --artist-detail-name-gap: 12px; /* 詳細ページでの間隔 */
 }
 
 body.artists-page {
@@ -17,20 +19,102 @@ body.artists-page {
     color: white;
 }
 
+/* アーティスト一覧 */
+.artists-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 40px;
+}
+
+.artist-item {
+    flex: 0 1 400px;
+    margin-bottom: 30px;
+    transition: transform 0.3s ease;
+}
+
+.artist-item:hover {
+    transform: translateY(-5px);
+}
+
+.artist-link {
+    display: block;
+    text-decoration: none;
+    color: white;
+}
+
+.artist-image {
+    width: 100%;
+    height: 533px;
+    margin-bottom: 15px;
+    overflow: hidden;
+    position: relative;
+}
+
+.artist-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.artist-link:hover .artist-image img {
+    transform: scale(1.05);
+}
+
+.placeholder-image {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.placeholder-image:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.artist-name {
+    padding: 10px 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--artist-list-name-gap); /* カスタムプロパティを使用 */
+}
+
+.artist-name-ja {
+    font-size: 24px;
+    margin: 0; /* マージンを削除して、gap で制御 */
+}
+
+.artist-name-en {
+    font-size: 16px;
+    color: #ccc;
+    margin: 0;
+}
+
 /* アーティスト詳細ページ */
 .artist-profile-header {
     margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--artist-detail-name-gap); /* カスタムプロパティを使用 */
 }
 
 .artist-profile-name-ja {
     font-size: 36px;
-    margin-bottom: 5px;
+    margin: 0; /* マージンを削除して、gap で制御 */
+    line-height: 1;
 }
 
 .artist-profile-name-en {
     font-size: 20px;
     color: #ccc;
-    margin-top: 0;
+    margin: 0;
+    line-height: 1;
 }
 
 .artist-profile-image {
@@ -66,6 +150,9 @@ body.artists-page {
 
 .profile-section {
     margin-bottom: 50px;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .profile-section h3, .music-videos h3 {
@@ -247,5 +334,18 @@ body.artists-page {
     .official-links {
         flex-direction: column;
         gap: 10px;
+    }
+    
+    .artists-container {
+        gap: 20px;
+    }
+    
+    .artist-item {
+        flex: 0 1 100%;
+    }
+    
+    .artist-image {
+        height: auto;
+        aspect-ratio: 3/4;
     }
 }
