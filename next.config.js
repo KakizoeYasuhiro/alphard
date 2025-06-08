@@ -11,14 +11,15 @@ const alphardConfig = {
         pathname: '/assets/**',
       },
     ],
-    domains: ['alphard.jp'], // OGP画像ドメインを許可リストに追加
+    domains: ['alphard.info'], // OGP画像ドメインを許可リストに追加
   },
   experimental: {
     optimizeCss: false,
     scrollRestoration: false
   },
   // 本番環境のassetPrefix
-  assetPrefix: process.env.NODE_ENV === 'production' ? 'https://alphard.jp' : '',
+  basePath: process.env.NODE_ENV === 'production' ? '' : '',
+  assetPrefix: process.env.NODE_ENV === 'production' ? '' : '',
 };
 
 module.exports = alphardConfig;

@@ -11,10 +11,40 @@ const garamond = EB_Garamond({
 });
 
 export const metadata = {
+  metadataBase: new URL('https://alphard.info'),
   title: 'Alphard Music',
   description: '音楽マネジメント事務所Alphard',
   icons: {
     icon: '/favicon.ico',
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'ja_JP',
+    url: 'https://alphard.info/',
+    siteName: 'Alphard Music',
+    title: 'Alphard Music',
+    description: '音楽マネジメント事務所Alphard',
+    images: [
+      {
+        url: 'https://alphard.info/images/top_sonoki.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Alphard Music',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Alphard Music',
+    description: '音楽マネジメント事務所Alphard',
+    images: [
+      {
+        url: 'https://alphard.info/images/top_sonoki.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Alphard Music',
+      },
+    ],
   },
 };
 
