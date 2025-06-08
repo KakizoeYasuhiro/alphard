@@ -4,6 +4,15 @@
 main {
     padding-top: 0;
     margin-top: 80px;
+    overflow-x: hidden; /* 横スクロールを防止 */
+}
+
+/* 各セクションの基本スタイル */
+section {
+    position: relative;
+    min-height: 100px; /* 最小高さを設定して確実に表示されるようにする */
+    opacity: 1; /* 初期表示のためのフォールバック */
+    will-change: transform, opacity; /* パフォーマンス向上 */
 }
 
 /* ==== ARTISTSセクション（スライダー） ==== */
@@ -157,19 +166,82 @@ main {
     font-weight: 500;
 }
 
-/* ニュースリスト */
+/* トップページのNEWSセクションの見出しマージン調整 */
+.home-news-section h2 {
+    margin-bottom: 20px; /* 元の40pxから縮小 */
+}
+
+/* 区切り線用のスタイル */
+.custom-hr-line {
+    display: block;
+    width: 100%;
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.2);
+    margin: 0 0 20px 0;
+}
+
+.custom-hr-line-bottom {
+    display: block;
+    width: 100%;
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.2);
+    margin: 20px 0 0 0;
+}
+
+/* ニュースリスト - 旧スタイル (互換性のために残す) */
 .news-list {
     display: flex;
     flex-direction: column;
     gap: 30px;
 }
 
-/* ニュースアイテム */
+/* スクロール可能なニュースコンテナ */
+.home-news-section .news-container {
+    max-height: 480px; /* 約2件強のニュース項目の高さ */
+    overflow-y: auto;
+    padding-right: 10px; /* スクロールバーによるコンテンツの隠れを防ぐ */
+    padding-top: 0px;    /* 上の隙間を0に */
+    padding-bottom: 0px; /* 下の隙間を0に */
+    scrollbar-width: thin; /* Firefox */
+    scrollbar-color: rgba(255, 255, 255, 0.3) rgba(255, 255, 255, 0.1); /* Firefox: スクロールバーの色 トラックの色 */
+    display: flex;
+    flex-direction: column;
+    gap: 0; /* ニュース項目自体にパディングとボーダーがあるため */
+}
+
+/* Webkit系ブラウザ用のスクロールバーデザイン */
+.home-news-section .news-container::-webkit-scrollbar {
+    width: 6px; /* スクロールバーの幅 */
+}
+
+.home-news-section .news-container::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1); /* トラック背景色 */
+    border-radius: 3px;
+}
+
+.home-news-section .news-container::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.3); /* スクロールバーのつまみの色 */
+    border-radius: 3px;
+}
+
+.home-news-section .news-container::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(255, 255, 255, 0.5); /* ホバー時のつまみの色 */
+}
+
+/* ニュースアイテム - NEWSページと同じ */
 .news-item {
     display: flex;
     gap: 30px;
-    padding: 30px 0;
+    padding: 20px 0; /* 30pxから20pxに変更：NEWSページと合わせる */
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    opacity: 1; /* 初期表示のフォールバック */
+    visibility: visible; /* 初期表示のフォールバック */
+    transform: translateY(0); /* 初期表示のフォールバック */
+}
+
+/* 最後のニュースアイテムのボーダーを削除 */
+.home-news-section .news-item:last-child {
+    border-bottom: none;
 }
 
 /* ニュースメイン部分（日付タグ + コンテンツ） */
@@ -231,10 +303,10 @@ main {
     display: block;
 }
 
-/* VIEW MOREリンク */
+/* VIEW MOREリンク - 通常スタイル */
 .view-more-link {
     text-align: right;
-    margin-top: 30px;
+    margin-top: 20px;
 }
 
 .view-more-link a {
@@ -268,6 +340,28 @@ main {
 
 .view-more-link a:hover::before {
     left: 100%;
+}
+
+/* HOME NEWSセクションのVIEW MOREリンク - k_sonoki仕様 */
+.home-news-section .view-more-link {
+    text-align: center; /* 中央揃え */
+    margin-top: 20px; /* マージン調整 */
+}
+
+.home-news-section .view-more-link a {
+    font-family: "EB Garamond", serif;
+    letter-spacing: 0.1em;
+    font-size: 18px;
+    padding: 8px 30px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.home-news-section .view-more-link a:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 /* ==== WORKSセクション ==== */
@@ -334,21 +428,23 @@ main {
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
 }
 
-/* VIEW DETAILリンク */
+/* VIEW DETAILリンク - 通常スタイル */
 .view-detail-link {
-    text-align: right;
+    text-align: center; /* k_sonoki仕様に合わせて中央揃え */
     margin-top: 20px;
 }
 
 .view-detail-link a {
-    display: inline-block;
-    font-size: 14px;
+    font-family: "EB Garamond", serif;
+    letter-spacing: 0.1em;
+    font-size: 18px; /* k_sonoki仕様に合わせて拡大 */
+    padding: 8px 30px; /* k_sonoki仕様に合わせてパディング調整 */
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
     color: white;
-    padding: 8px 16px;
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 4px;
-    transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+    display: inline-block;
     position: relative;
+    transition: transform 0.3s ease, background-color 0.3s ease;
     overflow: hidden;
 }
 
@@ -364,9 +460,9 @@ main {
 }
 
 .view-detail-link a:hover {
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.3);
     transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .view-detail-link a:hover::before {
@@ -486,7 +582,9 @@ main {
         gap: 8px;
     }
     
+    /* 削除: フッターのスタイルはglobal.cssで一元管理するため削除
     .footer-nav li {
         flex: 0 0 100%;
     }
+    */
 }

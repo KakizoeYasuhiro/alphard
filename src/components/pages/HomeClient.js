@@ -20,31 +20,40 @@ export default function HomeClient() {
   // スクロールアニメーションの初期化
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      // セクションのフェードインアニメーション
-      const sections = document.querySelectorAll('section');
+      // ScrollTriggerをクリア
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
       
+      const sections = document.querySelectorAll('section');
       sections.forEach((section, index) => {
-        gsap.fromTo(
-          section,
-          { 
-            opacity: 0,
-            y: 50
-          },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.8,
-            delay: index * 0.2,
-            ease: 'power2.out',
-            scrollTrigger: {
-              trigger: section,
-              start: 'top 80%',
-              toggleActions: 'play none none none'
-            }
+        
+        // セクションの初期状態を設定
+        gsap.set(section, { 
+          opacity: 0, 
+          y: 50 
+        });
+        
+        // スクロールトリガーアニメーションを設定
+        gsap.to(section, {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: section,
+            start: 'top 90%', // より早くトリガーされるように調整
+            end: 'bottom 10%',
+            toggleActions: 'play none none none',
           }
-        );
+        });
       });
     }
+    
+    // クリーンアップ関数
+    return () => {
+      if (typeof window !== 'undefined') {
+        ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+      }
+    };
   }, []);
   
   return (

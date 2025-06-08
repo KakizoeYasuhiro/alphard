@@ -14,9 +14,9 @@
 }
 
 .contact-container {
-    max-width: 700px;
+    max-width: 800px;
     margin: 0 auto;
-    padding: 100px 20px 70px;
+    padding: 100px 60px 70px;
 }
 
 .contact-title {
@@ -24,6 +24,28 @@
     text-align: center;
     margin-bottom: 60px;
     font-weight: 500;
+}
+
+/* ステータスメッセージ */
+.status-message {
+    margin-bottom: 30px;
+    padding: 15px 20px;
+    border-radius: 4px;
+    text-align: center;
+    font-weight: 500;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.status-message.success {
+    background-color: rgba(34, 197, 94, 0.15);
+    border: 1px solid rgba(34, 197, 94, 0.3);
+    color: #4ade80;
+}
+
+.status-message.error {
+    background-color: rgba(239, 68, 68, 0.15);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    color: #f87171;
 }
 
 /* フォームスタイル */
@@ -63,6 +85,13 @@
     background-color: rgba(255, 255, 255, 0.08);
 }
 
+.form-group input:disabled,
+.form-group select:disabled,
+.form-group textarea:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
 .form-group select {
     appearance: none;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
@@ -71,25 +100,42 @@
     padding-right: 40px;
 }
 
-.recaptcha {
-    max-width: 300px;
-}
-
-.recaptcha-placeholder {
-    width: 300px;
-    height: 74px;
+/* トピック選択時の注意書きメッセージ */
+.topic-info-message {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-top: 10px;
+    padding: 12px 15px;
     background-color: rgba(255, 255, 255, 0.08);
     border-radius: 4px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: rgba(255, 255, 255, 0.7);
-    font-size: 14px;
+    border-left: 3px solid rgba(255, 255, 255, 0.3);
+    line-height: 1.5;
+    animation: fadeIn 0.3s ease-in-out;
 }
 
-.recaptcha-placeholder p {
-    margin: 3px 0;
+/* reCAPTCHA関連スタイル */
+.recaptcha-terms {
+    width: 100%;
+    margin: 15px auto 15px;
+    text-align: center;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.4;
+}
+
+.recaptcha-terms a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: underline;
+    margin: 0 1px;
+}
+
+.recaptcha-terms a:hover {
+    color: white;
+}
+
+/* Google reCAPTCHA バッジを非表示（利用規約の文言を表示する場合のみ許可されます） */
+.grecaptcha-badge {
+    visibility: hidden !important;
 }
 
 .submit-group {
@@ -107,21 +153,73 @@
     border-radius: 4px;
     font-size: 16px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, opacity 0.3s ease;
+    position: relative;
 }
 
-.submit-button:hover {
+.submit-button:hover:not(:disabled) {
     background-color: var(--button-hover);
+}
+
+.submit-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.submit-button.submitting {
+    opacity: 0.8;
+}
+
+.submit-button.submitting::after {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    margin: auto;
+    border: 2px solid transparent;
+    border-top-color: #ffffff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 /* レスポンシブデザイン */
 @media (max-width: 768px) {
     .contact-container {
-        padding-top: 70px;
+        padding: 60px 20px;
     }
     
     .submit-button {
         width: 100%;
+        margin: 30px auto 0;
+    }
+    
+    .contact-title {
+        font-size: 24px;
+        margin-bottom: 40px;
     }
 }
 
@@ -138,7 +236,23 @@
     .form-group input,
     .form-group select,
     .form-group textarea {
+        padding: 12px;
+        font-size: 16px; /* iOSのズーム防止 */
+    }
+
+    .status-message {
+        margin-bottom: 20px;
+        padding: 12px 15px;
+        font-size: 14px;
+    }
+
+    .topic-info-message {
+        font-size: 0.75rem;
         padding: 10px 12px;
-        font-size: 15px;
+        margin-top: 8px;
+    }
+    
+    .submit-button {
+        padding: 12px 40px;
     }
 }

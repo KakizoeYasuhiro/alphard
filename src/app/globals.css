@@ -339,7 +339,8 @@ img {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 6px solid white;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: padding 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .logo {

@@ -1,0 +1,154 @@
+/* FilterControls.module.css */
+.filterContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  padding: 20px 0;
+  margin-bottom: 40px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  width: 100%;
+}
+
+.filterSection {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  padding-left: 0;
+}
+
+.radioGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.radioOption {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 46px;
+  height: 32px;
+  padding: 0 12px;
+  font-size: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 0.05);
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  letter-spacing: 0.05em;
+}
+
+.radioOption:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.radioOptionChecked {
+  background-color: rgba(255, 255, 255, 0.2) !important;
+  color: #ffffff !important;
+  border-color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.radioOptionDisabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.radioGroupDisabled {
+  opacity: 0.6;
+}
+
+.listboxContainer {
+  position: relative;
+  width: 200px;
+  max-width: 100%;
+}
+
+.listboxButton {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 8px 12px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  font-size: 14px;
+  color: white;
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 0.2s ease;
+  letter-spacing: 0.05em;
+}
+
+.listboxButton:hover {
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.listboxIcon {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.7);
+  margin-left: 8px;
+}
+
+.listboxOptions {
+  position: absolute;
+  z-index: 10;
+  margin-top: 4px;
+  width: 100%;
+  max-height: 200px;
+  overflow-y: auto;
+  background-color: #1c2e5c;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.listboxOption {
+  padding: 8px 12px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.listboxOption:hover,
+.listboxOptionActive {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .filterContainer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+    width: 100%;
+  }
+  
+  .filterSection {
+    width: 100%;
+  }
+  
+  .radioGroup {
+    width: 100%;
+    flex-wrap: wrap;
+    overflow-x: visible;
+    white-space: normal;
+    padding-bottom: 4px;
+    gap: 8px;
+  }
+  
+  .radioOption {
+    flex: 0 0 auto;
+    margin-bottom: 8px;
+  }
+  
+  .listboxContainer {
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  .listboxButton {
+    width: 100%;
+  }
+}

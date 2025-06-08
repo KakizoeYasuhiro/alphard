@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
+import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
@@ -33,11 +34,21 @@ export default function ClientLayout({ children }) {
     };
   }, []);
 
+  // reCAPTCHA v3のサイトキー
+  const reCaptchaSiteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
+
   return (
-    <>
+    <GoogleReCaptchaProvider
+      reCaptchaKey={reCaptchaSiteKey}
+      scriptProps={{
+        async: true,
+        defer: true,
+        appendTo: 'head',
+      }}
+    >
       <Header />
       <main>{children}</main>
       <Footer />
-    </>
+    </GoogleReCaptchaProvider>
   );
 }

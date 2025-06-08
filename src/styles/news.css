@@ -7,7 +7,7 @@
 .news-page {
     max-width: 900px;
     margin: 0 auto;
-    padding: 100px 20px 50px;
+    padding: 70px 20px 70px; /* ヘッダーとフッター間の余白をさらに減らす */
     color: white;
 }
 
@@ -20,9 +20,9 @@ body {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 24px;
-    padding: 20px 0;
-    margin-bottom: 40px;
+    gap: 20px; /* 間隔をさらに減らす */
+    padding: 0 0 15px; /* 余白をさらに減らす */
+    margin-bottom: 20px; /* 下の余白も小さく */
     border-bottom: 1px solid var(--news-divider);
     font-family: var(--font-garamond), serif;
     width: 100%;
@@ -143,14 +143,19 @@ body {
 
 /* ニュースリスト */
 .news-list {
-    margin-bottom: 50px;
+    margin-bottom: 20px; /* 余白を小さくして調整 */
 }
 
 .news-item {
     display: flex;
     gap: 30px;
-    padding: 30px 0;
+    padding: 20px 0; /* 余白を小さくして項目間を詰める */
     border-bottom: 1px solid var(--news-divider);
+}
+
+/* 最後のニュースアイテムの下の境界線を調整 */
+.news-item:last-child {
+    border-bottom-color: transparent; /* 二重線を防ぐため最後のアイテムの境界線を非表示 */
 }
 
 /* ニュースメイン部分（日付タグ + コンテンツ） */
@@ -199,6 +204,20 @@ body {
     line-height: 1.6;
 }
 
+.news-detail-link {
+    margin-top: 10px;
+}
+
+.news-detail-link a {
+    color: #7e9bef;
+    text-decoration: none;
+    transition: opacity 0.2s;
+}
+
+.news-detail-link a:hover {
+    opacity: 0.8;
+}
+
 .news-image {
     flex: 0 0 200px;
 }
@@ -207,6 +226,13 @@ body {
     width: 100%;
     height: auto;
     display: block;
+}
+
+.news-image-placeholder {
+    flex: 0 0 200px;
+    min-height: 150px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
 }
 
 /* ページネーション */
@@ -251,7 +277,8 @@ body {
         gap: 10px;
     }
 
-    .news-image {
+    .news-image,
+    .news-image-placeholder {
         flex: 0 0 auto;
         max-width: 300px;
         align-self: center;
@@ -304,4 +331,71 @@ body {
     .pagination {
         flex-wrap: wrap;
     }
+}
+
+/* 読み込み中インジケーター */
+.loading-indicator {
+    display: flex;
+    justify-content: center;
+    margin: 30px 0;
+    width: 100%;
+}
+
+.loading-indicator p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 14px;
+}
+
+/* 無限スクロール関連 */
+.infinite-scroll-component {
+    overflow: visible !important;
+}
+
+.infinite-scroll-loader {
+    text-align: center;
+    padding: 20px 0;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.end-message {
+    display: none; /* k_sonokiと同様に完全に非表示 */
+}
+
+/* 初期読み込み中表示 */
+.loading-message {
+    text-align: center;
+    padding: 40px 0;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* 初期読み込み中表示（非表示） */
+.loading-initial {
+    display: block;
+    height: 20px;
+    opacity: 0;
+}
+
+/* データなし表示 */
+.no-results-message {
+    text-align: center;
+    padding: 40px 0;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* アニメーション関連スタイル */
+.reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal-on-scroll.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.news-item {
+    /* 初期状態は非表示 - GSAPで制御する */
+    opacity: 0;
+    transform: translateY(50px);
 }

@@ -10,10 +10,18 @@ const garamond = EB_Garamond({
   variable: '--font-garamond',
 });
 
+export const metadata = {
+  title: 'Alphard Music',
+  description: '音楽マネジメント事務所Alphard',
+  icons: {
+    icon: '/favicon.ico',
+  },
+};
+
 export default function RootLayout({ children }) {
   return (
-    <html lang="ja">
-      <body className={`${garamond.className} ${garamond.variable}`}>
+    <html lang="ja" suppressHydrationWarning>
+      <body className={`${garamond.className} ${garamond.variable}`} suppressHydrationWarning>
         <ClientLayout>{children}</ClientLayout>
       </body>
     </html>

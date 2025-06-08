@@ -10,7 +10,8 @@ export default function FilterControls({
   availableYears = ['2025'], 
   availableMonths = ['4', '5', '6', '7', '8', '9', '10', '11', '12'], 
   typeOptions = ['ALL', 'TOPIC', 'LIVE', 'MEDIA'], 
-  isNewsPage = false 
+  isNewsPage = false,
+  isLoading = false
 }) {
   // 親コンポーネントから渡されたフィルター状態を使用する
   const [selectedYear, setSelectedYear] = useState(filters?.year || '2025');
@@ -63,8 +64,16 @@ export default function FilterControls({
     });
   };
   
-  // ニュースページ用のタイプオプション
-  const types = ['ALL', 'TOPICS', 'LIVE', 'MEDIA'];
+  // 使用するタイプオプション
+  const types = typeOptions;
+
+  if (isLoading) {
+    return (
+      <div className="filter-container">
+        <p>フィルター読み込み中...</p>
+      </div>
+    );
+  }
 
   return (
     <div className="filter-container">
@@ -90,16 +99,14 @@ export default function FilterControls({
         <RadioGroup 
           value={selectedMonth} 
           onChange={handleMonthChange} 
-          className={`radio-group ${!selectedYear ? 'radio-group-disabled' : ''}`}
-          disabled={!selectedYear}
+          className="radio-group"
         >
           {availableMonths.map((month) => (
             <RadioGroup.Option
               key={month}
               value={month}
-              disabled={!selectedYear}
-              className={({ checked, disabled }) =>
-                `radio-option ${checked ? 'radio-option-checked' : ''} ${disabled ? 'radio-option-disabled' : ''}`
+              className={({ checked }) =>
+                `radio-option ${checked ? 'radio-option-checked' : ''}`
               }
             >
               {month}月
@@ -141,4 +148,4 @@ export default function FilterControls({
       </div>
     </div>
   );
-} 
+}

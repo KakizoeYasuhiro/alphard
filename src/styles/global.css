@@ -339,7 +339,8 @@ img {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 6px solid white;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: padding 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .logo {
@@ -751,11 +752,16 @@ footer {
 
 .footer-left {
     flex-basis: 45%;
+    display: flex;
+    flex-direction: column;
 }
 
 .footer-right {
     flex-basis: 45%;
     text-align: right;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
 }
 
 .footer-logo {
@@ -779,6 +785,20 @@ footer {
 .footer-nav li {
     flex-basis: 50%;
     margin-bottom: 15px;
+}
+
+@media (max-width: 768px) {
+    .footer-nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .footer-nav li {
+        flex-basis: auto;
+        width: 100%;
+        text-align: center;
+        margin-bottom: 15px;
+    }
 }
 
 .footer-nav a {
@@ -811,7 +831,8 @@ footer {
 
 .artist-logo img.ks-logo-img {
     width: auto;
-    height: 50px;
+    height: auto;
+    max-width: 150px;
 }
 
 .copyright {
@@ -825,20 +846,66 @@ footer {
 
 /* フッターのレスポンシブ対応 */
 @media (max-width: 768px) {
+    footer {
+        padding: 40px 0 20px;
+    }
+    
     .footer-container {
         flex-direction: column;
+        gap: 30px;
     }
     
     .footer-left {
-        margin-bottom: 40px;
+        flex-basis: 100%;
+        margin-bottom: 20px;
+        align-items: center;
+        text-align: center;
     }
     
     .footer-right {
-        text-align: left;
+        flex-basis: 100%;
+        text-align: center;
+        align-items: center;
+    }
+    
+    .footer-logo {
+        width: 100%;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .footer-nav {
+        width: 100%;
+        text-align: center;
     }
     
     .footer-artist-info {
-        text-align: left;
+        width: 100%;
+        text-align: center;
+    }
+    
+    .artist-label, .fanclub-label {
+        text-align: center;
+    }
+    
+    .artist-logo {
+        width: 100%;
+        text-align: center;
+        margin-top: 10px;
+        display: flex;
+        justify-content: center;
+    }
+    
+    .artist-logo img.ks-logo-img {
+        margin: 0 auto;
+        max-height: 50px;
+        max-width: 150px;
+    }
+    
+    .copyright {
+        margin-top: 30px;
     }
 }
 
