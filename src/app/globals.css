@@ -1,10 +1,10 @@
 /* ===== 基本スタイル ===== */
 :root {
     /* カラーパレット - 基本色定義 */
-    --color-primary: #12224D; /* R:18 G:34 B:66 - メインカラー */
+    --color-primary: #0e1a2d; /* 全体背景色：新しい設定値 */
     --color-secondary: #2e4675; /* セカンダリーカラー（ホバー・ボタンなど） */
-    --color-dark: #101A2B; /* R:16 G:26 B:43 - フッター背景など */
-    --color-light: #ffffff; /* 白 - テキストカラーなど */
+    --color-dark: #0d0f18; /* フッター背景：新しい設定値 */
+    --color-light: #c9caca; /* テキストカラー - 新しい設定値 */
     
     /* 透明度バリエーション */
     --color-light-10: rgba(255, 255, 255, 0.1);
@@ -741,7 +741,7 @@ footer {
 /* ヘッダースクロール時のスタイル */
 .header.scrolled {
     padding: 10px 30px;
-    background-color: rgba(18, 34, 66, 0.95);
+    background-color: rgba(14, 26, 45, 0.95); /* 新しい背景色に合わせて調整 */
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
