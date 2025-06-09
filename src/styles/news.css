@@ -262,8 +262,8 @@
     margin-left: 5px;
 }
 
-/* レスポンシブデザイン - 共通部分をnews.cssで一元管理 */
-@media (max-width: 768px) {
+/* レスポンシブデザイン - 共通部分をnews.cssで一元管理 - 直接ピクセル値を使用 */
+@media screen and (max-width: 768px) {
     /* ニュースページのレスポンシブスタイル */
     .news-page .news-item {
         flex-direction: column;

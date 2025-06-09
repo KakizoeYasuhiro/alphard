@@ -533,16 +533,16 @@ section {
 
 /* フッターのスタイルはglobals.cssで一元管理されています */
 
-/* レスポンシブ調整 */
-@media (max-width: var(--breakpoint-sm)) { /* 768px - globals.cssの変数を使用 */
+/* レスポンシブ調整 - 直接ピクセル値を使用 */
+@media (max-width: 768px) {
     /* ホームページ固有のニュースアイテムスタイル */
     .home-news-section .news-item {
         flex-direction: column;
-        gap: var(--spacing-md);
+        gap: 20px; /* --spacing-mdの値 */
     }
     
     .home-news-section .news-date-tags {
-        gap: var(--spacing-sm);
+        gap: 10px; /* --spacing-smの値 */
     }
     
     .home-news-section .news-image {
@@ -552,7 +552,7 @@ section {
     }
 }
 
-@media (max-width: var(--breakpoint-xs)) { /* 480px - globals.cssの変数を使用 */
+@media (max-width: 480px) {
     .artists-section {
         margin-top: 100px;
     }
