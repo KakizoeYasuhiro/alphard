@@ -645,21 +645,35 @@ footer {
 
 .footer-artist-info {
     text-align: right;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; /* 右寄せに配置 */
 }
 
 .artist-label, .fanclub-label {
     margin: 0;
     font-size: 14px;
     color: rgba(255, 255, 255, 0.7);
+    text-align: right; /* 右寄せに配置 */
 }
 
 .artist-logo {
     margin-top: 10px;
+    display: block;
+    width: 100%;
 }
 
-.artist-logo img.ks-logo-img {
+.artist-logo a {
+    display: block;
+    text-align: right; /* テキストを右寄せ */
+    width: 100%;
+}
+
+.artist-logo a img {
     width: auto;
     height: 50px;
+    display: inline-block;
+    margin: 0 0 0 auto; /* 右寄せ */
 }
 
 .copyright {
@@ -675,18 +689,67 @@ footer {
 @media (max-width: 768px) {
     .footer-container {
         flex-direction: column;
+        align-items: center; /* 中央揃え */
+        text-align: center; /* 全てのテキストを中央揃え */
     }
     
     .footer-left {
         margin-bottom: 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* 中央揃え */
+        width: 100%; /* 横幅いっぱいに広げる */
     }
     
     .footer-right {
-        text-align: left;
+        text-align: center; /* 中央揃え */
+        width: 100%; /* 横幅いっぱいに広げる */
     }
     
     .footer-artist-info {
-        text-align: left;
+        text-align: center !important; /* 中央揃え */
+        display: flex;
+        flex-direction: column;
+        align-items: center !important; /* 中央揃え - PCレイアウト設定を上書き */
+        width: 100%; /* 幅を100%に */
+        margin: 0 auto; /* 中央揃え */
+    }
+    
+    /* アーティストラベルとファンクラブラベルの余白調整 */
+    .artist-label, .fanclub-label {
+        margin: 0 0 5px 0 !important; /* 下に少し余白を追加 */
+        text-align: center !important; /* 確実に中央揃え - PCレイアウト設定を上書き */
+    }
+    
+    .footer-nav ul {
+        justify-content: center; /* リストアイテムを中央揃え */
+        flex-direction: column; /* 縦一列に変更 */
+    }
+    
+    .footer-nav li {
+        text-align: center; /* リストアイテムのテキストを中央揃え */
+        flex-basis: 100%; /* 幅を100%に設定 */
+        margin-bottom: 15px; /* マージンを追加 */
+    }
+    
+    .artist-logo {
+        display: block;
+        margin-top: 10px;
+        margin-bottom: 5px;
+        width: 100%;
+    }
+    
+    .artist-logo a {
+        display: block;
+        text-align: center !important; /* 中央揃え - PCレイアウト設定を上書き */
+        width: 100%; /* 横幅100%に設定 */
+    }
+    
+    .artist-logo a img {
+        display: inline-block !important;
+        width: auto;
+        height: 40px !important;
+        margin: 0 auto !important;
     }
 }
 
@@ -793,4 +856,44 @@ img {
 .page-transition-exit-active {
   opacity: 0;
   transition: opacity 300ms;
+}
+
+/* Google reCAPTCHA バッジを完全に非表示にするための包括的な対策 */
+.grecaptcha-badge, 
+.grecaptcha-badge *,
+iframe[src*="recaptcha"], 
+iframe[src*="google.com/recaptcha"],
+iframe[title*="recaptcha"],
+iframe[name*="recaptcha"], 
+iframe[title="reCAPTCHA"],
+iframe[style*="position: fixed; z-index: 2000000000;"],
+div[style*="z-index: 2147483647"],
+div[style*="z-index: 2000000000"],
+div[class*="g-recaptcha"],
+div[id^="rc-"],
+div[id^="grecaptcha-"],
+div[style*="width: 256px; height: 60px; position: fixed;"],
+.grecaptcha-logo, 
+.recaptcha-checkbox,
+.recaptcha-checkbox-border,
+[class*="g-recaptcha"],
+.g-recaptcha {
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  z-index: -9999 !important;
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  position: absolute !important;
+  top: -9999px !important;
+  left: -9999px !important;
+  border: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  transform: scale(0) !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  max-width: 0 !important;
+  max-height: 0 !important;
 }

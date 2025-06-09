@@ -19,7 +19,7 @@ section {
 .artists-section {
     margin-top: 120px;
     margin-bottom: 80px;
-    padding: 0 20px;
+    padding: 0 20px 160px 20px;
 }
 
 .artists-section h2 {
@@ -27,7 +27,7 @@ section {
     text-align: center;
     margin-bottom: 40px;
     color: #fff;
-    font-family: 'EB Garamond', serif;
+    font-family: var(--font-helvetica);
     font-weight: 500;
 }
 
@@ -154,7 +154,7 @@ section {
 .news-section {
     max-width: 900px;
     margin: 0 auto 80px;
-    padding: 0 20px;
+    padding: 0 20px 160px 20px;
 }
 
 .news-section h2 {
@@ -162,7 +162,7 @@ section {
     text-align: center;
     margin-bottom: 40px;
     color: #fff;
-    font-family: 'EB Garamond', serif;
+    font-family: var(--font-helvetica);
     font-weight: 500;
 }
 
@@ -349,7 +349,7 @@ section {
 }
 
 .home-news-section .view-more-link a {
-    font-family: "EB Garamond", serif;
+    font-family: var(--font-helvetica);
     letter-spacing: 0.1em;
     font-size: 18px;
     padding: 8px 30px;
@@ -368,7 +368,7 @@ section {
 .works-section {
     max-width: 800px;
     margin: 0 auto 80px;
-    padding: 0 20px;
+    padding: 0 20px 160px 20px;
 }
 
 .works-section h2 {
@@ -376,7 +376,7 @@ section {
     text-align: center;
     margin-bottom: 40px;
     color: #fff;
-    font-family: 'EB Garamond', serif;
+    font-family: var(--font-helvetica);
     font-weight: 500;
 }
 
@@ -435,7 +435,7 @@ section {
 }
 
 .view-detail-link a {
-    font-family: "EB Garamond", serif;
+    font-family: var(--font-helvetica);
     letter-spacing: 0.1em;
     font-size: 18px; /* k_sonoki仕様に合わせて拡大 */
     padding: 8px 30px; /* k_sonoki仕様に合わせてパディング調整 */

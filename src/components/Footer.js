@@ -36,14 +36,15 @@ export default function Footer() {
             <p className="artist-label">弊社所属アーティスト</p>
             <p className="fanclub-label">公式ウェブサイト</p>
             <div className="artist-logo">
-              <a href="https://ksonoki.com" target="_blank" rel="noopener noreferrer">
-                <Image 
+              <a 
+                href="https://ksonoki.com" 
+                target="_blank" 
+                rel="noopener noreferrer"
+              >
+                <img 
                   src="/images/KS_LOGO_WTE.svg" 
                   alt="園木 邦宝" 
-                  width={150} 
-                  height={42} 
                   className="ks-logo-img"
-                  style={{ height: 'auto', maxHeight: '50px' }}
                 />
               </a>
             </div>

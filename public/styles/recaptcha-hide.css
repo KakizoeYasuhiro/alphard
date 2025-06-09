@@ -1,0 +1,39 @@
+/* Google reCAPTCHA バッジを完全に非表示にするための包括的な対策 */
+.grecaptcha-badge, 
+.grecaptcha-badge *,
+iframe[src*="recaptcha"], 
+iframe[src*="google.com/recaptcha"],
+iframe[title*="recaptcha"],
+iframe[name*="recaptcha"], 
+iframe[title="reCAPTCHA"],
+iframe[style*="position: fixed; z-index: 2000000000;"],
+div[style*="z-index: 2147483647"],
+div[style*="z-index: 2000000000"],
+div[class*="g-recaptcha"],
+div[id^="rc-"],
+div[id^="grecaptcha-"],
+div[style*="width: 256px; height: 60px; position: fixed;"],
+.grecaptcha-logo, 
+.recaptcha-checkbox,
+.recaptcha-checkbox-border,
+[class*="g-recaptcha"],
+.g-recaptcha {
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  z-index: -9999 !important;
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  position: absolute !important;
+  top: -9999px !important;
+  left: -9999px !important;
+  border: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  transform: scale(0) !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  max-width: 0 !important;
+  max-height: 0 !important;
+}

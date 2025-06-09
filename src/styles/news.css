@@ -24,7 +24,7 @@ body {
     padding: 0 0 15px; /* 余白をさらに減らす */
     margin-bottom: 20px; /* 下の余白も小さく */
     border-bottom: 1px solid var(--news-divider);
-    font-family: var(--font-garamond), serif;
+    font-family: var(--font-helvetica);
     width: 100%;
 }
 
