@@ -59,7 +59,7 @@ export default function ArtistsClient() {
               />
             </div>
             <div className="artist-name">
-              <h2 className="artist-name-ja ja-text">園木 邦宝</h2>
+              <h2 className="artist-name-ja ja-text" style={{marginBottom: 0}}>園木 邦宝</h2>
               <p className="artist-name-en en-text">Sonoki Kunitaka</p>
             </div>
           </Link>
@@ -71,7 +71,7 @@ export default function ArtistsClient() {
               <div className="placeholder-image"></div>
             </div>
             <div className="artist-name">
-              <h2 className="artist-name-ja ja-text">井上 恭杜</h2>
+              <h2 className="artist-name-ja ja-text" style={{marginBottom: 0}}>井上 恭杜</h2>
               <p className="artist-name-en en-text">Inoue Takato</p>
             </div>
           </Link>

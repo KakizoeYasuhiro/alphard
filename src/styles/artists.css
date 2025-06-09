@@ -85,7 +85,7 @@
 
 .artist-name-ja {
     font-size: 24px;
-    margin: 0; /* マージンを削除して、gap で制御 */
+    margin: 0 0 0 0; /* マージンをゼロに設定 */
 }
 
 .artist-name-en {
