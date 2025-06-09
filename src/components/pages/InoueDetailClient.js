@@ -56,10 +56,10 @@ export default function InoueDetailClient() {
       </div>
 
       <div className="artist-social-links">
-        <a href="https://x.com/" target="_blank" rel="noopener noreferrer">
+        <a href="https://x.com/takaton0526" target="_blank" rel="noopener noreferrer">
           <Image src="/images/X_WTE.svg" alt="X" width={20} height={20} />
         </a>
-        <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">
+        <a href="https://www.instagram.com/takatoinoue_insta/" target="_blank" rel="noopener noreferrer">
           <Image src="/images/INSTA_WTE.svg" alt="Instagram" width={20} height={20} />
         </a>
       </div>
