@@ -53,8 +53,9 @@ export default function ArtistsClient() {
               <Image 
                 src="/images/top_sonoki.jpg" 
                 alt="園木 邦宝" 
-                width={400}
-                height={533}
+                width={300}
+                height={300}
+                style={{ objectFit: 'cover', objectPosition: 'center 20%' }}
               />
             </div>
             <div className="artist-name">
