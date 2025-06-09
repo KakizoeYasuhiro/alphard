@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function ArtistsSection() {
   const [activeSlide, setActiveSlide] = useState(0);
@@ -83,22 +84,26 @@ export default function ArtistsSection() {
           <div className="slider-track" ref={sliderRef}
             style={{ transform: `translateX(-${activeSlide * 100}%)` }}>
             <div className={`slide ${activeSlide === 0 ? 'active' : ''}`}>
-              <Image 
-                src="/images/top_sonoki.jpg" 
-                alt="園木 邦宝" 
-                width={400}
-                height={533}
-                className="slide-image"
-              />
+              <Link href="/artists/sonoki-kunitaka">
+                <Image 
+                  src="/images/top_sonoki.jpg" 
+                  alt="園木 邦宝" 
+                  width={400}
+                  height={533}
+                  className="slide-image"
+                />
+              </Link>
             </div>
             <div className={`slide ${activeSlide === 1 ? 'active' : ''}`}>
-              <Image 
-                src="/images/top_takato.jpg" 
-                alt="井上 恭杜" 
-                width={400}
-                height={533}
-                className="slide-image"
-              />
+              <Link href="/artists/inoue-takato">
+                <Image 
+                  src="/images/top_takato.jpg" 
+                  alt="井上 恭杜" 
+                  width={400}
+                  height={533}
+                  className="slide-image"
+                />
+              </Link>
             </div>
           </div>
         </div>

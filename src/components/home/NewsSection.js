@@ -201,7 +201,7 @@ export default function NewsSection() {
               <div className="news-content" dangerouslySetInnerHTML={{ __html: item.content }} />
               {item.url && (
                 <div className="news-detail-link">
-                  <a href={item.url} target="_blank" rel="noopener noreferrer">&gt; 詳細はこちら</a>
+                  <a href={item.url} target="_blank" rel="noopener noreferrer" style={{ color: '#7e9bef' }}>&gt; 詳細はこちら</a>
                 </div>
               )}
             </div>
