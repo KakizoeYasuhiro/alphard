@@ -62,12 +62,6 @@ export default function InoueDetailClient() {
         <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">
           <Image src="/images/INSTA_WTE.svg" alt="Instagram" width={20} height={20} />
         </a>
-        <a href="https://www.tiktok.com/" target="_blank" rel="noopener noreferrer">
-          <Image src="/images/TIKTOK_WTE.svg" alt="TikTok" width={20} height={20} />
-        </a>
-        <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer">
-          <Image src="/images/YOUTUBE_WTE.svg" alt="YouTube" width={20} height={20} />
-        </a>
       </div>
 
       <div className="profile-section">
@@ -85,10 +79,6 @@ export default function InoueDetailClient() {
         </div>
       </div>
 
-      <div className="official-links">
-        <a href="#" target="_blank" rel="noopener noreferrer" className="official-link">OFFICIAL SITE</a>
-        <a href="#" className="official-link">FUNCLUB</a>
-      </div>
     </section>
   );
 }
