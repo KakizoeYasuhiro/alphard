@@ -4,8 +4,8 @@ import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 
 export default function ArtistsSection() {
-  const [activeSlide, setActiveSlide] = useState(1);
-  const [slideCount, setSlideCount] = useState(3);
+  const [activeSlide, setActiveSlide] = useState(0);
+  const [slideCount, setSlideCount] = useState(2);
   const sliderRef = useRef(null);
   const autoplayTimerRef = useRef(null);
   const autoplayDelayMs = 5000; // 5秒ごとに自動スライド
@@ -92,15 +92,6 @@ export default function ArtistsSection() {
               />
             </div>
             <div className={`slide ${activeSlide === 1 ? 'active' : ''}`}>
-              <Image 
-                src="/images/top_sonoki.jpg" 
-                alt="園木 邦宝" 
-                width={400}
-                height={533}
-                className="slide-image"
-              />
-            </div>
-            <div className={`slide ${activeSlide === 2 ? 'active' : ''}`}>
               <Image 
                 src="/images/top_sonoki.jpg" 
                 alt="園木 邦宝" 
