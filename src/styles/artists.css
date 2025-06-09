@@ -1,10 +1,8 @@
 /* ARTISTSページのスタイル */
 :root {
-    --artist-list-name-gap: 15px; /* 一覧ページでの間隔 */
-    --artist-detail-name-gap: 12px; /* 詳細ページでの間隔 */
+    --artist-list-name-gap: var(--spacing-lg); /* 一覧ページでの間隔 - globals.cssのスペーシング変数を使用 */
+    --artist-detail-name-gap: var(--spacing-md); /* 詳細ページでの間隔 - globals.cssのスペーシング変数を使用 */
 }
-
-/* globals.cssの--bg-colorを使用 */
 
 /* 共通スタイル */
 .artists-section, .artist-profile {

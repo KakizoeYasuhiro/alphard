@@ -1,10 +1,8 @@
 /* WORKSページのスタイル */
 :root {
-    --works-title-bg: rgba(255, 255, 255, 0.1);
-    --works-section-margin: 60px;
+    --works-title-bg: var(--color-light-10); /* globals.cssで定義された変数を使用 */
+    --works-section-margin: var(--spacing-2xl); /* globals.cssで定義されたスペーシング変数を使用 */
 }
-
-/* globals.cssの--bg-colorを使用 */
 
 .works-container {
     max-width: 1000px;

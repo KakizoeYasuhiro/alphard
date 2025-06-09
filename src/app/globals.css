@@ -1,13 +1,31 @@
 /* ===== 基本スタイル ===== */
 :root {
-    /* カラーガイドラインに基づく色の設定 */
-    --bg-color: #12224D; /* R:18 G:34 B:66 */
-    --header-color: #12224D; /* ヘッダー: 背景色と同じ */
-    --footer-color: #101A2B; /* R:16 G:26 B:43 */
-    --text-color: #ffffff; /* 白 */
-    --hover-color: #2e4675; /* ホバー・選択中 */
-    --button-color: #2e4675; /* ボタン類・WORKSページ見出し */
-    --link-active: #2e4675; /* ホバー・選択中などリンク */
+    /* カラーパレット - 基本色定義 */
+    --color-primary: #12224D; /* R:18 G:34 B:66 - メインカラー */
+    --color-secondary: #2e4675; /* セカンダリーカラー（ホバー・ボタンなど） */
+    --color-dark: #101A2B; /* R:16 G:26 B:43 - フッター背景など */
+    --color-light: #ffffff; /* 白 - テキストカラーなど */
+    
+    /* 透明度バリエーション */
+    --color-light-10: rgba(255, 255, 255, 0.1);
+    --color-light-20: rgba(255, 255, 255, 0.2);
+    --color-light-30: rgba(255, 255, 255, 0.3);
+    --color-light-50: rgba(255, 255, 255, 0.5);
+    --color-light-70: rgba(255, 255, 255, 0.7);
+    
+    /* 使用目的別の名前付け - 他のファイルからの参照用 */
+    --bg-color: var(--color-primary);
+    --header-color: var(--color-primary);
+    --footer-color: var(--color-dark);
+    --text-color: var(--color-light);
+    --hover-color: var(--color-secondary);
+    --button-color: var(--color-secondary);
+    --link-active: var(--color-secondary);
+    
+    /* 共通のボーダーやディバイダー */
+    --divider-light: var(--color-light-10);
+    --divider-footer: var(--color-light-10);
+    --divider-header: var(--color-light-10);
     
     /* タイプスケール (黄金比 1.618) */
     --font-size-xs: 0.75rem; /* 12px */
@@ -28,6 +46,20 @@
     /* フォントファミリー */
     --font-garamond: 'EB Garamond';
     --font-sans: 'Noto Sans JP', 'YuGothic', sans-serif;
+    
+    /* レスポンシブブレイクポイント */
+    --breakpoint-xs: 480px;
+    --breakpoint-sm: 768px;
+    --breakpoint-md: 1024px;
+    --breakpoint-lg: 1200px;
+    
+    /* スペーシング（余白）定義 */
+    --spacing-xs: 5px;
+    --spacing-sm: 10px;
+    --spacing-md: 20px;
+    --spacing-lg: 30px;
+    --spacing-xl: 40px;
+    --spacing-2xl: 60px;
 }
 
 /* フォント設定 */
@@ -713,9 +745,9 @@ footer {
 }
 
 /* レスポンシブブレイクポイント - 整理統合版 */
-@media (max-width: 1024px) {
+@media (max-width: var(--breakpoint-md)) { /* 1024px */
     .header {
-        padding: 15px 20px;
+        padding: var(--spacing-sm) var(--spacing-md);
     }
     
     .desktop-menu a {
@@ -733,7 +765,7 @@ footer {
     }
     
     .desktop-menu li {
-        margin-left: 10px;
+        margin-left: var(--spacing-sm);
     }
     
     .desktop-menu a {
@@ -749,7 +781,7 @@ footer {
     }
     
     .desktop-menu li {
-        margin-left: 8px;
+        margin-left: var(--spacing-xs);
     }
     
     .logo img {
@@ -757,9 +789,9 @@ footer {
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: var(--breakpoint-sm)) { /* 768px */
     .header {
-        padding: 15px 20px;
+        padding: var(--spacing-sm) var(--spacing-md);
     }
 
     .desktop-menu {

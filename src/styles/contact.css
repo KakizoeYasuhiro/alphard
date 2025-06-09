@@ -1,17 +1,14 @@
 /* CONTACTページのスタイル */
 :root {
-    --contact-bg-color: #12224D; /* R:18 G:34 B:66 */
-    --input-bg: rgba(255, 255, 255, 0.05);
-    --input-border: rgba(255, 255, 255, 0.1);
-    --input-focus: rgba(255, 255, 255, 0.2);
-    --button-bg: #2e4675;
-    --button-hover: #3a5a8f;
+    /* 入力フォーム用カスタム変数 - globals.cssのカラー変数を活用 */
+    --input-bg: var(--color-light-10);
+    --input-border: var(--color-light-10);
+    --input-focus: var(--color-light-20);
+    --button-bg: var(--color-secondary);
+    --button-hover: #3a5a8f; /* 特殊な色のみ独自定義 */
 }
 
-.contact-page {
-    background-color: var(--contact-bg-color);
-    color: white;
-}
+/* メインのbg-colorはglobals.cssから継承 */
 
 .contact-container {
     max-width: 800px;
@@ -33,7 +30,7 @@
     border-radius: 4px;
     text-align: center;
     font-weight: 500;
-    animation: fadeIn 0.5s ease-in-out;
+    animation: fadeIn 0.5s ease-in-out; /* globals.cssで定義されたアニメーションを使用 */
 }
 
 .status-message.success {
@@ -103,14 +100,14 @@
 /* トピック選択時の注意書きメッセージ */
 .topic-info-message {
     font-size: 0.8rem;
-    color: rgba(255, 255, 255, 0.9);
+    color: var(--color-light-90, rgba(255, 255, 255, 0.9));
     margin-top: 10px;
     padding: 12px 15px;
     background-color: rgba(255, 255, 255, 0.08);
     border-radius: 4px;
-    border-left: 3px solid rgba(255, 255, 255, 0.3);
+    border-left: 3px solid var(--color-light-30);
     line-height: 1.5;
-    animation: fadeIn 0.3s ease-in-out;
+    animation: fadeIn 0.3s ease-in-out; /* globals.cssで定義されたアニメーションを使用 */
 }
 
 /* reCAPTCHA関連スタイル */
@@ -183,16 +180,7 @@
     right: 0;
 }
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
+/* fadeInアニメーションはglobals.cssから継承 */
 
 @keyframes spin {
     0% {

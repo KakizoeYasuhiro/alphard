@@ -228,15 +228,12 @@ section {
     background-color: rgba(255, 255, 255, 0.5); /* ホバー時のつまみの色 */
 }
 
-/* ニュースアイテム - NEWSページと同じ */
-.news-item {
+/* ホームページ固有のニュースアイテムスタイル */
+.home-news-section .news-item {
     display: flex;
     gap: 30px;
-    padding: 20px 0; /* 30pxから20pxに変更：NEWSページと合わせる */
+    padding: 20px 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    opacity: 1; /* 初期表示のフォールバック */
-    visibility: visible; /* 初期表示のフォールバック */
-    transform: translateY(0); /* 初期表示のフォールバック */
 }
 
 /* 最後のニュースアイテムのボーダーを削除 */
@@ -537,29 +534,25 @@ section {
 /* フッターのスタイルはglobals.cssで一元管理されています */
 
 /* レスポンシブ調整 */
-@media (max-width: 768px) {
-    .news-item {
+@media (max-width: var(--breakpoint-sm)) { /* 768px - globals.cssの変数を使用 */
+    /* ホームページ固有のニュースアイテムスタイル */
+    .home-news-section .news-item {
         flex-direction: column;
-        gap: 20px;
+        gap: var(--spacing-md);
     }
     
-    .news-date-tags {
-        gap: 10px;
+    .home-news-section .news-date-tags {
+        gap: var(--spacing-sm);
     }
     
-    .news-image {
+    .home-news-section .news-image {
         flex: 0 0 auto;
         max-width: 300px;
         align-self: center;
     }
-    
-    /* ヘッダーのロゴ位置調整 */
-    .logo {
-        left: 15px;
-    }
 }
 
-@media (max-width: 480px) {
+@media (max-width: var(--breakpoint-xs)) { /* 480px - globals.cssの変数を使用 */
     .artists-section {
         margin-top: 100px;
     }

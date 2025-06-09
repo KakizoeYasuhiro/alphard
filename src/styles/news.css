@@ -1,16 +1,14 @@
 /* NEWSページのスタイル */
 :root {
-    --news-divider: rgba(255, 255, 255, 0.1);
+    --news-divider: var(--divider-light); /* globals.cssで定義された共通変数を使用 */
 }
 
 .news-page {
     max-width: 900px;
     margin: 0 auto;
-    padding: 70px 20px 70px; /* ヘッダーとフッター間の余白をさらに減らす */
-    color: white;
+    padding: 70px var(--spacing-md) 70px; /* globals.cssで定義されたスペーシング変数を使用 */
+    color: var(--text-color);
 }
-
-/* globals.cssの--bg-colorを使用 */
 
 /* フィルターコンテナ */
 .filter-container {
@@ -143,10 +141,11 @@
     margin-bottom: 20px; /* 余白を小さくして調整 */
 }
 
+/* 共通のニュースアイテムスタイル - ベース定義 */
 .news-item {
     display: flex;
     gap: 30px;
-    padding: 20px 0; /* 余白を小さくして項目間を詰める */
+    padding: 20px 0;
     border-bottom: 1px solid var(--news-divider);
 }
 
@@ -263,26 +262,26 @@
     margin-left: 5px;
 }
 
-/* レスポンシブデザイン */
+/* レスポンシブデザイン - 共通部分をnews.cssで一元管理 */
 @media (max-width: 768px) {
-    .news-item {
+    /* ニュースページのレスポンシブスタイル */
+    .news-page .news-item {
         flex-direction: column;
         gap: 20px;
     }
 
-    .news-date-tags {
+    .news-page .news-date-tags {
         gap: 10px;
     }
 
-    .news-image,
-    .news-image-placeholder {
+    .news-page .news-image,
+    .news-page .news-image-placeholder {
         flex: 0 0 auto;
         max-width: 300px;
         align-self: center;
     }
-}
-
-@media (max-width: 768px) {
+    
+    /* フィルターコンポーネントのレスポンシブスタイル */
     .filter-container {
         flex-direction: column;
         align-items: flex-start;
@@ -391,8 +390,15 @@
     transform: translateY(0);
 }
 
+/* アニメーション用のスタイルはここで一括定義 */
 .news-item {
     /* 初期状態は非表示 - GSAPで制御する */
     opacity: 0;
     transform: translateY(50px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.news-item.revealed {
+    opacity: 1;
+    transform: translateY(0);
 }
