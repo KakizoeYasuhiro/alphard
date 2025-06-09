@@ -65,7 +65,7 @@ export default function ArtistsClient() {
           </Link>
         </div>
         <div className="artist-item">
-          <Link href="#" className="artist-link">
+          <Link href="/artists/inoue-takato" className="artist-link">
             <div className="artist-image">
               <Image 
                 src="/images/top_takato.jpg" 
