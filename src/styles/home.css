@@ -534,7 +534,7 @@ section {
     letter-spacing: 0.03em;
 }
 
-/* インデックスページのフッターにはstyle.cssのスタイルが適用されます */
+/* フッターのスタイルはglobals.cssで一元管理されています */
 
 /* レスポンシブ調整 */
 @media (max-width: 768px) {
@@ -582,9 +582,5 @@ section {
         gap: 8px;
     }
     
-    /* 削除: フッターのスタイルはglobal.cssで一元管理するため削除
-    .footer-nav li {
-        flex: 0 0 100%;
-    }
-    */
+    /* フッターのスタイルはglobal.cssで一元管理 */
 }

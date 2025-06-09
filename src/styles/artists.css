@@ -1,14 +1,10 @@
 /* ARTISTSページのスタイル */
 :root {
-    --artists-bg-color: #12224D;
     --artist-list-name-gap: 15px; /* 一覧ページでの間隔 */
     --artist-detail-name-gap: 12px; /* 詳細ページでの間隔 */
 }
 
-body.artists-page {
-    background-color: var(--artists-bg-color);
-    color: white;
-}
+/* globals.cssの--bg-colorを使用 */
 
 /* 共通スタイル */
 .artists-section, .artist-profile {

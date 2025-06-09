@@ -49,7 +49,7 @@ export default function AnimatedWrapper({
         }
       );
     } catch (error) {
-      console.error('Failed to create IntersectionObserver:', error);
+      // IntersectionObserverの作成に失敗した場合は処理を中断
       return;
     }
 
@@ -67,12 +67,12 @@ export default function AnimatedWrapper({
               try {
                 observer.observe(el);
               } catch (e) {
-                console.error('Failed to observe element:', e);
+                // 要素の監視に失敗した場合は無視
               }
             });
           }
         } catch (error) {
-          console.error('Error in setupObserver:', error);
+          // セットアップ中にエラーが発生した場合は無視
         }
       }, 100);
     };
@@ -108,7 +108,7 @@ export default function AnimatedWrapper({
           }
           observer.disconnect();
         } catch (error) {
-          console.error('Error in cleanup function:', error);
+          // クリーンアップ時のエラーは無視
         }
       }
     }

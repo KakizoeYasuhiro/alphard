@@ -1,6 +1,5 @@
 /* NEWSページのスタイル */
 :root {
-    --news-bg-color: #12224D; /* R:18 G:34 B:66 */
     --news-divider: rgba(255, 255, 255, 0.1);
 }
 
@@ -11,9 +10,7 @@
     color: white;
 }
 
-body {
-    background-color: var(--news-bg-color);
-}
+/* globals.cssの--bg-colorを使用 */
 
 /* フィルターコンテナ */
 .filter-container {

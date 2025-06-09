@@ -59,7 +59,7 @@ export async function GET(request) {
       });
       
     } catch (apiError) {
-      console.error('MicroCMS API Error:', apiError);
+      // APIエラー時は空のデータを返す
       data = { contents: [], totalCount: 0 };
     }
     
@@ -70,7 +70,6 @@ export async function GET(request) {
     
     return NextResponse.json(data);
   } catch (error) {
-    console.error('API Route Error:', error);
     return NextResponse.json(
       { 
         error: 'ニュースリストの取得に失敗しました。',

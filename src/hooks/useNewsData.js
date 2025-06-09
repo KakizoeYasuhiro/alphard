@@ -39,7 +39,6 @@ export default function useNewsData({ limit = 5, year = null, month = null, cate
         
         if (!res.ok) {
           const errorData = await res.json();
-          console.error('❌ API Error:', errorData);
           throw new Error(`APIリクエストエラー: ${res.status} - ${errorData.details || errorData.error || 'Unknown error'}`);
         }
         

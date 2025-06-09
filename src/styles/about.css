@@ -1,13 +1,9 @@
 /* ABOUTページのスタイル */
 :root {
-    --about-bg-color: #12224D; /* R:18 G:34 B:66 */
     --about-line-color: rgba(255, 255, 255, 0.1);
 }
 
-body {
-    background-color: var(--about-bg-color);
-    color: white;
-}
+/* globals.cssの--bg-colorを使用 */
 
 .about-section {
     width: 100%;

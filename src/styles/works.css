@@ -1,14 +1,10 @@
 /* WORKSページのスタイル */
 :root {
-    --works-bg-color: #12224D; /* R:18 G:34 B:66 */
     --works-title-bg: rgba(255, 255, 255, 0.1);
     --works-section-margin: 60px;
 }
 
-.works-page {
-    background-color: var(--works-bg-color);
-    color: white;
-}
+/* globals.cssの--bg-colorを使用 */
 
 .works-container {
     max-width: 1000px;

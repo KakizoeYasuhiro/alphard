@@ -11,7 +11,7 @@ if (typeof window !== 'undefined') {
     try {
       gsap.registerPlugin(ScrollTrigger);
     } catch (error) {
-      console.error('Failed to register ScrollTrigger plugin:', error);
+      // ScrollTriggerの登録に失敗した場合は無視
     }
   }
 }
@@ -26,7 +26,7 @@ export default function useAnimations() {
       try {
         gsap.registerPlugin(ScrollTrigger);
       } catch (error) {
-        console.error('Error registering ScrollTrigger:', error);
+        // エラー時は処理を中断
         return;
       }
     }
