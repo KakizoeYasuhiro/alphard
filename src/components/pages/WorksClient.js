@@ -88,7 +88,7 @@ export default function WorksClient() {
         <h3 className="work-subtitle">企画・制作イベント実績</h3>
         <div className="event-content">
           <div className="event-details">
-            <p>「WAVES vol.1」@ 渋谷gee-ge.（右記：写真参照）</p>
+            <p>「WAVES vol.1」@ 渋谷gee-ge.（写真参照）</p>
             <p>「WAVES vol.2」@ 下北沢ReG</p>
             <p>その他</p>
             <p>ナンバリングイベント「SCENE」</p>
