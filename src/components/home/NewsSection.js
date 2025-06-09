@@ -47,7 +47,7 @@ export default function NewsSection() {
           try {
             const data = await client.get({
               endpoint: 'news',
-              queries: { limit: 5, orders: '-date,order' },
+              queries: { limit: 3, orders: '-date,order' },
             });
             
             if (data && data.contents && data.contents.length > 0) {
