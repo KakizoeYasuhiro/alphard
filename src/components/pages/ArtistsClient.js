@@ -67,8 +67,13 @@ export default function ArtistsClient() {
         <div className="artist-item">
           <Link href="#" className="artist-link">
             <div className="artist-image">
-              {/* プレースホルダー画像 */}
-              <div className="placeholder-image"></div>
+              <Image 
+                src="/images/top_takato.jpg" 
+                alt="井上 恭杜" 
+                width={300}
+                height={300}
+                style={{ objectFit: 'cover', objectPosition: 'center 20%' }}
+              />
             </div>
             <div className="artist-name">
               <h2 className="artist-name-ja ja-text" style={{marginBottom: 0}}>井上 恭杜</h2>

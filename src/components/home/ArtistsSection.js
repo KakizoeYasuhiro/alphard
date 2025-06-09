@@ -93,8 +93,8 @@ export default function ArtistsSection() {
             </div>
             <div className={`slide ${activeSlide === 1 ? 'active' : ''}`}>
               <Image 
-                src="/images/top_sonoki.jpg" 
-                alt="園木 邦宝" 
+                src="/images/top_takato.jpg" 
+                alt="井上 恭杜" 
                 width={400}
                 height={533}
                 className="slide-image"
