@@ -18,8 +18,8 @@ section {
 /* ==== ARTISTSセクション（スライダー） ==== */
 .artists-section {
     margin-top: 120px;
-    margin-bottom: 80px;
-    padding: 0 20px 320px 20px;
+    margin-bottom: 320px; /* WORKSセクションとの間隔を320pxに設定 */
+    padding: 0 20px;
 }
 
 .artists-section h2 {
