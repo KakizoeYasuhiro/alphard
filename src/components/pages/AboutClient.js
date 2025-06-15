@@ -68,22 +68,22 @@ export default function AboutClient() {
               <div className="info-label ja-text">事業内容</div>
               <div className="info-content business-list ja-text">
                 <ul>
-                  <li><strong>ARTIST MANAGEMENT</strong><br />
+                  <li><strong>アーティストマネジメント</strong><br />
                   アーティスト、タレントのマネジメント、プロモート業務<br />
                   新人アーティストの発掘、育成</li>
                   
-                  <li><strong>MUSIC & CONTENTS</strong><br />
+                  <li><strong>音楽・コンテンツ制作</strong><br />
                   音楽、映像、出版物等の企画、制作、販売<br />
                   音楽配信、著作権・原盤権の管理</li>
                   
-                  <li><strong>LIVE & EVENT</strong><br />
+                  <li><strong>ライブ・イベント</strong><br />
                   コンサート、イベントの企画、制作、運営</li>
                   
-                  <li><strong>MERCHANDISING & FANCLUB</strong><br />
+                  <li><strong>グッズ制作・ファンクラブ</strong><br />
                   アーティスト関連商品の企画、製造、販売<br />
                   公式ファンクラブの企画、運営</li>
                   
-                  <li><strong>DIGITAL SOLUTION</strong><br />
+                  <li><strong>デジタルソリューション</strong><br />
                   ウェブサイト・SNSの企画運営、デジタルプロモーション<br />
                   インターネットメディアの活用、マーケティング事業</li>
                 </ul>
