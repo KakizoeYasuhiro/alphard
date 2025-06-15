@@ -60,7 +60,7 @@ export default function WorksClient() {
     <div className="works-container">
       {/* ARTIST MANAGEMENT */}
       <section id="artist-management" className="work-section">
-        <h2 className="work-title">ARTIST MANAGEMENT</h2>
+        <h2 className="work-title">アーティストマネジメント</h2>
         <div className="work-content">
           <p>アーティスト、タレントのマネージメント、プロモート業務をはじめ、新人アーティストの発掘、育成など、エンターテインメントを包括的にプロデュースする事業を展開しています。</p>
         </div>
@@ -68,7 +68,7 @@ export default function WorksClient() {
 
       {/* MUSIC & CONTENTS */}
       <section id="music-contents" className="work-section">
-        <h2 className="work-title">MUSIC & CONTENTS</h2>
+        <h2 className="work-title">音楽・コンテンツ制作</h2>
         <div className="work-content">
           <p>音楽、映像、出版物等の企画、制作、販売のほか、音楽配信や著作権・原盤権の管理など、コンテンツ制作に関わる幅広い業務を行います。</p>
         </div>
@@ -76,7 +76,7 @@ export default function WorksClient() {
 
       {/* LIVE & EVENT */}
       <section id="live-event" className="work-section">
-        <h2 className="work-title">LIVE & EVENT</h2>
+        <h2 className="work-title">ライブ・イベント</h2>
         <div className="work-content">
           <p>コンサート、イベントの企画、制作、運営を行います。</p>
           <p>アイディア力と豊富な経験で、話題性、集客力のあるライブやイベントの実現を目指します。</p>
@@ -108,7 +108,7 @@ export default function WorksClient() {
 
       {/* MERCHANDISING & FANCLUB */}
       <section id="merchandising-fanclub" className="work-section">
-        <h2 className="work-title">MERCHANDISING & FANCLUB</h2>
+        <h2 className="work-title">グッズ制作・ファンクラブ</h2>
         <div className="work-content">
           <p>アーティスト関連商品の企画、製造、販売と公式ファンクラブの企画、運営を行います。ファンの特性に合わせたイベントや会員サイトのデジタルコンテンツサービス、ライブ会場でのブース運営、新規会員の獲得などファンクラブ運営に関する業務をトータルで行います。</p>
           <div className="fanclub-logo">
@@ -140,7 +140,7 @@ export default function WorksClient() {
 
       {/* DIGITAL SOLUTION */}
       <section id="digital-solution" className="work-section">
-        <h2 className="work-title">DIGITAL SOLUTION</h2>
+        <h2 className="work-title">デジタルソリューション</h2>
         <div className="work-content">
           <p>ウェブサイト・SNSの企画運営、デジタルプロモーションの実施や、インターネットメディアの活用、マーケティング事業を行います。また、所属アーティストの肖像権や著作権、原盤権、出版権を含む音源、映像作品等の権利の保護・管理も行います。</p>
         </div>
