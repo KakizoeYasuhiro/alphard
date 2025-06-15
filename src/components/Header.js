@@ -54,7 +54,9 @@ export default function Header() {
         <ul>
           <li><Link href="/" className={isActive('/') ? 'active' : ''}>HOME</Link></li>
           <li><Link href="/artists" className={isActive('/artists') ? 'active' : ''}>ARTISTS</Link></li>
+          {/* NEWS link temporarily hidden 
           <li><Link href="/news" className={isActive('/news') ? 'active' : ''}>NEWS</Link></li>
+          */}
           <li><Link href="/works" className={isActive('/works') ? 'active' : ''}>WORKS</Link></li>
           <li><Link href="/about" className={isActive('/about') ? 'active' : ''}>ABOUT</Link></li>
           <li><Link href="/contact" className={isActive('/contact') ? 'active' : ''}>CONTACT</Link></li>

@@ -59,7 +59,9 @@ export default function HomeClient() {
   return (
     <>
       <ArtistsSection />
+      {/* NEWS section temporarily hidden 
       <NewsSection />
+      */}
       <WorksSection />
       <ContactSection />
     </>

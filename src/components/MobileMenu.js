@@ -33,7 +33,9 @@ export default function MobileMenu({ isOpen, onClose }) {
         <ul>
           <li><Link href="/" onClick={onClose}>HOME</Link></li>
           <li><Link href="/artists" onClick={onClose}>ARTISTS</Link></li>
+          {/* NEWS link temporarily hidden 
           <li><Link href="/news" onClick={onClose}>NEWS</Link></li>
+          */}
           <li><Link href="/works" onClick={onClose}>WORKS</Link></li>
           <li><Link href="/about" onClick={onClose}>ABOUT</Link></li>
           <li><Link href="/contact" onClick={onClose}>CONTACT</Link></li>
