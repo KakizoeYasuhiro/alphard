@@ -18,8 +18,8 @@ section {
 /* ==== ARTISTSセクション（スライダー） ==== */
 .artists-section {
     margin-top: 120px;
-    margin-bottom: 320px; /* WORKSセクションとの間隔を320pxに設定 */
-    padding: 0 20px;
+    margin-bottom: 320px;
+    padding: 0; /* 左右のpaddingを削除し、コンテナに依存させる */
 }
 
 .artists-section h2 {
@@ -34,15 +34,16 @@ section {
 /* スライダーコンテナ */
 .slider-container {
     position: relative;
-    display: flex;
-    align-items: center;
     max-width: 1200px;
     margin: 0 auto;
+    padding: 0 20px; /* コンテナ自体に余白を持たせる */
 }
 
 /* スライド矢印 */
 .slider-arrow {
     position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
     z-index: 10;
     width: 40px;
     height: 40px;
@@ -59,34 +60,43 @@ section {
 }
 
 .slider-arrow.prev {
-    left: 20px;
+    left: -20px; /* コンテナのpaddingの外側に配置 */
 }
 
 .slider-arrow.next {
-    right: 20px;
+    right: -20px; /* コンテナのpaddingの外側に配置 */
 }
 
-/* スライダーラッパー */
+/* スライダーラッパー（これが「窓」になる） */
 .slider-wrapper {
     width: 100%;
     overflow: hidden;
     margin: 0 auto;
 }
 
-/* スライダートラック */
+/* スライダートラック（スライド全体を保持） */
 .slider-track {
     display: flex;
-    transition: transform 0.4s ease;
+    align-items: center;
+    gap: 10px; /* スライド間の余白を縮小し、見切れを大きくする */
+    /* ★重要：初期表示アニメーション対策 */
+    opacity: 0;
+    transition: transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1), opacity 0.4s ease;
+}
+
+/* ★重要：JSで計算完了後にこのクラスを付与して表示する */
+.slider-track.slider-ready {
+    opacity: 1;
 }
 
 /* スライド */
 .slide {
-    min-width: 100%;
-    padding: 0 50px;
+    width: 55%;   /* ★重要：幅を縮小し、見切れの割合を増やす */
+    flex-shrink: 0; /* 縮まないようにする */
     box-sizing: border-box;
     opacity: 0.5;
-    transform: scale(0.85);
-    transition: all 0.4s ease;
+    transform: scale(0.9);
+    transition: all 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
 .slide.active {
@@ -96,7 +106,7 @@ section {
 
 .slide-image {
     width: 100%;
-    max-width: 400px;
+    max-width: 450px;
     margin: 0 auto;
     display: block;
     border-radius: 8px;
@@ -146,9 +156,17 @@ section {
     transform: scale(1);
 }
 
-.dot:hover {
-    transform: scale(1.2);
-    background-color: rgba(255, 255, 255, 0.3);
+/* レスポンシブ調整 */
+@media (max-width: 768px) {
+    .slide {
+        width: 70%; /* モバイル表示でも見切れを保つため、幅を調整 */
+    }
+    .slider-arrow.prev {
+        left: 0px;
+    }
+    .slider-arrow.next {
+        right: 0px;
+    }
 }
 
 /* ==== NEWSセクション ==== */

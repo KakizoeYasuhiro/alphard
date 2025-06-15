@@ -1,71 +1,101 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
+const artists = [
+  { href: "/artists/sonoki-kunitaka", src: "/images/top_sonoki.jpg", alt: "園木 邦宝" },
+  { href: "/artists/inoue-takato", src: "/images/top_takato.jpg", alt: "井上 恭杜" }
+];
+
 export default function ArtistsSection() {
   const [activeSlide, setActiveSlide] = useState(0);
-  const [slideCount, setSlideCount] = useState(2);
-  const sliderRef = useRef(null);
+  const [isSliderReady, setIsSliderReady] = useState(false);
   const autoplayTimerRef = useRef(null);
-  const autoplayDelayMs = 5000; // 5秒ごとに自動スライド
+  const sliderTrackRef = useRef(null);
+  const slideRefs = useRef([]);
+  const wrapperRef = useRef(null);
 
-  // スライダーの初期化と自動再生
-  useEffect(() => {
-    if (sliderRef.current) {
-      // スライド数を取得
-      const slides = sliderRef.current.querySelectorAll('.slide');
-      setSlideCount(slides.length);
+  const slideCount = artists.length;
+  const autoplayDelayMs = 5000;
+
+  const calculateTransform = useCallback(() => {
+    if (!wrapperRef.current || !slideRefs.current[activeSlide] || !sliderTrackRef.current) {
+      return;
+    }
+    
+    // 初回計算時のみトランジションを一時的に無効化し、ジャンプを防ぐ
+    if (!isSliderReady) {
+      sliderTrackRef.current.style.transition = 'none';
     }
 
-    // 自動再生の開始
-    startAutoplay();
+    const wrapperWidth = wrapperRef.current.offsetWidth;
+    const activeSlideElement = slideRefs.current[activeSlide];
+    const slideWidth = activeSlideElement.offsetWidth;
+    
+    const offsetToCenter = (wrapperWidth / 2) - (slideWidth / 2);
+    const activeSlideOffsetLeft = activeSlideElement.offsetLeft;
+    const newTransformValue = offsetToCenter - activeSlideOffsetLeft;
+    
+    sliderTrackRef.current.style.transform = `translateX(${newTransformValue}px)`;
 
+    // DOMの更新が反映された後にトランジションを戻し、表示を有効化
+    setTimeout(() => {
+      if (sliderTrackRef.current) {
+        sliderTrackRef.current.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1), opacity 0.4s ease';
+      }
+      if (!isSliderReady) {
+        setIsSliderReady(true);
+      }
+    }, 50); // わずかな遅延
+
+  }, [activeSlide, isSliderReady]);
+
+  const nextSlide = useCallback(() => {
+    setActiveSlide((prev) => (prev + 1) % slideCount);
+  }, [slideCount]);
+
+  const prevSlide = () => {
+    setActiveSlide((prev) => (prev - 1 + slideCount) % slideCount);
+  };
+  
+  const goToSlide = (index) => {
+    setActiveSlide(index);
+  };
+
+  const startAutoplay = useCallback(() => {
+    if (autoplayTimerRef.current) clearInterval(autoplayTimerRef.current);
+    autoplayTimerRef.current = setInterval(nextSlide, autoplayDelayMs);
+  }, [nextSlide]);
+
+  const pauseAutoplay = () => {
+    if (autoplayTimerRef.current) {
+      clearInterval(autoplayTimerRef.current);
+    }
+  };
+
+  useEffect(() => {
+    // 画像の読み込みが完了してから計算を開始するための対策
+    const images = slideRefs.current.map(s => s?.querySelector('img')).filter(Boolean);
+    const promises = images.map(img => !img.complete ? new Promise(resolve => { img.onload = resolve; img.onerror = resolve; }) : Promise.resolve());
+
+    Promise.all(promises).then(() => {
+      calculateTransform();
+    });
+
+    window.addEventListener('resize', calculateTransform);
+    return () => window.removeEventListener('resize', calculateTransform);
+  }, [calculateTransform]);
+
+  useEffect(() => {
+    startAutoplay();
     return () => {
-      // コンポーネントがアンマウントされたときにタイマーをクリア
       if (autoplayTimerRef.current) {
         clearInterval(autoplayTimerRef.current);
       }
     };
-  }, []);
-
-  // 自動再生の開始
-  const startAutoplay = () => {
-    autoplayTimerRef.current = setInterval(() => {
-      nextSlide();
-    }, autoplayDelayMs);
-  };
-
-  // 自動再生の一時停止
-  const pauseAutoplay = () => {
-    if (autoplayTimerRef.current) {
-      clearInterval(autoplayTimerRef.current);
-      autoplayTimerRef.current = null;
-    }
-  };
-
-  // 自動再生の再開
-  const resumeAutoplay = () => {
-    if (!autoplayTimerRef.current) {
-      startAutoplay();
-    }
-  };
-
-  // 次のスライドへ
-  const nextSlide = () => {
-    setActiveSlide((prev) => (prev === slideCount - 1 ? 0 : prev + 1));
-  };
-
-  // 前のスライドへ
-  const prevSlide = () => {
-    setActiveSlide((prev) => (prev === 0 ? slideCount - 1 : prev - 1));
-  };
-
-  // ドットクリックでスライド切り替え
-  const goToSlide = (index) => {
-    setActiveSlide(index);
-  };
+  }, [startAutoplay]);
 
   return (
     <section className="artists-section">
@@ -73,38 +103,38 @@ export default function ArtistsSection() {
       
       <div className="slider-container"
         onMouseEnter={pauseAutoplay}
-        onMouseLeave={resumeAutoplay}>
+        onMouseLeave={startAutoplay}>
+        
         <div className="slider-arrow prev" onClick={prevSlide}>
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M15 6L9 12L15 18" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
         </div>
         
-        <div className="slider-wrapper">
-          <div className="slider-track" ref={sliderRef}
-            style={{ transform: `translateX(-${activeSlide * 100}%)` }}>
-            <div className={`slide ${activeSlide === 0 ? 'active' : ''}`}>
-              <Link href="/artists/sonoki-kunitaka">
-                <Image 
-                  src="/images/top_sonoki.jpg" 
-                  alt="園木 邦宝" 
-                  width={400}
-                  height={533}
-                  className="slide-image"
-                />
-              </Link>
-            </div>
-            <div className={`slide ${activeSlide === 1 ? 'active' : ''}`}>
-              <Link href="/artists/inoue-takato">
-                <Image 
-                  src="/images/top_takato.jpg" 
-                  alt="井上 恭杜" 
-                  width={400}
-                  height={533}
-                  className="slide-image"
-                />
-              </Link>
-            </div>
+        <div className="slider-wrapper" ref={wrapperRef}>
+          <div 
+            className={`slider-track ${isSliderReady ? 'slider-ready' : ''}`}
+            ref={sliderTrackRef}
+          >
+            {artists.map((artist, index) => (
+              <div 
+                key={artist.alt} 
+                className={`slide ${activeSlide === index ? 'active' : ''}`}
+                ref={el => slideRefs.current[index] = el}
+              >
+                <Link href={artist.href}>
+                  <Image 
+                    src={artist.src} 
+                    alt={artist.alt} 
+                    width={400}
+                    height={533}
+                    className="slide-image"
+                    priority={index < 2} // 最初の2枚を優先読み込み
+                    loading={index < 2 ? 'eager' : 'lazy'}
+                  />
+                </Link>
+              </div>
+            ))}
           </div>
         </div>
         
@@ -116,7 +146,7 @@ export default function ArtistsSection() {
       </div>
       
       <div className="slider-dots">
-        {[...Array(slideCount)].map((_, index) => (
+        {artists.map((_, index) => (
           <span 
             key={index} 
             className={`dot ${index === activeSlide ? 'active' : ''}`}
