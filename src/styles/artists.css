@@ -165,6 +165,19 @@
     line-height: 1.8;
 }
 
+.profile-text p {
+    margin: 0 0 8px 0;
+}
+
+.profile-text p.section-title {
+    margin-top: 30px;
+    font-weight: bold;
+}
+
+.profile-section-content {
+    margin-bottom: 25px;
+}
+
 /* カルーセル */
 .music-videos {
     margin-bottom: 60px;
