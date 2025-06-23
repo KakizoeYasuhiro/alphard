@@ -17,7 +17,7 @@ export const metadata = {
   title: 'Alphard Music',
   description: '音楽マネジメント事務所Alphard',
   icons: {
-    icon: '/favicon.svg',
+    icon: '/src/app/favicon.svg',
   },
   openGraph: {
     type: 'website',
@@ -54,7 +54,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="ja" suppressHydrationWarning>
       <head>
-        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <link rel="icon" href="/src/app/favicon.svg" type="image/svg+xml" />
         <link rel="stylesheet" href="/styles/recaptcha-hide.css" />
         {/* インラインスタイルを追加して reCAPTCHA バッジを確実に非表示にする */}
         <style dangerouslySetInnerHTML={{
