@@ -241,3 +241,89 @@
         padding: 12px 40px;
     }
 }
+
+/* セキュリティ強化のための追加スタイル */
+
+/* 必須項目のスタイル */
+.required {
+    color: #e74c3c;
+    font-weight: bold;
+}
+
+/* フィールド情報のスタイル */
+.field-info {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.6);
+    margin-top: 5px;
+    text-align: right;
+}
+
+/* 入力フィールドのフォーカス時の強調（追加） */
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+}
+
+/* 検証エラー時のスタイル */
+.form-group.error input,
+.form-group.error textarea,
+.form-group.error select {
+    border-color: #e74c3c;
+    box-shadow: 0 0 0 2px rgba(231, 76, 60, 0.2);
+}
+
+/* セキュリティメッセージのスタイル */
+.security-notice {
+    background-color: rgba(52, 152, 219, 0.1);
+    border: 1px solid rgba(52, 152, 219, 0.3);
+    border-radius: 4px;
+    padding: 12px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.security-notice .icon {
+    margin-right: 8px;
+    color: #3498db;
+}
+
+/* 入力値の文字数カウンターのスタイル調整 */
+.field-info {
+    transition: color 0.3s ease;
+}
+
+.form-group input:focus + .field-info,
+.form-group textarea:focus + .field-info {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* レスポンシブ対応の追加調整 */
+@media (max-width: 768px) {
+    .field-info {
+        text-align: left;
+        font-size: 11px;
+    }
+    
+    .security-notice {
+        font-size: 13px;
+        padding: 10px;
+    }
+}
+
+/* プレースホルダーのスタイル */
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+    opacity: 1;
+}
+
+/* 自動入力の背景色調整 */
+.form-group input:-webkit-autofill,
+.form-group input:-webkit-autofill:hover,
+.form-group input:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0 30px var(--input-bg) inset !important;
+    -webkit-text-fill-color: white !important;
+    transition: background-color 5000s ease-in-out 0s;
+}
