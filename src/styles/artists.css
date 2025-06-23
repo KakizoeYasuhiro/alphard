@@ -178,6 +178,15 @@
     margin-bottom: 25px;
 }
 
+.profile-section-content p:first-child {
+    margin-bottom: 20px;
+}
+
+/* 園木邦宝ページの職業と出身地の間隔 */
+.profile-text p:first-child {
+    margin-bottom: 20px;
+}
+
 /* カルーセル */
 .music-videos {
     margin-bottom: 60px;

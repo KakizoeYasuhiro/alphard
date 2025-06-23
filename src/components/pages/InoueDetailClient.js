@@ -68,7 +68,7 @@ export default function InoueDetailClient() {
         <h3 className="en-text">PROFILE</h3>
         <div className="profile-text ja-text">
           <div className="profile-section-content">
-            <p>ピアニスト・キーボーディスト</p>
+            <p>Pianist / Keyboardist</p>
             <p>熊本県玉名出身。</p>
             <p>4歳からYAMAHA音楽教室に通い、ピアノ・エレクトーンに触れる。</p>
             <p>地元高校を卒業後、上京。</p>
