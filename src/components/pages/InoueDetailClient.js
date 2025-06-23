@@ -68,8 +68,8 @@ export default function InoueDetailClient() {
         <h3 className="en-text">PROFILE</h3>
         <div className="profile-text ja-text">
           <div className="profile-section-content">
-            <p>熊本県玉名出身</p>
             <p>ピアニスト・キーボーディスト</p>
+            <p>熊本県玉名出身。</p>
             <p>4歳からYAMAHA音楽教室に通い、ピアノ・エレクトーンに触れる。</p>
             <p>地元高校を卒業後、上京。</p>
             <p>洗足学園音楽大学・ロックアンドポップス科に進学し、川村ケン氏(キーボード)、明石昌夫氏(編曲・Mix)に師事し、2020年卒業。</p>

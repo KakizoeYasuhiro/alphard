@@ -126,11 +126,12 @@ export default function ArtistDetailClient() {
       <div className="profile-section">
         <h3 className="en-text">PROFILE</h3>
         <div className="profile-text ja-text">
+          <p>ボーカリスト</p>
           <p>熊本県菊池市出身。</p>
           <p>ロックバンド・torch(2016-2020)、ユニット・CASPER CAVE(2020-2023)のボーカリストを経て、現在は自身のソロ名義である園木 邦宝(2023-)として活動。</p>
           <p>2023年より、都内近郊から地元・熊本に拠点を移し、ソロアーティストとして九州・東京都内で活動後、2025年より現在のキャリアを本格始動した。</p>
           <p>同年4月にはソロ初の、バンド形態でのワンマンライブ「WAVES vol.1」＠渋谷gee-ge.を開催し、無事成功を納めた。また、同12月にはフルバンドでのワンマンライブ「WAVES vol.2」＠下北沢ReGの開催と、初となる1st mini Albumのリリースも決定している。</p>
-          <p>賞歴・出演歴など<br />
+          <p>□賞歴・出演歴など<br />
           ・オーディション「BORN TO 九州」グランプリ選出[torch]<br />
           ・F-X2019(Zepp福岡)、HAPPYJACK'19(熊本市民会館)など大型フェス出演[torch]<br />
           ・熊本震災に寄せた映像制作クラウドファンディング「プロジェクト灯」200万円（100%）達成<br />
