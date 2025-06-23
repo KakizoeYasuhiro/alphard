@@ -64,26 +64,7 @@
     border-radius: 5px;
 }
 
-/* ファンクラブセクション */
-.fanclub-logo {
-    margin-top: 30px;
-    text-align: center;
-}
 
-.fanclub-dolphin-hotel {
-    padding: 20px 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.fanclub-dolphin-hotel img,
-.fanclub-dolphin-hotel span {
-    width: 450px !important;
-    height: 120px !important;
-    min-width: 450px !important;
-    min-height: 120px !important;
-}
 
 /* グッズギャラリー */
 .goods-gallery {
@@ -142,18 +123,5 @@
 
     .work-subtitle {
         font-size: 16px;
-    }
-
-    .fanclub-dolphin-hotel div {
-        width: 300px !important;
-        height: 80px !important;
-    }
-
-    .fanclub-dolphin-hotel img,
-    .fanclub-dolphin-hotel span {
-        width: 300px !important;
-        height: 80px !important;
-        min-width: 300px !important;
-        min-height: 80px !important;
     }
 }

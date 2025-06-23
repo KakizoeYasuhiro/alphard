@@ -111,19 +111,6 @@ export default function WorksClient() {
         <h2 className="work-title">グッズ制作・ファンクラブ</h2>
         <div className="work-content">
           <p>アーティスト関連商品の企画、製造、販売と公式ファンクラブの企画、運営を行います。ファンの特性に合わせたイベントや会員サイトのデジタルコンテンツサービス、ライブ会場でのブース運営、新規会員の獲得などファンクラブ運営に関する業務をトータルで行います。</p>
-          <div className="fanclub-logo">
-            <div className="fanclub-dolphin-hotel">
-              <div style={{ width: '450px', height: '120px' }}>
-                <Image 
-                  src="/images/DOLPHINHOTEL.svg" 
-                  alt="DÖLPHIN ! HOTEL - 園木邦宝 Official Fanclub" 
-                  width={450} 
-                  height={120}
-                  style={{ objectFit: 'contain', width: '100%', height: '100%' }}
-                />
-              </div>
-            </div>
-          </div>
           <div className="goods-gallery">
             <div className="gallery-row">
               <Image 

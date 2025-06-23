@@ -190,7 +190,6 @@ export default function ArtistDetailClient() {
 
       <div className="official-links">
         <a href="https://ksonoki.com" target="_blank" rel="noopener noreferrer" className="official-link">OFFICIAL SITE</a>
-        <a href="#" className="official-link">FUNCLUB</a>
       </div>
     </section>
   );
