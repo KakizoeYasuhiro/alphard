@@ -62,7 +62,7 @@ export default function WorksClient() {
       <section id="artist-management" className="work-section">
         <h2 className="work-title">アーティストマネジメント</h2>
         <div className="work-content">
-          <p>アーティスト、タレントのマネージメント、プロモート業務をはじめ、新人アーティストの発掘、育成など、エンターテインメントを包括的にプロデュースする事業を展開しています。</p>
+          <p>アーティスト、タレントのマネジメント、プロモーション業務をはじめ、新人アーティストの発掘、育成など、エンターテインメントを包括的にプロデュースする事業を展開しています。</p>
         </div>
       </section>
 
@@ -70,7 +70,7 @@ export default function WorksClient() {
       <section id="music-contents" className="work-section">
         <h2 className="work-title">音楽・コンテンツ制作</h2>
         <div className="work-content">
-          <p>音楽、映像、出版物等の企画、制作、販売のほか、音楽配信や著作権・原盤権の管理など、コンテンツ制作に関わる幅広い業務を行います。</p>
+          <p>楽曲やミュージックビデオ、ライブ映像、出版物（CD・写真集など）等の企画・制作・販売のほか、音楽配信や著作権・原盤権の管理など、コンテンツ制作に関わる幅広い業務を行います。</p>
         </div>
       </section>
 
@@ -78,8 +78,7 @@ export default function WorksClient() {
       <section id="live-event" className="work-section">
         <h2 className="work-title">ライブ・イベント</h2>
         <div className="work-content">
-          <p>コンサート、イベントの企画、制作、運営を行います。</p>
-          <p>アイディア力と豊富な経験で、話題性、集客力のあるライブやイベントの実現を目指します。</p>
+          <p>コンサート、イベントの企画・制作・運営を行います。アイディア力と豊富な経験で、話題性、集客力のあるライブやイベントの実現を目指します。</p>
         </div>
       </section>
 
@@ -88,11 +87,11 @@ export default function WorksClient() {
         <h3 className="work-subtitle">企画・制作イベント実績</h3>
         <div className="event-content">
           <div className="event-details">
-            <p>「WAVES vol.1」@ 渋谷gee-ge.（写真参照）</p>
-            <p>「WAVES vol.2」@ 下北沢ReG</p>
-            <p>その他</p>
-            <p>ナンバリングイベント「SCENE」</p>
-            <p>2マンツアー「SMOKE」など</p>
+            <p>・「WAVES vol.1」@ 渋谷gee-ge.（写真参照）</p>
+            <p>・「WAVES vol.2」@ 下北沢ReG</p>
+            <p>・その他</p>
+            <p>・ナンバリングイベント「SCENE」</p>
+            <p>・2マンツアー「SMOKE」など</p>
           </div>
           <div className="event-image">
             <Image 
@@ -110,7 +109,7 @@ export default function WorksClient() {
       <section id="merchandising-fanclub" className="work-section">
         <h2 className="work-title">グッズ制作・ファンクラブ</h2>
         <div className="work-content">
-          <p>アーティスト関連商品の企画、製造、販売と公式ファンクラブの企画、運営を行います。ファンの特性に合わせたイベントや会員サイトのデジタルコンテンツサービス、ライブ会場でのブース運営、新規会員の獲得などファンクラブ運営に関する業務をトータルで行います。</p>
+          <p>アーティスト関連商品の企画・製造・販売と公式ファンクラブの企画・運営を行います。ファンの特性に合わせたイベントや会員サイトのデジタルコンテンツサービス、ライブ会場でのブース運営、新規会員の獲得などファンクラブ運営に関する業務をトータルで行います。</p>
           <div className="goods-gallery">
             <div className="gallery-row">
               <Image 
