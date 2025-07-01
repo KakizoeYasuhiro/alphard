@@ -28,7 +28,7 @@ const resend = new Resend(requiredEnvVars.RESEND_API_KEY);
 const RECAPTCHA_SECRET_KEY = requiredEnvVars.RECAPTCHA_SECRET_KEY;
 
 // 送信先のメールアドレス
-const toEmail = ['kakizoe@torque.blue', 'badtripping@gmail.com', 'takaton0526alive@gmail.com'];
+const toEmail = ['support@alphard.info', 'kakizoe@alphard.info', 'badtripping@gmail.com', 'takaton0526alive@gmail.com'];
 // 送信元のメールアドレス
 const fromEmail = 'contact@alphard.info';
 

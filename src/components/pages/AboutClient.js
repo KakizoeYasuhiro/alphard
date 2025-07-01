@@ -60,8 +60,8 @@ export default function AboutClient() {
             </div>
             
             <div className="info-row">
-              <div className="info-label ja-text">設立</div>
-              <div className="info-content ja-text">2022（令和4）年4月1日</div>
+              <div className="info-label ja-text">設立年月日</div>
+              <div className="info-content ja-text">2022年4月1日（2025年6月16日 商号変更・現在の事業開始）</div>
             </div>
             
             <div className="info-row">
