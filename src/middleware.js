@@ -21,10 +21,10 @@ export function middleware(request) {
 
     if (authHeader) {
       try {
-        const authValue = authHeader.split(' ')[1];
-        const [user, password] = atob(authValue).split(':');
+      const authValue = authHeader.split(' ')[1];
+      const [user, password] = atob(authValue).split(':');
 
-        if (user === basicAuthUser && password === basicAuthPassword) {
+      if (user === basicAuthUser && password === basicAuthPassword) {
           // 認証成功 - 続行
         } else {
           // 認証失敗
@@ -46,13 +46,13 @@ export function middleware(request) {
       }
     } else {
       // 認証ヘッダーなし
-      return new NextResponse('Authentication required', {
-        status: 401,
-        headers: {
-          'WWW-Authenticate': 'Basic realm="Secure Area"',
-        },
-      });
-    }
+    return new NextResponse('Authentication required', {
+      status: 401,
+      headers: {
+        'WWW-Authenticate': 'Basic realm="Secure Area"',
+      },
+    });
+  }
   }
 
   // 3. レスポンスにセキュリティヘッダーを追加

@@ -14,7 +14,7 @@ const helvetica = inter;
 
 export const metadata = {
   metadataBase: new URL('https://alphard.info'),
-    title: 'Alphard Music',
+  title: 'Alphard Music',
   description: '音楽マネジメント事務所Alphard',
 
   openGraph: {
@@ -50,7 +50,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-        <html lang="ja" suppressHydrationWarning>
+    <html lang="ja" suppressHydrationWarning>
       <head>
 
         <link rel="stylesheet" href="/styles/recaptcha-hide.css" />

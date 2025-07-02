@@ -117,7 +117,7 @@ export async function POST(request) {
         { status: 400 }
       );
     }
-
+    
     const { recaptchaToken, ...formData } = rawData;
 
     // 4. 悪意あるリクエストの検出
@@ -293,13 +293,13 @@ export async function POST(request) {
       }
     });
 
-    return NextResponse.json(
-      { 
-        message: 'お問い合わせありがとうございます。メッセージを受け付けました。',
+      return NextResponse.json(
+        { 
+          message: 'お問い合わせありがとうございます。メッセージを受け付けました。',
         submitted: true
-      },
-      { status: 200 }
-    );
+        },
+        { status: 200 }
+      );
 
   } catch (error) {
     // エラーログ

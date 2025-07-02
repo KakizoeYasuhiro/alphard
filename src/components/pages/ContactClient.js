@@ -227,11 +227,11 @@ export default function ContactClient() {
             type: 'error',
             message: result.error || '送信回数が制限を超えました。しばらく経ってから再度お試しください。'
           });
-        } else {
-          setSubmitStatus({
-            type: 'error',
-            message: result.error || 'エラーが発生しました。もう一度お試しください。'
-          });
+      } else {
+        setSubmitStatus({
+          type: 'error',
+          message: result.error || 'エラーが発生しました。もう一度お試しください。'
+        });
         }
       }
     } catch (error) {
@@ -242,10 +242,10 @@ export default function ContactClient() {
           message: 'インターネット接続を確認してください。'
         });
       } else {
-        setSubmitStatus({
-          type: 'error',
-          message: 'ネットワークエラーが発生しました。しばらく経ってから再度お試しください。'
-        });
+      setSubmitStatus({
+        type: 'error',
+        message: 'ネットワークエラーが発生しました。しばらく経ってから再度お試しください。'
+      });
       }
     } finally {
       setIsSubmitting(false);

@@ -78,7 +78,7 @@ export default function WorksClient() {
       <section id="live-event" className="work-section">
         <h2 className="work-title">ライブ・イベント</h2>
         <div className="work-content">
-          <p>コンサート、イベントの企画・制作・運営を行います。アイディア力と豊富な経験で、話題性、集客力のあるライブやイベントの実現を目指します。</p>
+          <p>ライブ、イベントの企画・制作・運営を行います。会場や出演者、各所と連携し、話題性、集客力のあるライブやイベントの実現を目指します。</p>
         </div>
       </section>
 
@@ -89,9 +89,9 @@ export default function WorksClient() {
           <div className="event-details">
             <p>・「WAVES vol.1」@ 渋谷gee-ge.（写真参照）</p>
             <p>・「WAVES vol.2」@ 下北沢ReG</p>
-            <p>・その他</p>
             <p>・ナンバリングイベント「SCENE」</p>
-            <p>・2マンツアー「SMOKE」など</p>
+            <p>・2マンツアー「SMOKE」</p>
+            <p>・その他</p>
           </div>
           <div className="event-image">
             <Image 
