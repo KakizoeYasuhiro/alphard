@@ -91,7 +91,7 @@ export default function WorksClient() {
             <p>・「WAVES vol.2」@ 下北沢ReG</p>
             <p>・ナンバリングイベント「SCENE」</p>
             <p>・2マンツアー「SMOKE」</p>
-            <p>・その他</p>
+            <p>その他</p>
           </div>
           <div className="event-image">
             <Image 
