@@ -13,19 +13,22 @@ if (typeof window !== 'undefined') {
 
 // 動画カルーセルのデータ
 const carouselVideos = [
-  { id: 1, title: 'CRAWLER - 園木 邦宝', embedId: 'eUOAi8JAp0o' },
-  { id: 2, title: 'Blank Space - 園木 邦宝', embedId: '_UL2zm5Qfo8' },
-  { id: 3, title: 'Bend - 園木 邦宝', embedId: 'TogNwwOaGmY' },
-  { id: 4, title: 'NEWDAWN - 園木 邦宝', embedId: 'O0wIkiSPj28' },
-  { id: 5, title: 'ルミネセンス - 園木 邦宝', embedId: 'YDwUrmW8RvU' },
-  { id: 6, title: '生活 - 園木 邦宝', embedId: 'p6VCohkQQGI' },
-  { id: 7, title: 'Shelter - 園木 邦宝', embedId: 'KgJJ6CPip7g' },
-  { id: 8, title: 'とおく - 園木 邦宝', embedId: 'MM-j5bBrEk4' },
+  { id: 1, title: 'CRAWLER - Khore', embedId: 'eUOAi8JAp0o' },
+  { id: 2, title: 'Blank Space - Khore', embedId: '_UL2zm5Qfo8' },
+  { id: 3, title: 'Bend - Khore', embedId: 'TogNwwOaGmY' },
+  { id: 4, title: 'NEWDAWN - Khore', embedId: 'O0wIkiSPj28' },
+  { id: 5, title: 'ルミネセンス - Khore', embedId: 'YDwUrmW8RvU' },
+  { id: 6, title: '生活 - Khore', embedId: 'p6VCohkQQGI' },
+  { id: 7, title: 'Shelter - Khore', embedId: 'KgJJ6CPip7g' },
+  { id: 8, title: 'とおく - Khore', embedId: 'MM-j5bBrEk4' },
 ];
 
 export default function ArtistDetailClient() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [visibleItems, setVisibleItems] = useState(1);
+  
+  // Music Videosセクションの表示制御（後々Khore名義のMVで入れ替え可能にするため）
+  const showMusicVideos = false;
   
   // ウィンドウサイズに応じて表示アイテム数を更新
   useEffect(() => {
@@ -54,9 +57,13 @@ export default function ArtistDetailClient() {
         '.artist-profile-header', 
         '.artist-profile-image', 
         '.artist-social-links', 
-        '.profile-section', 
-        '.music-videos'
+        '.profile-section'
       ];
+      
+      // Music Videosセクションが表示される場合のみアニメーション対象に追加
+      if (showMusicVideos) {
+        elements.push('.music-videos');
+      }
       
       elements.forEach((selector, index) => {
         gsap.fromTo(
@@ -95,30 +102,27 @@ export default function ArtistDetailClient() {
   return (
     <section className="artist-profile">
       <div className="artist-profile-header" style={{ gap: '12px' }}>
-        <h1 className="artist-profile-name-ja ja-text">園木 邦宝</h1>
-        <p className="artist-profile-name-en en-text" style={{ marginTop: '12px' }}>SONOKI KUNITAKA</p>
+        <h1 className="artist-profile-name-ja ja-text">Khore</h1>
+        <p className="artist-profile-name-en en-text" style={{ marginTop: '12px' }}>コーレ</p>
       </div>
 
       <div className="artist-profile-image">
         <Image 
-          src="/images/top_sonoki.jpg" 
-          alt="園木 邦宝"
+          src="/images/Khore_art.png" 
+          alt="Khore"
           width={400}
           height={533}
         />
       </div>
 
       <div className="artist-social-links">
-        <a href="https://x.com/k_sonoki" target="_blank" rel="noopener noreferrer">
+        <a href="https://x.com/khore_jp" target="_blank" rel="noopener noreferrer">
           <Image src="/images/X_WTE.svg" alt="X" width={20} height={20} />
         </a>
-        <a href="https://www.instagram.com/k_sonoki/" target="_blank" rel="noopener noreferrer">
+        <a href="https://www.instagram.com/khore_jp/" target="_blank" rel="noopener noreferrer">
           <Image src="/images/INSTA_WTE.svg" alt="Instagram" width={20} height={20} />
         </a>
-        <a href="https://www.tiktok.com/@k_sonoki" target="_blank" rel="noopener noreferrer">
-          <Image src="/images/TIKTOK_WTE.svg" alt="TikTok" width={20} height={20} />
-        </a>
-        <a href="https://www.youtube.com/@heavenlysketches2687" target="_blank" rel="noopener noreferrer">
+        <a href="https://www.youtube.com/@alphard_music" target="_blank" rel="noopener noreferrer">
           <Image src="/images/YOUTUBE_WTE.svg" alt="YouTube" width={20} height={20} />
         </a>
       </div>
@@ -126,71 +130,76 @@ export default function ArtistDetailClient() {
       <div className="profile-section">
         <h3 className="en-text">PROFILE</h3>
         <div className="profile-text ja-text">
-          <p>Vocalist</p>
-          <p>熊本県菊池市出身。</p>
-          <p>ロックバンド・torch(2016-2020)、ユニット・CASPER CAVE(2020-2023)のボーカリストを経て、現在は自身のソロ名義である園木 邦宝(2023-)として活動。</p>
-          <p>2023年より、都内近郊から地元・熊本に拠点を移し、ソロアーティストとして九州・東京都内で活動後、2025年より現在のキャリアを本格始動した。</p>
-          <p>同年4月にはソロ初の、バンド形態でのワンマンライブ「WAVES vol.1」＠渋谷gee-ge.を開催し、無事成功を納めた。また、同12月にはフルバンドでのワンマンライブ「WAVES vol.2」＠下北沢ReGの開催と、初となる1st mini Albumのリリースも決定している。</p>
-          <p>□賞歴・出演歴など<br />
-          ・オーディション「BORN TO 九州」グランプリ選出[torch]<br />
-          ・F-X2019(Zepp福岡)、HAPPYJACK'19(熊本市民会館)など大型フェス出演[torch]<br />
-          ・熊本震災に寄せた映像制作クラウドファンディング「プロジェクト灯」200万円（100%）達成<br />
-          ・DisGOONie主催「舞台"From Three Sons of Mama Fratelli"〜枯れるやまぁ のたりのたりとまほろばよ あぁ 悲しかろ あぁ 咲かしたろ〜」主題歌&挿入歌 歌唱（Zeppブルーシアター六本木：現在閉館）</p>
+          <p>Khore (コーレ)</p>
+          <p>Vocalist。熊本県菊池市出身。</p>
+          <p>作詞作曲、編曲、デザイン、および映像・衣装・ライブ演出等のディレクションに至るまで、ほぼ全てを自身で担う。</p>
+          <p>「torch(2016-2020)」、「CASPER CAVE(2020-2023)」といった活動を経て、本名である「園木 邦宝(2023-)」から、2025年12月にアーティスト名を「Khore」へ改名。</p>
+          <p>現在は主に都内近郊と、地元・九州を跨いで活動中。</p>
+          <p>2025年12月、Khore改名後初のワンマンライブ「WAVES vol.2」の開催と、同名義での1st mini Album『Profile(プロファイル)』のリリースも決定している。</p>
+          <p>・2025.4 Minimal Band-set ONEMAN SHOW「WAVES vol.1」@渋谷gee-ge.(園木邦宝名義)<br />
+          ・2025.4-5 Acoustic Album「TRAIL Disc1」/「TRAIL Disc2」ライブ会場限定リリース(園木邦宝名義)<br />
+          ・2025.7 音楽事務所「株式会社アルファルド」所属<br />
+          ・2025.12 アーティスト名を「Khore(コーレ)」へ改める<br />
+          ・2025.12 Khore 1st mini Album『Profile（プロファイル）』リリース<br />
+          ・2025.12 Band-set ONEMAN SHOW「WAVES vol.2」@下北沢ReG</p>
         </div>
       </div>
 
-      <div className="music-videos">
-        <h3 className="en-text">MUSIC VIDEOS</h3>
-        <div className="carousel-container">
-          <div className="carousel-track" style={{transform: `translateX(-${currentIndex * (100 / visibleItems)}%)`}}>
-            {carouselVideos.map((video) => (
-              <div key={video.id} className="carousel-item">
-                <div className="video-container">
-                  <iframe 
-                    src={`https://www.youtube.com/embed/${video.embedId}?si=ve-KST7DGSgeT0HG&rel=1`}
-                    title={video.title}
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    referrerPolicy="strict-origin-when-cross-origin"
-                    allowFullScreen
-                  />
+      {/* Music Videosセクション - 後々Khore名義のMVで入れ替え可能にするため、コードは残して非表示に */}
+      {showMusicVideos && (
+        <div className="music-videos">
+          <h3 className="en-text">MUSIC VIDEOS</h3>
+          <div className="carousel-container">
+            <div className="carousel-track" style={{transform: `translateX(-${currentIndex * (100 / visibleItems)}%)`}}>
+              {carouselVideos.map((video) => (
+                <div key={video.id} className="carousel-item">
+                  <div className="video-container">
+                    <iframe 
+                      src={`https://www.youtube.com/embed/${video.embedId}?si=ve-KST7DGSgeT0HG&rel=1`}
+                      title={video.title}
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      referrerPolicy="strict-origin-when-cross-origin"
+                      allowFullScreen
+                    />
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
-          
-          <button 
-            className="carousel-button prev" 
-            onClick={prevSlide} 
-            aria-label="前のスライド"
-          >
-            &lt;
-          </button>
-          <button 
-            className="carousel-button next" 
-            onClick={nextSlide} 
-            aria-label="次のスライド"
-          >
-            &gt;
-          </button>
-          
-          <div className="carousel-indicators">
-            {Array.from({ length: Math.max(1, carouselVideos.length - visibleItems + 1) }).map((_, index) => (
-              <div 
-                key={index}
-                className={`carousel-indicator ${index === currentIndex ? 'active' : ''}`}
-                onClick={() => setCurrentIndex(index)}
-                aria-label={`スライド ${index + 1}`}
-                role="button"
-                tabIndex="0"
-              />
-            ))}
+              ))}
+            </div>
+            
+            <button 
+              className="carousel-button prev" 
+              onClick={prevSlide} 
+              aria-label="前のスライド"
+            >
+              &lt;
+            </button>
+            <button 
+              className="carousel-button next" 
+              onClick={nextSlide} 
+              aria-label="次のスライド"
+            >
+              &gt;
+            </button>
+            
+            <div className="carousel-indicators">
+              {Array.from({ length: Math.max(1, carouselVideos.length - visibleItems + 1) }).map((_, index) => (
+                <div 
+                  key={index}
+                  className={`carousel-indicator ${index === currentIndex ? 'active' : ''}`}
+                  onClick={() => setCurrentIndex(index)}
+                  aria-label={`スライド ${index + 1}`}
+                  role="button"
+                  tabIndex="0"
+                />
+              ))}
+            </div>
           </div>
         </div>
-      </div>
+      )}
 
       <div className="official-links">
-        <a href="https://ksonoki.com" target="_blank" rel="noopener noreferrer" className="official-link">OFFICIAL SITE</a>
+        <a href="https://khore.jp" target="_blank" rel="noopener noreferrer" className="official-link">OFFICIAL SITE</a>
       </div>
     </section>
   );

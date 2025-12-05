@@ -36,13 +36,13 @@ export default function Footer() {
             <p className="fanclub-label">公式ウェブサイト</p>
             <div className="artist-logo">
               <a 
-                href="https://ksonoki.com" 
+                href="https://khore.jp" 
                 target="_blank" 
                 rel="noopener noreferrer"
               >
                 <img 
-                  src="/images/KS_LOGO_WTE.svg" 
-                  alt="園木 邦宝" 
+                  src="/images/Khore_logo_wte.svg" 
+                  alt="Khore" 
                   className="ks-logo-img"
                 />
               </a>

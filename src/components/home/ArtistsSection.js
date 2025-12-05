@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 const artists = [
-  { href: "/artists/sonoki-kunitaka", src: "/images/top_sonoki.jpg", alt: "園木 邦宝" },
+  { href: "/artists/khore", src: "/images/Khore_art.png", alt: "Khore" },
   { href: "/artists/inoue-takato", src: "/images/top_takato.jpg", alt: "井上 恭杜" }
 ];
 
@@ -129,6 +129,7 @@ export default function ArtistsSection() {
                     width={400}
                     height={533}
                     className="slide-image"
+                    style={{ objectFit: 'cover', objectPosition: 'center' }}
                     priority={index < 2} // 最初の2枚を優先読み込み
                     loading={index < 2 ? 'eager' : 'lazy'}
                   />

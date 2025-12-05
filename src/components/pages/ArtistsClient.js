@@ -48,19 +48,19 @@ export default function ArtistsClient() {
       <h1 className="en-text">ARTISTS</h1>
       <div className="artists-container">
         <div className="artist-item">
-          <Link href="/artists/sonoki-kunitaka" className="artist-link">
+          <Link href="/artists/khore" className="artist-link">
             <div className="artist-image">
               <Image 
-                src="/images/top_sonoki.jpg" 
-                alt="園木 邦宝" 
+                src="/images/Khore_art.png" 
+                alt="Khore" 
                 width={300}
                 height={300}
                 style={{ objectFit: 'cover', objectPosition: 'center 20%' }}
               />
             </div>
             <div className="artist-name">
-              <h2 className="artist-name-ja ja-text" style={{marginBottom: 0}}>園木 邦宝</h2>
-              <p className="artist-name-en en-text">Sonoki Kunitaka</p>
+              <h2 className="artist-name-ja ja-text" style={{marginBottom: 0}}>Khore</h2>
+              <p className="artist-name-en en-text">コーレ</p>
             </div>
           </Link>
         </div>

@@ -26,7 +26,7 @@ export const metadata = {
     description: '音楽マネジメント事務所Alphard',
     images: [
       {
-        url: 'https://alphard.info/images/top_sonoki.jpg',
+        url: 'https://alphard.info/images/a_OGP.png',
         width: 1200,
         height: 630,
         alt: 'Alphard Music',
@@ -39,7 +39,7 @@ export const metadata = {
     description: '音楽マネジメント事務所Alphard',
     images: [
       {
-        url: 'https://alphard.info/images/top_sonoki.jpg',
+        url: 'https://alphard.info/images/a_OGP.png',
         width: 1200,
         height: 630,
         alt: 'Alphard Music',

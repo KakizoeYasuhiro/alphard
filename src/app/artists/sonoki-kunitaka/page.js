@@ -1,8 +1,8 @@
 import ArtistDetailClient from '@/components/pages/ArtistDetailClient';
 
 export const metadata = {
-  title: '園木 邦宝 | Alphard - ARTISTS',
-  description: 'アルファルド所属アーティスト - 園木邦宝',
+  title: 'Khore | Alphard - ARTISTS',
+  description: 'アルファルド所属アーティスト - Khore',
 };
 
 export default function ArtistDetailPage() {

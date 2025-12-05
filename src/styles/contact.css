@@ -74,6 +74,11 @@
     transition: border-color 0.3s ease, background-color 0.3s ease;
 }
 
+.form-group select option {
+    color: black;
+    background-color: white;
+}
+
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus {
