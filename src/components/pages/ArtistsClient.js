@@ -68,7 +68,7 @@ export default function ArtistsClient() {
           <Link href="/artists/inoue-takato" className="artist-link">
             <div className="artist-image">
               <Image 
-                src="/images/Alp_Takato.png" 
+                src="/images/Tinoue.png" 
                 alt="井上 恭杜" 
                 width={300}
                 height={300}
