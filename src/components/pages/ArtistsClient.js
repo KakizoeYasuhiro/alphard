@@ -51,7 +51,7 @@ export default function ArtistsClient() {
           <Link href="/artists/khore" className="artist-link">
             <div className="artist-image">
               <Image 
-                src="/images/Khore_art.png" 
+                src="/images/Alp_Khore.png" 
                 alt="Khore" 
                 width={300}
                 height={300}
@@ -68,7 +68,7 @@ export default function ArtistsClient() {
           <Link href="/artists/inoue-takato" className="artist-link">
             <div className="artist-image">
               <Image 
-                src="/images/top_takato.jpg" 
+                src="/images/Alp_Takato.png" 
                 alt="井上 恭杜" 
                 width={300}
                 height={300}

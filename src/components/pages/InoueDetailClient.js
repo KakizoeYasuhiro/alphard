@@ -48,7 +48,7 @@ export default function InoueDetailClient() {
 
       <div className="artist-profile-image">
         <Image 
-          src="/images/top_takato.jpg" 
+          src="/images/Tinoue.png" 
           alt="井上 恭杜"
           width={400}
           height={533}

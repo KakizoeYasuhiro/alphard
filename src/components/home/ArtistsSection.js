@@ -5,8 +5,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 const artists = [
-  { href: "/artists/khore", src: "/images/Khore_art.png", alt: "Khore" },
-  { href: "/artists/inoue-takato", src: "/images/top_takato.jpg", alt: "井上 恭杜" }
+  { href: "/artists/khore", src: "/images/Alp_Khore.png", alt: "Khore" },
+  { href: "/artists/inoue-takato", src: "/images/Alp_Takato.png", alt: "井上 恭杜" }
 ];
 
 export default function ArtistsSection() {
