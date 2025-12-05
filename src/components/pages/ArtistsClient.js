@@ -51,7 +51,7 @@ export default function ArtistsClient() {
           <Link href="/artists/khore" className="artist-link">
             <div className="artist-image">
               <Image 
-                src="/images/Alp_Khore.png" 
+                src="/images/BIO_art.png" 
                 alt="Khore" 
                 width={300}
                 height={300}

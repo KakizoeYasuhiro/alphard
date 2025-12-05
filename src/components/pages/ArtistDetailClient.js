@@ -108,7 +108,7 @@ export default function ArtistDetailClient() {
 
       <div className="artist-profile-image">
         <Image 
-          src="/images/Khore_art.png" 
+          src="/images/BIO_art.png" 
           alt="Khore"
           width={400}
           height={533}
@@ -147,55 +147,55 @@ export default function ArtistDetailClient() {
 
       {/* Music Videosセクション - 後々Khore名義のMVで入れ替え可能にするため、コードは残して非表示に */}
       {showMusicVideos && (
-        <div className="music-videos">
-          <h3 className="en-text">MUSIC VIDEOS</h3>
-          <div className="carousel-container">
-            <div className="carousel-track" style={{transform: `translateX(-${currentIndex * (100 / visibleItems)}%)`}}>
-              {carouselVideos.map((video) => (
-                <div key={video.id} className="carousel-item">
-                  <div className="video-container">
-                    <iframe 
-                      src={`https://www.youtube.com/embed/${video.embedId}?si=ve-KST7DGSgeT0HG&rel=1`}
-                      title={video.title}
-                      frameBorder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      referrerPolicy="strict-origin-when-cross-origin"
-                      allowFullScreen
-                    />
-                  </div>
+      <div className="music-videos">
+        <h3 className="en-text">MUSIC VIDEOS</h3>
+        <div className="carousel-container">
+          <div className="carousel-track" style={{transform: `translateX(-${currentIndex * (100 / visibleItems)}%)`}}>
+            {carouselVideos.map((video) => (
+              <div key={video.id} className="carousel-item">
+                <div className="video-container">
+                  <iframe 
+                    src={`https://www.youtube.com/embed/${video.embedId}?si=ve-KST7DGSgeT0HG&rel=1`}
+                    title={video.title}
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerPolicy="strict-origin-when-cross-origin"
+                    allowFullScreen
+                  />
                 </div>
-              ))}
-            </div>
-            
-            <button 
-              className="carousel-button prev" 
-              onClick={prevSlide} 
-              aria-label="前のスライド"
-            >
-              &lt;
-            </button>
-            <button 
-              className="carousel-button next" 
-              onClick={nextSlide} 
-              aria-label="次のスライド"
-            >
-              &gt;
-            </button>
-            
-            <div className="carousel-indicators">
-              {Array.from({ length: Math.max(1, carouselVideos.length - visibleItems + 1) }).map((_, index) => (
-                <div 
-                  key={index}
-                  className={`carousel-indicator ${index === currentIndex ? 'active' : ''}`}
-                  onClick={() => setCurrentIndex(index)}
-                  aria-label={`スライド ${index + 1}`}
-                  role="button"
-                  tabIndex="0"
-                />
-              ))}
-            </div>
+              </div>
+            ))}
+          </div>
+          
+          <button 
+            className="carousel-button prev" 
+            onClick={prevSlide} 
+            aria-label="前のスライド"
+          >
+            &lt;
+          </button>
+          <button 
+            className="carousel-button next" 
+            onClick={nextSlide} 
+            aria-label="次のスライド"
+          >
+            &gt;
+          </button>
+          
+          <div className="carousel-indicators">
+            {Array.from({ length: Math.max(1, carouselVideos.length - visibleItems + 1) }).map((_, index) => (
+              <div 
+                key={index}
+                className={`carousel-indicator ${index === currentIndex ? 'active' : ''}`}
+                onClick={() => setCurrentIndex(index)}
+                aria-label={`スライド ${index + 1}`}
+                role="button"
+                tabIndex="0"
+              />
+            ))}
           </div>
         </div>
+      </div>
       )}
 
       <div className="official-links">

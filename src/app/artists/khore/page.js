@@ -9,3 +9,4 @@ export default function ArtistDetailPage() {
   return <ArtistDetailClient />;
 }
 
+
