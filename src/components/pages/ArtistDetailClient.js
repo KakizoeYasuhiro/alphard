@@ -79,7 +79,7 @@ export default function ArtistDetailClient() {
         );
       });
     }
-  }, []);
+  }, [showMusicVideos]);
 
   // 次へボタンクリック
   const nextSlide = () => {

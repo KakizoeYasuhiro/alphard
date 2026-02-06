@@ -1,7 +1,6 @@
 /** @type {import('next').NextConfig} */
 const alphardConfig = {
   reactStrictMode: false, // k_sonokiと同じ設定に
-  swcMinify: true,
   images: {
     remotePatterns: [
       {

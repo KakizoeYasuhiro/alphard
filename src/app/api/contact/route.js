@@ -9,23 +9,35 @@ import {
   hashIP 
 } from '@/lib/security';
 
-// 環境変数の検証
-const requiredEnvVars = {
-  RESEND_API_KEY: process.env.RESEND_API_KEY,
-  RECAPTCHA_SECRET_KEY: process.env.RECAPTCHA_SECRET_KEY,
-};
+// 環境変数の検証（実行時にチェック）
+function getRequiredEnvVars() {
+  const requiredEnvVars = {
+    RESEND_API_KEY: process.env.RESEND_API_KEY,
+    RECAPTCHA_SECRET_KEY: process.env.RECAPTCHA_SECRET_KEY,
+  };
 
-// 起動時に環境変数をチェック
-for (const [key, value] of Object.entries(requiredEnvVars)) {
-  if (!value) {
-    console.error(`Missing required environment variable: ${key}`);
-    throw new Error(`Missing required environment variable: ${key}`);
+  // 実行時に環境変数をチェック
+  for (const [key, value] of Object.entries(requiredEnvVars)) {
+    if (!value) {
+      console.error(`Missing required environment variable: ${key}`);
+      throw new Error(`Missing required environment variable: ${key}`);
+    }
   }
+
+  return requiredEnvVars;
 }
 
-// RESENDクライアントの初期化
-const resend = new Resend(requiredEnvVars.RESEND_API_KEY);
-const RECAPTCHA_SECRET_KEY = requiredEnvVars.RECAPTCHA_SECRET_KEY;
+// RESENDクライアントの初期化（遅延初期化）
+let resend = null;
+let RECAPTCHA_SECRET_KEY = null;
+
+function initializeServices() {
+  if (!resend || !RECAPTCHA_SECRET_KEY) {
+    const envVars = getRequiredEnvVars();
+    resend = new Resend(envVars.RESEND_API_KEY);
+    RECAPTCHA_SECRET_KEY = envVars.RECAPTCHA_SECRET_KEY;
+  }
+}
 
 // 送信先のメールアドレス
 const toEmail = ['support@alphard.info', 'kakizoe@alphard.info', 'badtripping@gmail.com', 'takaton0526alive@gmail.com'];
@@ -57,6 +69,16 @@ export async function OPTIONS(request) {
 }
 
 export async function POST(request) {
+  // 環境変数とサービスの初期化（実行時にチェック）
+  try {
+    initializeServices();
+  } catch (error) {
+    return NextResponse.json(
+      { error: 'Server configuration error' },
+      { status: 500 }
+    );
+  }
+
   const startTime = Date.now();
   const clientIP = getClientIP(request);
   const hashedIP = hashIP(clientIP);
