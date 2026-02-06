@@ -215,6 +215,11 @@
     align-items: center;
 }
 
+/* 動画が1本の場合の中央配置 */
+.carousel-track.single-video {
+    justify-content: center;
+}
+
 .carousel-item {
     flex: 0 0 100%;
     width: 100%;
@@ -224,10 +229,25 @@
     justify-content: center;
 }
 
+/* 動画が1本の場合、中央配置を維持 */
+.carousel-track.single-video .carousel-item {
+    flex: 0 0 100%;
+    width: 100%;
+    max-width: 90%;
+    margin: 0 auto;
+}
+
 @media (min-width: 768px) {
     .carousel-item {
         flex: 0 0 50%;
         width: 50%;
+    }
+    
+    /* 動画が1本の場合、中央配置を維持 */
+    .carousel-track.single-video .carousel-item {
+        flex: 0 0 80%;
+        width: 80%;
+        max-width: 80%;
     }
 }
 
@@ -235,6 +255,13 @@
     .carousel-item {
         flex: 0 0 33.333%;
         width: 33.333%;
+    }
+    
+    /* 動画が1本の場合、中央配置を維持 */
+    .carousel-track.single-video .carousel-item {
+        flex: 0 0 70%;
+        width: 70%;
+        max-width: 70%;
     }
 }
 

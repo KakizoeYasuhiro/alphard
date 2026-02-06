@@ -13,14 +13,7 @@ if (typeof window !== 'undefined') {
 
 // 動画カルーセルのデータ
 const carouselVideos = [
-  { id: 1, title: 'CRAWLER - Khore', embedId: 'nZ-gV96fUjw' },
-  { id: 2, title: 'Blank Space - Khore', embedId: '_UL2zm5Qfo8' },
-  { id: 3, title: 'Bend - Khore', embedId: 'TogNwwOaGmY' },
-  { id: 4, title: 'NEWDAWN - Khore', embedId: 'O0wIkiSPj28' },
-  { id: 5, title: 'ルミネセンス - Khore', embedId: 'YDwUrmW8RvU' },
-  { id: 6, title: '生活 - Khore', embedId: 'p6VCohkQQGI' },
-  { id: 7, title: 'Shelter - Khore', embedId: 'KgJJ6CPip7g' },
-  { id: 8, title: 'とおく - Khore', embedId: 'MM-j5bBrEk4' },
+  { id: 1, title: '歌うということ - Khore', embedId: 'nZ-gV96fUjw' },
 ];
 
 export default function ArtistDetailClient() {
@@ -150,7 +143,7 @@ export default function ArtistDetailClient() {
       <div className="music-videos">
         <h3 className="en-text">MUSIC VIDEOS</h3>
         <div className="carousel-container">
-          <div className="carousel-track" style={{transform: `translateX(-${currentIndex * (100 / visibleItems)}%)`}}>
+          <div className={`carousel-track ${carouselVideos.length === 1 ? 'single-video' : ''}`} style={carouselVideos.length === 1 ? {} : {transform: `translateX(-${currentIndex * (100 / visibleItems)}%)`}}>
             {carouselVideos.map((video) => (
               <div key={video.id} className="carousel-item">
                 <div className="video-container">
@@ -167,33 +160,37 @@ export default function ArtistDetailClient() {
             ))}
           </div>
           
-          <button 
-            className="carousel-button prev" 
-            onClick={prevSlide} 
-            aria-label="前のスライド"
-          >
-            &lt;
-          </button>
-          <button 
-            className="carousel-button next" 
-            onClick={nextSlide} 
-            aria-label="次のスライド"
-          >
-            &gt;
-          </button>
-          
-          <div className="carousel-indicators">
-            {Array.from({ length: Math.max(1, carouselVideos.length - visibleItems + 1) }).map((_, index) => (
-              <div 
-                key={index}
-                className={`carousel-indicator ${index === currentIndex ? 'active' : ''}`}
-                onClick={() => setCurrentIndex(index)}
-                aria-label={`スライド ${index + 1}`}
-                role="button"
-                tabIndex="0"
-              />
-            ))}
-          </div>
+          {carouselVideos.length > 1 && (
+            <>
+              <button 
+                className="carousel-button prev" 
+                onClick={prevSlide} 
+                aria-label="前のスライド"
+              >
+                &lt;
+              </button>
+              <button 
+                className="carousel-button next" 
+                onClick={nextSlide} 
+                aria-label="次のスライド"
+              >
+                &gt;
+              </button>
+              
+              <div className="carousel-indicators">
+                {Array.from({ length: Math.max(1, carouselVideos.length - visibleItems + 1) }).map((_, index) => (
+                  <div 
+                    key={index}
+                    className={`carousel-indicator ${index === currentIndex ? 'active' : ''}`}
+                    onClick={() => setCurrentIndex(index)}
+                    aria-label={`スライド ${index + 1}`}
+                    role="button"
+                    tabIndex="0"
+                  />
+                ))}
+              </div>
+            </>
+          )}
         </div>
       </div>
       )}
