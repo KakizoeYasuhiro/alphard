@@ -13,7 +13,7 @@ if (typeof window !== 'undefined') {
 
 // 動画カルーセルのデータ
 const carouselVideos = [
-  { id: 1, title: 'CRAWLER - Khore', embedId: 'eUOAi8JAp0o' },
+  { id: 1, title: 'CRAWLER - Khore', embedId: 'nZ-gV96fUjw' },
   { id: 2, title: 'Blank Space - Khore', embedId: '_UL2zm5Qfo8' },
   { id: 3, title: 'Bend - Khore', embedId: 'TogNwwOaGmY' },
   { id: 4, title: 'NEWDAWN - Khore', embedId: 'O0wIkiSPj28' },
@@ -28,7 +28,7 @@ export default function ArtistDetailClient() {
   const [visibleItems, setVisibleItems] = useState(1);
   
   // Music Videosセクションの表示制御（後々Khore名義のMVで入れ替え可能にするため）
-  const showMusicVideos = false;
+  const showMusicVideos = true;
   
   // ウィンドウサイズに応じて表示アイテム数を更新
   useEffect(() => {
