@@ -237,34 +237,6 @@
     margin: 0 auto;
 }
 
-@media (min-width: 768px) {
-    .carousel-item {
-        flex: 0 0 50%;
-        width: 50%;
-    }
-    
-    /* 動画が1本の場合、中央配置を維持 */
-    .carousel-track.single-video .carousel-item {
-        flex: 0 0 80%;
-        width: 80%;
-        max-width: 80%;
-    }
-}
-
-@media (min-width: 992px) {
-    .carousel-item {
-        flex: 0 0 33.333%;
-        width: 33.333%;
-    }
-    
-    /* 動画が1本の場合、中央配置を維持 */
-    .carousel-track.single-video .carousel-item {
-        flex: 0 0 70%;
-        width: 70%;
-        max-width: 70%;
-    }
-}
-
 @media (min-width: 1500px) {
     .carousel-container,
     .music-videos,
@@ -283,15 +255,10 @@
     margin: 0 auto;
 }
 
-@media (min-width: 768px) {
-    .video-container {
-        padding-bottom: 56.25%; /* 維持 */
-    }
-}
 
 @media (min-width: 992px) {
     .video-container {
-        padding-bottom: 56.25%; /* 維持 */
+        width: 75%;
     }
 }
 

@@ -14,33 +14,15 @@ if (typeof window !== 'undefined') {
 // 動画カルーセルのデータ
 const carouselVideos = [
   { id: 1, title: '歌うということ - Khore', embedId: 'nZ-gV96fUjw' },
+  { id: 2, title: 'Khore - Video', embedId: 'IuFFXzO11As' },
 ];
 
 export default function ArtistDetailClient() {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [visibleItems, setVisibleItems] = useState(1);
-  
+  const visibleItems = 1;
+
   // Music Videosセクションの表示制御（後々Khore名義のMVで入れ替え可能にするため）
   const showMusicVideos = true;
-  
-  // ウィンドウサイズに応じて表示アイテム数を更新
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const updateVisibleItems = () => {
-        if (window.innerWidth >= 992) {
-          setVisibleItems(3);
-        } else if (window.innerWidth >= 768) {
-          setVisibleItems(2);
-        } else {
-          setVisibleItems(1);
-        }
-      };
-      
-      updateVisibleItems();
-      window.addEventListener('resize', updateVisibleItems);
-      return () => window.removeEventListener('resize', updateVisibleItems);
-    }
-  }, []);
   
   // スクロールアニメーションの初期化
   useEffect(() => {
@@ -141,7 +123,7 @@ export default function ArtistDetailClient() {
       {/* Music Videosセクション - 後々Khore名義のMVで入れ替え可能にするため、コードは残して非表示に */}
       {showMusicVideos && (
       <div className="music-videos">
-        <h3 className="en-text">MUSIC VIDEOS</h3>
+        <h3 className="en-text">VIDEO</h3>
         <div className="carousel-container">
           <div className={`carousel-track ${carouselVideos.length === 1 ? 'single-video' : ''}`} style={carouselVideos.length === 1 ? {} : {transform: `translateX(-${currentIndex * (100 / visibleItems)}%)`}}>
             {carouselVideos.map((video) => (
