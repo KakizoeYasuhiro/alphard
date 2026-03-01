@@ -15,6 +15,7 @@ if (typeof window !== 'undefined') {
 const carouselVideos = [
   { id: 1, title: '歌うということ - Khore', embedId: 'nZ-gV96fUjw' },
   { id: 2, title: 'Khore - Video', embedId: 'IuFFXzO11As' },
+  { id: 3, title: 'Khore - Video', embedId: 'Yq4Yrth5nvc' },
 ];
 
 export default function ArtistDetailClient() {
