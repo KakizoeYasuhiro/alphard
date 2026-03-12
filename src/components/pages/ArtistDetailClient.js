@@ -107,17 +107,21 @@ export default function ArtistDetailClient() {
         <h3 className="en-text">PROFILE</h3>
         <div className="profile-text ja-text">
           <p>Khore (コーレ)</p>
-          <p>Vocalist。熊本県菊池市出身。</p>
-          <p>作詞作曲、編曲、デザイン、および映像・衣装・ライブ演出等のディレクションに至るまで、ほぼ全てを自身で担う。</p>
-          <p>「torch(2016-2020)」、「CASPER CAVE(2020-2023)」といった活動を経て、本名である「園木 邦宝(2023-)」から、2025年12月にアーティスト名を「Khore」へ改名。</p>
-          <p>現在は主に都内近郊と、地元・九州を跨いで活動中。</p>
-          <p>2025年12月、Khore改名後初のワンマンライブ「WAVES vol.2」の開催と、同名義での1st mini Album『Profile(プロファイル)』のリリースも決定している。</p>
-          <p>・2025.4 Minimal Band-set ONEMAN SHOW「WAVES vol.1」@渋谷gee-ge.(園木邦宝名義)<br />
-          ・2025.4-5 Acoustic Album「TRAIL Disc1」/「TRAIL Disc2」ライブ会場限定リリース(園木邦宝名義)<br />
-          ・2025.7 音楽事務所「株式会社アルファルド」所属<br />
-          ・2025.12 アーティスト名を「Khore(コーレ)」へ改める<br />
+          <p>ミュージシャン・シンガー。</p>
+          <p>作詞・作曲、編曲、デザイン、および映像・衣装・ライブ等の演出に至るまで、クリエイティブ全般を自身で担当。</p>
+          <p>昨年末より本格始動し、初のワンマン「WAVES vol.2(@下北沢ReG)」を12/21に開催。</p>
+          <p>同時に1st mini Album『Profile(プロファイル)』と、収録曲(M5)「歌うということ」のMusic Videoを立て続けにリリースし、その世界観を強く示した。</p>
+          <p>今年春頃からはシングルのリリースを順次予定し、同7月には2度目となるワンマン「WAVES vol.3(@渋谷CRAWL)」の開催も決定している。</p>
+          <p>・2026.7 Khore ONEMAN SHOW「WAVES vol.3」@渋谷CRAWL<br />
+          ・2026.2 「歌うということ」Music Videoをリリース<br />
+          ・2025.12 Khore ONEMAN SHOW「WAVES vol.2」@下北沢ReG<br />
           ・2025.12 Khore 1st mini Album『Profile（プロファイル）』リリース<br />
-          ・2025.12 Band-set ONEMAN SHOW「WAVES vol.2」@下北沢ReG</p>
+          ・2025.12 アーティスト名を「Khore(コーレ)」へ改める<br />
+          ・2025.7 音楽事務所「株式会社アルファルド」所属<br />
+          ・2025.4-5 Acoustic Album「TRAIL Disc1」/「TRAIL Disc2」ライブ会場限定リリース(旧名義)<br />
+          ・2025.4 園木邦宝(旧名義) Trio-Band-set ONEMAN SHOW「WAVES vol.1」@渋谷gee-ge.<br />
+          ・2020-2023 ユニット"CASPER CAVE"のボーカリストとして活動<br />
+          ・2016-2020 バンド"torch"のボーカリストとして活動</p>
         </div>
       </div>
 
