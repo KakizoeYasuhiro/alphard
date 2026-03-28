@@ -5,7 +5,6 @@ import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
-import { client } from '@/lib/microcms';
 
 // ScrollTriggerプラグインを登録
 if (typeof window !== 'undefined') {
@@ -42,14 +41,12 @@ export default function NewsSection() {
           }
         ];
 
-        // クライアントサイドでAPIを直接呼び出す
+        // APIルート経由でニュースを取得
         if (typeof window !== 'undefined') {
           try {
-            const data = await client.get({
-              endpoint: 'news',
-              queries: { limit: 3, orders: '-date,order' },
-            });
-            
+            const res = await fetch('/api/news?limit=3');
+            const data = await res.json();
+
             if (data && data.contents && data.contents.length > 0) {
               const formattedNews = data.contents.map(item => ({
                 id: item.id,
@@ -58,26 +55,24 @@ export default function NewsSection() {
                   month: '2-digit',
                   day: '2-digit',
                 }).replace(/\//g, '.'),
-                artist: Array.isArray(item.artist) && item.artist.length > 0 
-                  ? item.artist[0] 
+                artist: Array.isArray(item.artist) && item.artist.length > 0
+                  ? item.artist[0]
                   : item.artist || '',
-                category: Array.isArray(item.category) && item.category.length > 0 
-                  ? item.category[0].toUpperCase() 
+                category: Array.isArray(item.category) && item.category.length > 0
+                  ? item.category[0].toUpperCase()
                   : 'TOPIC',
                 content: item.content,
-                imageUrl: item.image?.url || null, // 明示的に null を設定
-                url: item.URL || item.url || null // 明示的に null を設定
+                imageUrl: item.image_url || null,
+                url: item.URL || item.url || null
               }));
-              
+
               setNewsItems(formattedNews);
               return;
             } else {
-              // ホームページの場合はフォールバックデータを使用
               setNewsItems(fallbackNews);
               return;
             }
           } catch (apiError) {
-            // ホームページの場合はエラー時もフォールバックデータを使用
             setNewsItems(fallbackNews);
             return;
           }
