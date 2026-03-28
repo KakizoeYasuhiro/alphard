@@ -19,9 +19,7 @@ export async function GET(request) {
     let query = supabase
       .from('news')
       .select('*', { count: 'exact' })
-      .eq('site', 'alphard')
       .order('date', { ascending: false })
-      .order('order', { ascending: true })
       .range(offset, offset + limit - 1);
 
     // 年フィルター
@@ -52,9 +50,14 @@ export async function GET(request) {
       return NextResponse.json({ contents: [], totalCount: 0 });
     }
 
-    // MicroCMSと同じレスポンス形式で返す
+    // image_url → image: { url } に変換（フロント互換）
+    const transformedData = (data || []).map(item => {
+      const { image_url, ...rest } = item;
+      return { ...rest, image: image_url ? { url: image_url } : null };
+    });
+
     return NextResponse.json({
-      contents: data || [],
+      contents: transformedData,
       totalCount: count || 0,
     });
   } catch (error) {
