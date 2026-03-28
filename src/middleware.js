@@ -11,51 +11,7 @@ export function middleware(request) {
     return NextResponse.redirect(url);
   }
 
-  // 2. Basic認証の処理
-  const basicAuthEnabled = process.env.BASIC_AUTH_ENABLED === 'true';
-  const basicAuthUser = process.env.BASIC_AUTH_USER;
-  const basicAuthPassword = process.env.BASIC_AUTH_PASSWORD;
-
-  if (basicAuthEnabled && basicAuthUser && basicAuthPassword) {
-    const authHeader = request.headers.get('authorization');
-
-    if (authHeader) {
-      try {
-      const authValue = authHeader.split(' ')[1];
-      const [user, password] = atob(authValue).split(':');
-
-      if (user === basicAuthUser && password === basicAuthPassword) {
-          // 認証成功 - 続行
-        } else {
-          // 認証失敗
-          return new NextResponse('Authentication failed', {
-            status: 401,
-            headers: {
-              'WWW-Authenticate': 'Basic realm="Secure Area"',
-            },
-          });
-        }
-      } catch (error) {
-        // Base64デコードエラー
-        return new NextResponse('Invalid authentication format', {
-          status: 401,
-          headers: {
-            'WWW-Authenticate': 'Basic realm="Secure Area"',
-          },
-        });
-      }
-    } else {
-      // 認証ヘッダーなし
-    return new NextResponse('Authentication required', {
-      status: 401,
-      headers: {
-        'WWW-Authenticate': 'Basic realm="Secure Area"',
-      },
-    });
-  }
-  }
-
-  // 3. レスポンスにセキュリティヘッダーを追加
+  // 2. レスポンスにセキュリティヘッダーを追加
   const response = NextResponse.next();
   
   // APIルートに対する追加のセキュリティヘッダー

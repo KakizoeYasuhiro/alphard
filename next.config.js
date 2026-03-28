@@ -9,6 +9,12 @@ const alphardConfig = {
         port: '',
         pathname: '/assets/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'jyqrgpmofqfidwgiqdkv.supabase.co',
+        port: '',
+        pathname: '/storage/v1/object/public/**',
+      },
     ],
     domains: ['alphard.info'], // OGP画像ドメインを許可リストに追加
   },

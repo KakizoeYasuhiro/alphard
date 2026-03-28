@@ -1,6 +1,6 @@
 // src/app/api/news/route.js
 import { NextResponse } from 'next/server';
-import { client } from '@/lib/microcms';
+import { supabase } from '@/lib/supabase';
 
 export const revalidate = 0;
 
@@ -9,71 +9,62 @@ export async function GET(request) {
     const { searchParams } = new URL(request.url);
     const limit = parseInt(searchParams.get('limit')) || 6;
     const offset = parseInt(searchParams.get('offset')) || 0;
-    
-    // APIクエリを構築
-    const queries = {
-      limit: limit,
-      offset: offset,
-      orders: '-date,order'
-    };
-    
-    // フィルターパラメータを追加
+
+    // フィルターパラメータを取得
     const year = searchParams.get('year');
     const month = searchParams.get('month');
     const type = searchParams.get('type');
-    
-    // フィルター条件を配列で構築
-    const filterConditions = [];
-    
-    // 年フィルター - 年だけの正確なフィルタリング（YYYY年のみのデータを対象）
+
+    // Supabaseクエリを構築
+    let query = supabase
+      .from('news')
+      .select('*', { count: 'exact' })
+      .order('date', { ascending: false })
+      .range(offset, offset + limit - 1);
+
+    // 年フィルター
     if (year) {
-      // 年は完全一致ではなく、日付文字列に含まれるかを確認
-      filterConditions.push(`date[contains]${year}`);
+      // dateカラムに年が含まれるかで絞り込み (例: "2025")
+      query = query.like('date', `%${year}%`);
     }
-    
-    // 月フィルター - 月だけの正確なフィルタリング（MM月のみのデータを対象）
+
+    // 月フィルター
     if (month) {
-      // 月は2桁になるよう調整
       const paddedMonth = month.padStart(2, '0');
-      filterConditions.push(`date[contains]-${paddedMonth}-`);
+      // dateカラムに "-MM-" パターンが含まれるかで絞り込み
+      query = query.like('date', `%-${paddedMonth}-%`);
     }
-    
-    // カテゴリーフィルター - containsを使用してカテゴリー配列内の一致を検索
+
+    // カテゴリーフィルター
     if (type && type !== 'ALL') {
-      // MicroCMSでは小文字でカテゴリーが保存されているため、小文字に変換
       const typeValue = type.toLowerCase();
-      filterConditions.push(`category[contains]${typeValue}`);
+      // categoryカラムにカテゴリーが含まれるかで絞り込み
+      query = query.like('category', `%${typeValue}%`);
     }
-    
-    // 複数条件がある場合は[and]で連結
-    if (filterConditions.length > 0) {
-      queries.filters = filterConditions.join('[and]');
-    }
-    
-    // 直接クライアントを使用
-    let data;
-    try {
-      data = await client.get({
-        endpoint: 'news',
-        queries,
-      });
-      
-    } catch (apiError) {
+
+    const { data, count, error } = await query;
+
+    if (error) {
       // APIエラー時は空のデータを返す
-      data = { contents: [], totalCount: 0 };
+      console.error('Supabase query error:', error);
+      return NextResponse.json({ contents: [], totalCount: 0 });
     }
-    
-    // データがない場合は空の配列を返す
-    if (!data || !data.contents) {
-      data = { contents: [], totalCount: 0 };
-    }
-    
-    return NextResponse.json(data);
+
+    // image_url → image: { url } に変換（フロント互換）
+    const transformedData = (data || []).map(item => {
+      const { image_url, ...rest } = item;
+      return { ...rest, image: image_url ? { url: image_url } : null };
+    });
+
+    return NextResponse.json({
+      contents: transformedData,
+      totalCount: count || 0,
+    });
   } catch (error) {
     return NextResponse.json(
-      { 
+      {
         error: 'ニュースリストの取得に失敗しました。',
-        details: error.message
+        details: error.message,
       },
       { status: 500 }
     );
