@@ -26,8 +26,8 @@ export default function Footer() {
               <li><Link href="/works">WORKS</Link></li>
               <li><Link href="/about">ABOUT</Link></li>
               <li><Link href="/contact">CONTACT</Link></li>
-              <li><Link href="/tokushoho">特定商取引法に基づく表記</Link></li>
-              <li><Link href="/privacy">プライバシーポリシー</Link></li>
+              <li><Link href="/tokushoho">Legal</Link></li>
+              <li><Link href="/privacy">Privacy Policy</Link></li>
             </ul>
           </div>
         </div>

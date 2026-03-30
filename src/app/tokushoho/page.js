@@ -46,7 +46,7 @@ export default function TokushohoPage() {
 
             <div className="info-row">
               <div className="info-label ja-text">販売URL</div>
-              <div className="info-content ja-text">https://admin.alphard.info</div>
+              <div className="info-content ja-text">https://admin.alphard.info/liff</div>
             </div>
 
             <div className="info-row">
@@ -63,7 +63,8 @@ export default function TokushohoPage() {
               <div className="info-label ja-text">支払方法</div>
               <div className="info-content ja-text">
                 クレジットカード決済（Stripe経由）<br />
-                Apple Pay / Google Pay
+                カード分割払い<br />
+                Apple Pay / Google Pay / Link
               </div>
             </div>
 
@@ -84,7 +85,6 @@ export default function TokushohoPage() {
               <div className="info-label ja-text">返品・キャンセルについて</div>
               <div className="info-content ja-text">
                 イベントの性質上、お客様都合による返品・返金は原則としてお受けできません。<br />
-                主催者都合によるイベント中止・延期の場合は全額返金いたします。<br />
                 キャンセルのご連絡は運営公式LINEアカウントまでお願いいたします。
               </div>
             </div>
