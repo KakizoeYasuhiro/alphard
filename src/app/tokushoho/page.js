@@ -20,7 +20,7 @@ export default function TokushohoPage() {
 
             <div className="info-row">
               <div className="info-label ja-text">運営統括責任者</div>
-              <div className="info-content ja-text">柿添 泰裕</div>
+              <div className="info-content ja-text">柿添 康大</div>
             </div>
 
             <div className="info-row">
@@ -46,7 +46,7 @@ export default function TokushohoPage() {
 
             <div className="info-row">
               <div className="info-label ja-text">販売URL</div>
-              <div className="info-content ja-text">https://alphard-admin.vercel.app</div>
+              <div className="info-content ja-text">https://admin.alphard.info</div>
             </div>
 
             <div className="info-row">
