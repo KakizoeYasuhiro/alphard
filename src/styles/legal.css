@@ -1,0 +1,115 @@
+/* 法的情報ページ（特定商取引法・プライバシーポリシー）のスタイル */
+
+.legal-section {
+  width: 100%;
+  padding: 0;
+}
+
+.legal-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 100px 20px 50px;
+}
+
+.legal-content {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.legal-title {
+  font-size: 28px;
+  text-align: center;
+  margin-bottom: 60px;
+  font-weight: 500;
+  position: relative;
+  letter-spacing: 0.05em;
+}
+
+.legal-intro {
+  margin-bottom: 40px;
+  line-height: 1.8;
+  font-size: 14px;
+}
+
+.legal-subtitle {
+  font-size: 18px;
+  margin: 40px 0 16px;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+}
+
+.legal-text {
+  margin-bottom: 16px;
+  line-height: 1.8;
+  font-size: 14px;
+}
+
+.legal-list {
+  margin: 0 0 24px 20px;
+  line-height: 2;
+  font-size: 14px;
+}
+
+.legal-list li {
+  margin-bottom: 4px;
+}
+
+.legal-date {
+  margin-top: 60px;
+  font-size: 13px;
+  color: var(--text-secondary, #888);
+  line-height: 1.8;
+}
+
+/* 特定商取引法の表形式 */
+.legal-table {
+  width: 100%;
+}
+
+.legal-table .info-row {
+  display: flex;
+  border-bottom: 1px solid var(--about-line-color, #333);
+  padding: 16px 0;
+}
+
+.legal-table .info-label {
+  width: 200px;
+  min-width: 200px;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.legal-table .info-content {
+  flex: 1;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+@media (max-width: 600px) {
+  .legal-container {
+    padding: 80px 16px 40px;
+  }
+
+  .legal-title {
+    font-size: 22px;
+    margin-bottom: 40px;
+  }
+
+  .legal-table .info-row {
+    flex-direction: column;
+    gap: 4px;
+    padding: 12px 0;
+  }
+
+  .legal-table .info-label {
+    width: auto;
+    min-width: auto;
+    font-size: 13px;
+    color: var(--text-secondary, #888);
+  }
+
+  .legal-table .info-content {
+    font-size: 14px;
+  }
+}
