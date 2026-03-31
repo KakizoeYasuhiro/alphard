@@ -26,16 +26,14 @@ export default function TokushohoPage() {
             <div className="info-row">
               <div className="info-label ja-text">所在地</div>
               <div className="info-content ja-text">
-                請求があった場合には遅滞なく開示いたします。<br />
-                お問い合わせ先: support@alphard.info
+                〒213-0002 神奈川県川崎市高津区二子2-5-14 ヤマザキコーポラス102号
               </div>
             </div>
 
             <div className="info-row">
               <div className="info-label ja-text">電話番号</div>
               <div className="info-content ja-text">
-                請求があった場合には遅滞なく開示いたします。<br />
-                お問い合わせ先: support@alphard.info
+                090-4257-5732（受付時間: 平日 10:00〜18:00）
               </div>
             </div>
 
