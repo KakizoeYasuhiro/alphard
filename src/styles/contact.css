@@ -332,3 +332,8 @@
     -webkit-text-fill-color: white !important;
     transition: background-color 5000s ease-in-out 0s;
 }
+.topic-info-message p { margin: 0; }
+.topic-info-message details { margin-top: .35rem; }
+.topic-info-message summary { cursor: pointer; }
+.topic-info-message details p { margin: .3rem 0 .6rem; }
+.topic-info-message a { color: inherit; text-decoration: underline; }

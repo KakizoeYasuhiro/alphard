@@ -1,35 +1,30 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import Link from 'next/link';
 
 export default function MobileMenu({ isOpen, onClose }) {
-  // ESCキーでメニューを閉じる
+  const closeButton = useRef(null);
   useEffect(() => {
-    const handleEsc = (e) => {
-      if (e.key === 'Escape') onClose();
-    };
-    
-    window.addEventListener('keydown', handleEsc);
-    
-    // メニューが開いているときは背景スクロールを無効化
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-    
+    if (!isOpen) return;
+    const opener = document.activeElement;
+    closeButton.current?.focus();
+    const onKeyDown = e => { if (e.key === 'Escape') onClose(); };
+    document.addEventListener('keydown', onKeyDown);
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
     return () => {
-      window.removeEventListener('keydown', handleEsc);
-      document.body.style.overflow = '';
+      document.removeEventListener('keydown', onKeyDown);
+      document.body.style.overflow = previousOverflow;
+      if (opener instanceof HTMLElement && document.contains(opener)) opener.focus({ preventScroll: true });
     };
   }, [isOpen, onClose]);
 
   return (
     <>
       {isOpen && <div className="mobile-menu-overlay" onClick={onClose}></div>}
-      <div className={`mobile-menu ${isOpen ? 'open' : ''}`}>
-        <div className="close-menu" onClick={onClose}>×</div>
+      <div id="mobile-navigation" aria-hidden={!isOpen} className={`mobile-menu ${isOpen ? 'open' : ''}`}>
+        <button ref={closeButton} type="button" className="close-menu" aria-label="メニューを閉じる" onClick={onClose}>×</button>
         <ul>
           <li><Link href="/" onClick={onClose}>HOME</Link></li>
           <li><Link href="/artists" onClick={onClose}>ARTISTS</Link></li>

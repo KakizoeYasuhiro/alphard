@@ -400,6 +400,12 @@ img {
     font-weight: 600;
 }
 
+.hamburger-menu, .close-menu {
+    padding: 0;
+    border: 0;
+    background: transparent;
+}
+
 .hamburger-menu {
     display: none;
     cursor: pointer;
@@ -409,6 +415,7 @@ img {
 }
 
 .hamburger-menu span {
+    left: 0;
     display: block;
     height: 1px;
     width: 100%;
@@ -445,6 +452,7 @@ img {
 }
 
 .mobile-menu {
+    visibility: hidden;
     position: fixed;
     top: 0;
     right: -300px;
@@ -458,6 +466,7 @@ img {
 }
 
 .mobile-menu.open {
+    visibility: visible;
     right: 0;
 }
 
