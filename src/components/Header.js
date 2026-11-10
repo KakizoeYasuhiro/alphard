@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
@@ -8,6 +8,7 @@ import MobileMenu from './MobileMenu';
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const closeMenu = useCallback(() => setMobileMenuOpen(false), []);
   const pathname = usePathname();
   
   // スクロール対応のヘッダースタイル
@@ -62,18 +63,22 @@ export default function Header() {
           <li><Link href="/contact" className={isActive('/contact') ? 'active' : ''}>CONTACT</Link></li>
         </ul>
       </nav>
-      <div 
+      <button
+        type="button"
+        aria-label="メニューを開く"
+        aria-expanded={mobileMenuOpen}
+        aria-controls="mobile-navigation"
         className="hamburger-menu" 
         onClick={() => setMobileMenuOpen(true)}
       >
         <span></span>
         <span></span>
         <span></span>
-      </div>
+      </button>
       
       <MobileMenu 
         isOpen={mobileMenuOpen} 
-        onClose={() => setMobileMenuOpen(false)} 
+        onClose={closeMenu}
       />
     </header>
   );

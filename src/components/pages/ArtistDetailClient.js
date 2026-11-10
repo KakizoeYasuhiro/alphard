@@ -184,6 +184,7 @@ export default function ArtistDetailClient() {
       )}
 
       <div className="official-links">
+        <a href="https://khore.jp/live" className="official-link">ライブ日程</a>
         <a href="https://khore.jp" target="_blank" rel="noopener noreferrer" className="official-link">OFFICIAL SITE</a>
       </div>
     </section>

@@ -1,5 +1,6 @@
 'use client';
 
+import NewsLink from '@/components/NewsLink';
 import { useState, memo, useCallback, useEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
@@ -36,7 +37,7 @@ const NewsItem = memo(({ item }) => (
       <div className="news-content" dangerouslySetInnerHTML={{ __html: item.content }} />
       {item.url && (
         <div className="news-detail-link">
-          <a href={item.url} target="_blank" rel="noopener noreferrer">&gt; 詳細はこちら</a>
+          <NewsLink href={item.url} />
         </div>
       )}
     </div>

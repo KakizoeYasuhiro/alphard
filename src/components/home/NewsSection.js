@@ -1,5 +1,6 @@
 'use client';
 
+import NewsLink from '@/components/NewsLink';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
@@ -196,7 +197,7 @@ export default function NewsSection() {
               <div className="news-content" dangerouslySetInnerHTML={{ __html: item.content }} />
               {item.url && (
                 <div className="news-detail-link">
-                  <a href={item.url} target="_blank" rel="noopener noreferrer" style={{ color: '#7e9bef' }}>&gt; 詳細はこちら</a>
+                  <NewsLink href={item.url} />
                 </div>
               )}
             </div>
